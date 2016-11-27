@@ -29,8 +29,6 @@ import javax.xml.bind.annotation.*;
  * WSIF street attributes and names are chosen to closely match existing US
  * Government databases (e.g. Postal Service, FCC, NOAA, NASA) and to also
  * support international street content requirements.
- * <p>
- * <h2>Validation </h2> The city, state and country attributes are required.
  *
  * @author jesse
  */
@@ -207,9 +205,6 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
    * This method tries (very hard) to match the provided country string with an
    * enumerated, known country. Match attempts include by name, partial name,
    * ISO2 and ISO3 codes.
-   * <p>
-   * If possible use the enumerated setter instead
-   * {@link setCountry(Enum_Country country)}.
    *
    * @param country a country code or name
    */
@@ -232,12 +227,9 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
    * <p>
    * This method can produce single or two-line street strings, with the second
    * line containing the city, state and postal code. e.g.
-   * <code>1600 Tysons Blvd., Suite 1100 McLean, VA 22102</code> or
-   * <code><br/>1600 Tysons Blvd., Suite 1100<br/>McLean, VA 22102</code>
+   * <code>1750 Tysons Blvd., Suite 1500<br>McLean, VA 22102</code> or
+   * <code>1750 Tysons Blvd., Suite 1500<br>McLean, VA 22102</code>
    *
-   * @param singleLine true if the street string should be on a single line.
-   *                   False if a new line should be inserted between the street
-   *                   and city (two line format)
    * @return a non-null, well-formed String representation of this address, one
    *         or two lines.
    */
@@ -304,7 +296,7 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
    * Compares the object hash codes, which is built from street, city, state,
    * postalCode and country fields.
    *
-   * @param object
+   * @param object the other object
    * @return TRUE if the street fields match, FALSE if not.
    */
   @Override

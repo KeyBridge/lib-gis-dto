@@ -46,18 +46,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * of the W3C Geolocation API Specification Coordinates interface with
  * accommodations made to support White Space location requirements.
  * <p>
- * <h2>Heritage</h2> The attribute definitions of entity include content from
- * the Google Gears (Deprecated) Geolocation API, Copyright ©2011 Google and are
- * reproduced here in accordance with the <a
+ * <strong>Heritage</strong> The attribute definitions of entity include content
+ * from the Google Gears (Deprecated) Geolocation API, Copyright ©2011 Google
+ * and are reproduced here in accordance with the <a
  * href="http://www.google.com/accounts/TOS">Google Terms of Service</a>.
  * <p>
  * This entity class also extends the Geolocation API Specification, W3C
  * Candidate Recommendation 07 September 2010, Copyright © 2010 W3C, Editor:
  * Andrei Popescu, Google, Inc.
  * <p>
- * <h2>Validity</h2> Latitude values outside the allowable range should be
- * rejected as invalid. For example, a longitude value of +105.0 degrees could
- * indicate an incorrectly encoded longitude or an invalid latitude value,
+ * <strong>Validity</strong> Latitude values outside the allowable range should
+ * be rejected as invalid. For example, a longitude value of +105.0 degrees
+ * could indicate an incorrectly encoded longitude or an invalid latitude value,
  * either of which is impossible to authoritatively discern programmatically.
  * Longitude values outside the allowable range may be optionally rejected as
  * invalid or normalized according to a receiving party’s discretion. For
@@ -125,9 +125,8 @@ public class GISPosition implements Serializable {
   /**
    * Longitude in decimal degrees (WGS84) datum.
    * <p>
-   * <
-   * p/> Longitude value precision is limited to 6 significant digits according
-   * to the number format '000.000000' ranging between the values of 0.0 and
+   * Longitude value precision is limited to 6 significant digits according to
+   * the number format '000.000000' ranging between the values of 0.0 and
    * +360.0.
    */
   @XmlElement(name = "Longitude", required = true)
