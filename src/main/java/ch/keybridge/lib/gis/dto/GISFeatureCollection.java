@@ -14,7 +14,7 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.common.adapter.XmlMapStringAdapter;
+import ch.keybridge.lib.xml.adapter.XmlMapStringAdapter;
 import java.io.Serializable;
 import java.util.*;
 import javax.xml.bind.annotation.*;

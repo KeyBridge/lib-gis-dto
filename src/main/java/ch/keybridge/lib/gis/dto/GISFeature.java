@@ -14,9 +14,9 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.common.adapter.XmlEnvelopeAdapter;
-import ch.keybridge.lib.common.adapter.XmlGeometryAdapter;
-import ch.keybridge.lib.common.adapter.XmlMapStringAdapter;
+import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
+import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
+import ch.keybridge.lib.xml.adapter.XmlMapStringAdapter;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 import java.io.Serializable;

@@ -13,9 +13,9 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.common.adapter.XmlMapDoublesAdapter;
-import ch.keybridge.lib.common.adapter.XmlPrecisionAdapter02;
-import ch.keybridge.lib.common.adapter.XmlPrecisionAdapter06;
+import ch.keybridge.lib.xml.adapter.XmlMapDoublesAdapter;
+import ch.keybridge.lib.xml.adapter.XmlPrecisionAdapter02;
+import ch.keybridge.lib.xml.adapter.XmlPrecisionAdapter06;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;

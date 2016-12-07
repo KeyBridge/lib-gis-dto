@@ -13,7 +13,6 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.common.TextUtility;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
@@ -240,10 +239,10 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
      */
     return new StringBuilder()
             .append(street != null && !street.isEmpty() && !street.trim().equalsIgnoreCase("null")
-                    ? TextUtility.properCase(street + ", ")
+                    ? properCase(street + ", ")
                     : "")
             .append(city != null && !city.isEmpty() && !city.trim().equalsIgnoreCase("null")
-                    ? " " + TextUtility.properCase(city)
+                    ? " " + properCase(city)
                     : "")
             .append(state != null && !state.isEmpty() && !state.trim().equalsIgnoreCase("null")
                     ? ", " + state.toUpperCase() + " "
@@ -252,6 +251,55 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
                     ? postalCode
                     : "")
             .toString();
+  }
+
+  /**
+   * Format the input string to Proper-Case by capitalizing the first character
+   * of each word and forcing all other characters to lower case.
+   * <p>
+   * This method includes a null check and will ignore null or empty strings.
+   *
+   * @param string A free-text string. May contain one or more words.
+   * @return The input string converted to Proper case.
+   */
+  private String properCase(String input) {
+    if (input == null || input.isEmpty()) {
+      return null;
+    }
+    String string = input.toLowerCase();
+    /**
+     * If the string is a single character just return it in uppercase.
+     */
+    if (string.length() == 1) {
+      return string.toUpperCase();
+    }
+    if (string.length() > 2) {
+      /**
+       * If the string contains enough characters to be two words then process
+       * each word.
+       */
+      StringBuilder sb = new StringBuilder();
+      for (String subString : string.split("[\\s/+()@_-]")) {
+        if (!sb.toString().isEmpty()) {
+          sb.append(" ");
+        }
+        /**
+         * Surround with a try catch since this is throwing 'String index out of
+         * range: 1' errors.
+         */
+        try {
+          sb.append(subString.substring(0, 1).toUpperCase()).append(subString.substring(1));
+        } catch (Exception e) {
+          sb.append(subString.toLowerCase());
+        }
+      }
+      return sb.toString();
+    } else {
+      /**
+       * The string is a single word.
+       */
+      return string.substring(0, 1).toUpperCase() + string.substring(1);
+    }
   }
 
   /**

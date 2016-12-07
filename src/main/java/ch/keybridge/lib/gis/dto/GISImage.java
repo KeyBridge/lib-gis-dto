@@ -13,8 +13,8 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.common.adapter.XmlDateTimeAdapter;
-import ch.keybridge.lib.common.adapter.XmlGeometryAdapter;
+import ch.keybridge.lib.xml.adapter.XmlDateTimeAdapter;
+import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import java.util.Date;

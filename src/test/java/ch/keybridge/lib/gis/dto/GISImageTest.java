@@ -9,7 +9,6 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.gis.dto.GISImage;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
