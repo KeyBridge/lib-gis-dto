@@ -29,7 +29,7 @@
       <artifactId>xml-adapter</artifactId>
       <version>${project.version}</version>
     </dependency>
-    
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -53,8 +53,8 @@
 
   <distributionManagement>
     <repository>
-      <id>archiva.internal</id>
-      <url>${repository.url}</url>
+      <id>archiva.external</id>
+      <url>${archiva.external}</url>
     </repository>
   </distributionManagement>
 
