@@ -27,7 +27,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
-      <version>${project.version}</version>
+      <version>1.0.1</version>
     </dependency>
 
     <dependency>
