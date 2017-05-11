@@ -105,7 +105,7 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    */
   @XmlElement(name = "Properties")
   @XmlJavaTypeAdapter(XmlMapStringAdapter.class)
-  private Map<String, String> extension;
+  private Map<String, String> properties;
 
   /**
    * Construct a new GIS Object instance.
@@ -317,16 +317,16 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    *
    * @return a non-null TreeMap instance
    */
-  public Map<String, String> getExtensions() {
+  public Map<String, String> getProperties() {
     /**
      * Developer note: A sorted TreeMap is required for GeoJSON encoding as the
      * key/value pairs are formatted and encoded separately. Sorting is required
      * to preserve the association.
      */
-    if (extension == null) {
-      extension = new TreeMap<>();
+    if (properties == null) {
+      properties = new TreeMap<>();
     }
-    return extension;
+    return properties;
   }
 
   /**
@@ -336,8 +336,8 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param key the extension index KEY
    * @return the value, null if not present
    */
-  public String getExtension(String key) {
-    return getExtensions().get(key);
+  public String getProperty(String key) {
+    return getProperties().get(key);
   }
 
   /**
@@ -348,14 +348,14 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param key   the key
    * @param value the value
    */
-  public final void setExtension(String key, Object value) {
+  public final void setProperty(String key, Object value) {
     if (key != null && !key.isEmpty()) {
       if (value == null) {
-        getExtensions().remove(key);
+        getProperties().remove(key);
       } else if (value instanceof Date) {
-        getExtensions().put(key, new SimpleDateFormat().format((Date) value));
+        getProperties().put(key, new SimpleDateFormat().format((Date) value));
       } else {
-        getExtensions().put(key, String.valueOf(value));
+        getProperties().put(key, String.valueOf(value));
       }
     }
   }
@@ -368,8 +368,8 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param key the key index
    * @return the value, FALSE if not set.
    */
-  public Boolean getExtensionBoolean(String key) {
-    return Boolean.valueOf(getExtension(key));
+  public Boolean getPropertyBoolean(String key) {
+    return Boolean.valueOf(getProperty(key));
   }
 
   /**
@@ -378,9 +378,9 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param key the key index
    * @return the value, NULL if not set.
    */
-  public Date getExtensionDate(String key) {
+  public Date getPropertyDate(String key) {
     try {
-      return new SimpleDateFormat().parse(getExtension(key));
+      return new SimpleDateFormat().parse(getProperty(key));
     } catch (ParseException | NullPointerException exception) {
       return null;
     }
@@ -396,9 +396,9 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param key the key index
    * @return the value, null on error
    */
-  public Double getExtensionDouble(String key) {
+  public Double getPropertyDouble(String key) {
     try {
-      return Double.valueOf(getExtension(key));
+      return Double.valueOf(getProperty(key));
     } catch (NumberFormatException | NullPointerException exception) {
       return null;
     }
@@ -417,9 +417,9 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param key the key index
    * @return the value, null on error
    */
-  public Integer getExtensionInteger(String key) {
+  public Integer getPropertyInteger(String key) {
     try {
-      return Integer.valueOf(getExtension(key));
+      return Integer.valueOf(getProperty(key));
     } catch (NumberFormatException | NullPointerException exception) {
       return null;
     }
@@ -438,9 +438,9 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param key the key index
    * @return the value, null on error
    */
-  public Long getExtensionLong(String key) {
+  public Long getPropertyLong(String key) {
     try {
-      return Long.valueOf(getExtension(key));
+      return Long.valueOf(getProperty(key));
     } catch (NumberFormatException | NullPointerException exception) {
       return null;
     }
@@ -452,15 +452,15 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    *
    * @param extensions a map of KEY/VALUE pairs
    */
-  public final void setExtensions(Map<String, String> extensions) {
-    this.extension = extensions != null ? new TreeMap<>(extensions) : null;
+  public final void setProperties(Map<String, String> extensions) {
+    this.properties = extensions != null ? new TreeMap<>(extensions) : null;
   }
 
   /**
    * Helper method to clear the metadata extensions.
    */
-  public void clearExtensions() {
-    this.extension = null;
+  public void clearProperties() {
+    this.properties = null;
   }
 
   /**
@@ -469,7 +469,7 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @return the ISO2 country code. e.g. 'US'
    */
   public String getIso2() {
-    return getExtension("iso2");
+    return getProperty("iso2");
   }
 
   /**
@@ -478,7 +478,7 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param iso2 the ISO2 country code. e.g. 'US'
    */
   public void setIso2(String iso2) {
-    setExtension("iso2", iso2);
+    setProperty("iso2", iso2);
   }
 
   /**
@@ -544,7 +544,7 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
             + "] type [" + featureType
             + "] name [" + name
             + "] geometry [" + (geometry != null ? geometry.getGeometryType() + "[" + geometry.getCoordinates().length + "]" : "")
-            + "] metadata [" + extension
+            + "] metadata [" + properties
             + ']';
   }
 

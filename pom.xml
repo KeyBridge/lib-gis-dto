@@ -3,13 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <packaging>jar</packaging>
 
   <name>lib-gis-dto</name>
   <description>GIS Data Transfer Objects
 
     v1.0.0 - migrated from keybridge-common to gis-common to this
+    v1.1.0 - refactor extension to properties, add position name
   </description>
 
   <organization>
@@ -45,10 +46,9 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>gis-common</artifactId>
-      <version>3.0.0</version>
+      <version>3.2.1</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <distributionManagement>

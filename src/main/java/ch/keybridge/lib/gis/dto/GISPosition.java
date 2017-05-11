@@ -112,6 +112,11 @@ public class GISPosition implements Serializable {
   public static final int SCALE_COORDINATE = 6;
 
   /**
+   * A free text name or description of the position.
+   */
+  @XmlElement(name = "Name")
+  private String name;
+  /**
    * Latitude in decimal degrees using the World Geodetic System 1984 (WGS84)
    * datum.
    * <p>
@@ -395,7 +400,15 @@ public class GISPosition implements Serializable {
     setLongitude(lonDouble);
   }// </editor-fold>
 
+  public String getName() {
+    return name;
+  }
+
   // <editor-fold defaultstate="collapsed" desc="Getter and Setter">
+  public void setName(String name) {
+    this.name = name;
+  }
+
   /**
    * @return The latitude geographic coordinates specified in decimal degrees.
    */

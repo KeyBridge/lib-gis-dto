@@ -9,8 +9,8 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.common.enumerated.ECountry;
-import ch.keybridge.lib.common.enumerated.EDatum;
+import ch.keybridge.lib.gis.common.ECountry;
+import ch.keybridge.lib.gis.common.EDatum;
 import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import com.vividsolutions.jts.geom.Envelope;
