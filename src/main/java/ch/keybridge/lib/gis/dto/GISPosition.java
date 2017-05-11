@@ -273,7 +273,7 @@ public class GISPosition implements Serializable {
   /**
    * Default no argument constructor.
    */
-  protected GISPosition() {
+  public GISPosition() {
   }
 
   /**
@@ -628,6 +628,7 @@ public class GISPosition implements Serializable {
    * @return this WSIF coordinate as a POINT geometry
    */
   public Point asPoint() {
+    normalizeLatitudeAndLongitude();
     return new GeometryFactory(new PrecisionModel(Math.pow(10, 6))).createPoint(elevation != null
                                                                                 ? new com.vividsolutions.jts.geom.Coordinate(longitude, latitude, elevation)
                                                                                 : new com.vividsolutions.jts.geom.Coordinate(longitude, latitude));
@@ -640,6 +641,7 @@ public class GISPosition implements Serializable {
    * @return this WSIF coordinate as a JTS GISPosition
    */
   public com.vividsolutions.jts.geom.Coordinate asCoordinate() {
+    normalizeLatitudeAndLongitude();
     return elevation != null
            ? new com.vividsolutions.jts.geom.Coordinate(longitude, latitude, elevation)
            : new com.vividsolutions.jts.geom.Coordinate(longitude, latitude);
