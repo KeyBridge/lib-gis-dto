@@ -21,6 +21,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.transform.Result;
 import javax.xml.transform.stream.StreamResult;
+import org.junit.Test;
 
 /**
  * Using JAXBContext to Generate an XML Schema from
@@ -36,6 +37,7 @@ public class GenerateXSDSchema {
    * @throws JAXBException
    * @throws IOException
    */
+  @Test
   public void testGenerateSchema() throws JAXBException, IOException {
 
     System.out.println("Generate a XML Schema and store it in the docs/xsd directory");
@@ -65,7 +67,7 @@ public class GenerateXSDSchema {
       /**
        * suggestedFileName is "schema1.xsd"
        */
-      java.nio.file.Path path = Paths.get("docs", "xsd", "gis-common." + sdf.format(new Date()) + ".xsd");
+      java.nio.file.Path path = Paths.get("docs", "xsd", "gis-dto." + sdf.format(new Date()) + ".xsd");
       File file = path.toFile();
       System.out.println("  Writing XSD Schema file to " + file);
       StreamResult result = new StreamResult(file);
