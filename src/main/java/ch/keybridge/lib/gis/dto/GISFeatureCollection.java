@@ -79,7 +79,7 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    */
   @XmlElement(name = "Properties")
   @XmlJavaTypeAdapter(XmlMapStringAdapter.class)
-  private Map<String, String> extension;
+  private Map<String, String> properties;
 
   /**
    * Construct a new GIS Feature Collection instance.
@@ -205,11 +205,11 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    *
    * @return a non-null TreeMap instance
    */
-  public Map<String, String> getExtensions() {
-    if (extension == null) {
-      extension = new HashMap<>();
+  public Map<String, String> getProperties() {
+    if (properties == null) {
+      properties = new HashMap<>();
     }
-    return extension;
+    return properties;
   }
 
   /**
@@ -219,8 +219,8 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    * @param key the extension index KEY
    * @return the value, null if not present
    */
-  public String getExtension(String key) {
-    return getExtensions().get(key);
+  public String getProperty(String key) {
+    return getProperties().get(key);
   }
 
   /**
@@ -231,12 +231,12 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    * @param key   the key
    * @param value the value
    */
-  public final void setExtension(String key, String value) {
+  public final void setProperty(String key, String value) {
     if (key != null && !key.isEmpty()) {
       if (value == null || value.isEmpty()) {
-        getExtensions().remove(key);
+        getProperties().remove(key);
       } else {
-        getExtensions().put(key, value);
+        getProperties().put(key, value);
       }
     }
   }
@@ -245,18 +245,18 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    * Set all extensions at once. This replaces the current extension
    * configuration.
    *
-   * @param extensions a map of KEY/VALUE pairs
+   * @param properties a map of KEY/VALUE pairs
    */
-  public final void setExtensions(Map<String, String> extensions) {
-    clearExtensions();
-    getExtensions().putAll(extensions);
+  public final void setProperties(Map<String, String> properties) {
+    clearProperties();
+    getProperties().putAll(properties);
   }
 
   /**
    * Helper method to clear the metadata extensions.
    */
-  public void clearExtensions() {
-    getExtensions().clear();
+  public void clearProperties() {
+    getProperties().clear();
   }
 
   /**
@@ -321,7 +321,7 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
             + " id [" + id
             + "] type [" + featureType
             + "] name [" + name
-            + "] metadata [" + extension
+            + "] metadata [" + properties
             + ']';
   }
 
