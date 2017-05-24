@@ -15,6 +15,7 @@ package ch.keybridge.lib.gis.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.regex.Pattern;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -237,21 +238,30 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
      * Selectively assemble a formatted string. Geocoding can sometimes set the
      * address field with the String value "Null", so also filter for this.
      */
-    return new StringBuilder()
-            .append(street != null && !street.isEmpty() && !street.trim().equalsIgnoreCase("null")
-                    ? properCase(street + ", ")
-                    : "")
-            .append(city != null && !city.isEmpty() && !city.trim().equalsIgnoreCase("null")
-                    ? " " + properCase(city)
-                    : "")
-            .append(state != null && !state.isEmpty() && !state.trim().equalsIgnoreCase("null")
-                    ? ", " + state.toUpperCase() + " "
-                    : "")
-            .append(postalCode != null && !postalCode.isEmpty() && !postalCode.trim().equalsIgnoreCase("null")
-                    ? postalCode
-                    : "")
-            .toString();
+    StringBuilder sb = new StringBuilder();
+    if (isMeaningful(street)) sb.append(properCase(street)).append(", ");
+    if (isMeaningful(city)) sb.append(" ").append(properCase(city));
+    if (isMeaningful(state)) sb.append(", ").append(state.toUpperCase()).append(" ");
+    if (isMeaningful(postalCode)) sb.append(postalCode);
+    return sb.toString();
   }
+
+  /**
+   * Utility method for finding meaningful strings: non-null, non-empty and non "null"
+   * (or "Null", ...).
+   * @param string An arbitrary string
+   * @return true if string contains meaningful information
+   */
+  private static boolean isMeaningful(String string) {
+    return string != null && !string.isEmpty() && !string.trim().equalsIgnoreCase("null");
+  }
+
+  /**
+   * Pre-compile regex to improve performance. This regex is used for breaking up
+   * strings to separate words.
+   * @see this#properCase(String)
+   */
+  private static final Pattern WORD_SPLIT_PATTERN = Pattern.compile("[\\s/+()@_-]");
 
   /**
    * Format the input string to Proper-Case by capitalizing the first character
@@ -259,7 +269,7 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
    * <p>
    * This method includes a null check and will ignore null or empty strings.
    *
-   * @param string A free-text string. May contain one or more words.
+   * @param input A free-text string. May contain one or more words.
    * @return The input string converted to Proper case.
    */
   private String properCase(String input) {
@@ -279,17 +289,14 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
        * each word.
        */
       StringBuilder sb = new StringBuilder();
-      for (String subString : string.split("[\\s/+()@_-]")) {
-        if (!sb.toString().isEmpty()) {
+      for (String subString : WORD_SPLIT_PATTERN.split(string)) {
+        if (subString.isEmpty()) continue;
+        if (sb.length() > 0) {
           sb.append(" ");
         }
-        /**
-         * Surround with a try catch since this is throwing 'String index out of
-         * range: 1' errors.
-         */
-        try {
+        if (subString.length() > 1) {
           sb.append(subString.substring(0, 1).toUpperCase()).append(subString.substring(1));
-        } catch (Exception e) {
+        } else {
           sb.append(subString.toLowerCase());
         }
       }

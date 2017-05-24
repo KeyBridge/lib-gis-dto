@@ -172,7 +172,7 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    */
   public Collection<GISFeature> getFeatures() {
     if (this.features == null) {
-      this.features = new TreeSet<>();
+      this.features = new HashSet<>();
     }
     return features;
   }
@@ -248,14 +248,15 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    * @param extensions a map of KEY/VALUE pairs
    */
   public final void setExtensions(Map<String, String> extensions) {
-    this.extension = extensions != null ? new TreeMap<>(extensions) : null;
+    clearExtensions();
+    getExtensions().putAll(extensions);
   }
 
   /**
    * Helper method to clear the metadata extensions.
    */
   public void clearExtensions() {
-    this.extension = null;
+    getExtensions().clear();
   }
 
   /**
