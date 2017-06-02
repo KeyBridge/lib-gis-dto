@@ -22,7 +22,10 @@ import com.vividsolutions.jts.geom.Geometry;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -319,9 +322,10 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
      * Developer note: A sorted TreeMap is required for GeoJSON encoding as the
      * key/value pairs are formatted and encoded separately. Sorting is required
      * to preserve the association.
-     * Update: sorted map no longer required as of gis-geojson-1.0.2. Changed to HashMap
-     * because it has better performance characteristics (constant time vs long(n)
-     * as in TreeMap for common operations).
+     * <p>
+     * Update 05/24/17: sorted map no longer required as of gis-geojson-1.0.2.
+     * Changed to HashMap because it has better performance characteristics
+     * (constant time vs long(n) as in TreeMap for common operations).
      */
     if (properties == null) {
       properties = new HashMap<>();
@@ -450,12 +454,12 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * Set all extensions at once. This replaces the current extension
    * configuration.
    *
-   * @param extensions a map of KEY/VALUE pairs
+   * @param properties a map of KEY/VALUE pairs
    */
-  public final void setProperties(Map<String, String> extensions) {
+  public final void setProperties(Map<String, String> properties) {
     clearProperties();
-    if (extensions != null) {
-      getProperties().putAll(extensions);
+    if (properties != null) {
+      getProperties().putAll(properties);
     }
   }
 
