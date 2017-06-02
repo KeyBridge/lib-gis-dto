@@ -11,6 +11,7 @@
 
     v1.0.0 - migrated from keybridge-common to gis-common to this
     v1.1.0 - refactor extension to properties, add position name
+    v1.1.1 - retain insertion order of GISFeatures in a GISFeatureCollection
   </description>
 
   <organization>
