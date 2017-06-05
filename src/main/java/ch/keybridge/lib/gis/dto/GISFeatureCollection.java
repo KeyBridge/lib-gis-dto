@@ -172,7 +172,7 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    */
   public Collection<GISFeature> getFeatures() {
     if (this.features == null) {
-      this.features = new HashSet<>();
+      this.features = new LinkedHashSet<>();
     }
     return features;
   }
