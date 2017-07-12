@@ -14,8 +14,8 @@
 package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.adapter.XmlMapDoublesAdapter;
-import ch.keybridge.lib.xml.adapter.XmlPrecisionAdapter02;
-import ch.keybridge.lib.xml.adapter.XmlPrecisionAdapter06;
+import ch.keybridge.lib.xml.adapter.XmlDouble02PrecisionAdapter;
+import ch.keybridge.lib.xml.adapter.XmlDouble06PrecisionAdapter;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
@@ -125,7 +125,7 @@ public class GISPosition implements Serializable {
    * +90.0.
    */
   @XmlElement(name = "Latitude", required = true)
-  @XmlJavaTypeAdapter(XmlPrecisionAdapter06.class)
+  @XmlJavaTypeAdapter(XmlDouble06PrecisionAdapter.class)
   private Double latitude;
   /**
    * Longitude in decimal degrees (WGS84) datum.
@@ -135,7 +135,7 @@ public class GISPosition implements Serializable {
    * +360.0.
    */
   @XmlElement(name = "Longitude", required = true)
-  @XmlJavaTypeAdapter(XmlPrecisionAdapter06.class)
+  @XmlJavaTypeAdapter(XmlDouble06PrecisionAdapter.class)
   private Double longitude;
   /**
    * Elevation height in meters (WGS84 datum) above mean sea level, or null if
@@ -147,7 +147,7 @@ public class GISPosition implements Serializable {
    * null. Number precision is one significant digit. e.g. '0.0'.
    */
   @XmlElement(name = "Elevation")
-  @XmlJavaTypeAdapter(XmlPrecisionAdapter02.class)
+  @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
   private Double elevation;
   /**
    * Denotes the direction of travel of the reporting device in degrees counting
@@ -167,7 +167,7 @@ public class GISPosition implements Serializable {
    * degrees from 0 to 360 with 0 as True North.
    */
   @XmlElement(name = "Heading")
-  @XmlJavaTypeAdapter(XmlPrecisionAdapter02.class)
+  @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
   private Double heading;
   /**
    * Denotes the magnitude of the horizontal component of the reporting device's
@@ -183,7 +183,7 @@ public class GISPosition implements Serializable {
    * must be a non-negative real number.
    */
   @XmlElement(name = "Speed")
-  @XmlJavaTypeAdapter(XmlPrecisionAdapter02.class)
+  @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
   private Double speed;
 
   /**
@@ -230,7 +230,7 @@ public class GISPosition implements Serializable {
    * e.g. '0.0'.
    */
   @XmlAttribute(name = "accuracyHorizontal")
-  @XmlJavaTypeAdapter(XmlPrecisionAdapter02.class)
+  @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
   private Double accuracyHorizontal;
   /**
    * The vertical accuracy of the position in meters, or null if not available.
@@ -243,7 +243,7 @@ public class GISPosition implements Serializable {
    * significant digit. e.g. '0.0'.
    */
   @XmlAttribute(name = "accuracyVertical")
-  @XmlJavaTypeAdapter(XmlPrecisionAdapter02.class)
+  @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
   private Double accuracyVertical;
 
   /**
@@ -257,7 +257,7 @@ public class GISPosition implements Serializable {
    * transmissions).
    */
   @XmlElement(name = "HAAT")
-  @XmlJavaTypeAdapter(XmlPrecisionAdapter02.class)
+  @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
   private Double haat;
 
   /**
