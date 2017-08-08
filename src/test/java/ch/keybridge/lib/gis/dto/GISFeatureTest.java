@@ -9,8 +9,6 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.gis.common.ECountry;
-import ch.keybridge.lib.gis.common.EDatum;
 import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import com.vividsolutions.jts.geom.Envelope;
@@ -26,8 +24,8 @@ public class GISFeatureTest {
 
   @Test
   public void testFeature() throws JAXBException, Exception {
-    GISPosition position = new GISPosition(34.123, -87.654, 12345.0, EDatum.NAD83.name(), 20.0, 10.0);
-    GISAddress address = new GISAddress("10101 Binary Blvd.", "Boolean", "IO", "090909", ECountry.CONGO.name());
+    GISPosition position = new GISPosition(34.123, -87.654, 12345.0, "NAD83", 20.0, 10.0);
+    GISAddress address = new GISAddress("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
     GISFeature feature = new GISFeature("featureType", "featureName", address, position, position.asPoint().buffer(.75));
 
     System.out.println(JaxbUtility.marshal(feature));
