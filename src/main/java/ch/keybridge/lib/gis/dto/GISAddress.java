@@ -237,18 +237,39 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
     /**
      * Selectively assemble a formatted string. Geocoding can sometimes set the
      * address field with the String value "Null", so also filter for this.
+     * Iteratively inspect the StringBuilder progress to avoid dangling commas
+     * where the street and/or city and zip are not configured but the state is.
+     * e.g. ", QC".
      */
     StringBuilder sb = new StringBuilder();
-    if (isMeaningful(street)) sb.append(properCase(street)).append(", ");
-    if (isMeaningful(city)) sb.append(" ").append(properCase(city));
-    if (isMeaningful(state)) sb.append(", ").append(state.toUpperCase()).append(" ");
-    if (isMeaningful(postalCode)) sb.append(postalCode);
+    if (isMeaningful(street)) {
+      sb.append(properCase(street));
+    }
+    if (isMeaningful(street) && isMeaningful(city)) {
+      sb.append(", ");
+    }
+    if (isMeaningful(city)) {
+      sb.append(properCase(city));
+    }
+    if (!sb.toString().trim().isEmpty() && isMeaningful(state)) {
+      sb.append(", ");
+    }
+    if (isMeaningful(state)) {
+      sb.append(state.toUpperCase());
+    }
+    if (!sb.toString().trim().isEmpty() && isMeaningful(postalCode)) {
+      sb.append(" ");
+    }
+    if (isMeaningful(postalCode)) {
+      sb.append(postalCode);
+    }
     return sb.toString();
   }
 
   /**
-   * Utility method for finding meaningful strings: non-null, non-empty and non "null"
-   * (or "Null", ...).
+   * Utility method for finding meaningful strings: non-null, non-empty and non
+   * "null" (or "Null", ...).
+   *
    * @param string An arbitrary string
    * @return true if string contains meaningful information
    */
@@ -257,8 +278,9 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
   }
 
   /**
-   * Pre-compile regex to improve performance. This regex is used for breaking up
-   * strings to separate words.
+   * Pre-compile regex to improve performance. This regex is used for breaking
+   * up strings to separate words.
+   *
    * @see this#properCase(String)
    */
   private static final Pattern WORD_SPLIT_PATTERN = Pattern.compile("[\\s/+()@_-]");
@@ -290,7 +312,9 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
        */
       StringBuilder sb = new StringBuilder();
       for (String subString : WORD_SPLIT_PATTERN.split(string)) {
-        if (subString.isEmpty()) continue;
+        if (subString.isEmpty()) {
+          continue;
+        }
         if (sb.length() > 0) {
           sb.append(" ");
         }
@@ -327,10 +351,10 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
    */
   public boolean isComplete() {
     return street != null && !street.isEmpty()
-            && city != null && !city.isEmpty()
-            && state != null && !state.isEmpty()
-            && postalCode != null && !postalCode.isEmpty()
-            && country != null && !country.isEmpty();
+      && city != null && !city.isEmpty()
+      && state != null && !state.isEmpty()
+      && postalCode != null && !postalCode.isEmpty()
+      && country != null && !country.isEmpty();
   }
 
   /**
