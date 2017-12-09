@@ -114,41 +114,17 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
   }
 
   /**
-   * Construct a new GIS Object instance with minimal configuration.
+   * Construct a new GISFeature instance with minimal configuration.
    *
    * @param name     the name. e.g. Alaska
    * @param geometry the geometry
+   * @return a new GISFeature instance
    */
-  public GISFeature(String name, Geometry geometry) {
-    this(null, null, name, geometry);
-  }
-
-  /**
-   * Construct a new GIS Object instance with complete configuration (except
-   * ID).
-   *
-   * @param featureType The object featureType. e.g. "border"
-   * @param name        the name. e.g. "Alaska"
-   * @param geometry    the geometry
-   */
-  public GISFeature(String featureType, String name, Geometry geometry) {
-    this(null, featureType, name, geometry);
-  }
-
-  /**
-   * Construct a new GIS Object instance with complete configuration (except
-   * ID).
-   *
-   * @param id          the object feature id
-   * @param featureType The object featureType. e.g. "border"
-   * @param name        the name. e.g. "Alaska"
-   * @param geometry    the geometry
-   */
-  public GISFeature(String id, String featureType, String name, Geometry geometry) {
-    this.id = id;
-    this.featureType = featureType;
-    this.name = name;
-    this.geometry = geometry;
+  public static GISFeature getInstance(String name, Geometry geometry) {
+    GISFeature f = new GISFeature();
+    f.setName(name);
+    f.setGeometry(geometry);
+    return f;
   }
 
   /**
@@ -159,13 +135,16 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
    * @param address     the address
    * @param position    the position
    * @param geometry    the geometry
+   * @return a new GISFeature instance
    */
-  public GISFeature(String featureType, String name, GISAddress address, GISPosition position, Geometry geometry) {
-    this.featureType = featureType;
-    this.name = name;
-    this.address = address;
-    this.position = position;
-    this.geometry = geometry;
+  public static GISFeature getInstance(String featureType, String name, GISAddress address, GISPosition position, Geometry geometry) {
+    GISFeature f = new GISFeature();
+    f.setFeatureType(featureType);
+    f.setName(name);
+    f.setAddress(address);
+    f.setPosition(position);
+    f.setGeometry(geometry);
+    return f;
   }
 
   /**
@@ -547,12 +526,12 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
 
   public String toStringFull() {
     return "GISFeature"
-            + " id [" + id
-            + "] type [" + featureType
-            + "] name [" + name
-            + "] geometry [" + (geometry != null ? geometry.getGeometryType() + "[" + geometry.getCoordinates().length + "]" : "")
-            + "] metadata [" + properties
-            + ']';
+      + " id [" + id
+      + "] type [" + featureType
+      + "] name [" + name
+      + "] geometry [" + (geometry != null ? geometry.getGeometryType() + "[" + geometry.getCoordinates().length + "]" : "")
+      + "] metadata [" + properties
+      + ']';
   }
 
 }

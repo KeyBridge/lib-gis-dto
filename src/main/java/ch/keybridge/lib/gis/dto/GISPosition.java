@@ -13,9 +13,9 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.xml.adapter.XmlMapDoublesAdapter;
 import ch.keybridge.lib.xml.adapter.XmlDouble02PrecisionAdapter;
 import ch.keybridge.lib.xml.adapter.XmlDouble06PrecisionAdapter;
+import ch.keybridge.lib.xml.adapter.XmlMapDoublesAdapter;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
@@ -277,27 +277,6 @@ public class GISPosition implements Serializable {
   }
 
   /**
-   * Default fully-qualified Constructor building a fully qualified GIS Position
-   * in one stroke. Automatically sets the ID with a time-based serial number.
-   *
-   * @param latitude           the latitude in decimal degrees
-   * @param longitude          the longitude in decimal degrees
-   * @param datum              the geodetic datum
-   * @param elevation          the elevation above mean sea level (meters)
-   * @param accuracyVertical   the elevation vertical accuracy (meters)
-   * @param accuracyHorizontal the elevation horizontal accuracy (meters)
-   */
-  protected GISPosition(Double latitude, Double longitude, Double elevation, String datum, Double accuracyVertical, Double accuracyHorizontal) {
-    this.latitude = latitude;
-    this.longitude = longitude;
-    this.datum = datum;
-    this.elevation = elevation;
-    this.accuracyVertical = accuracyVertical;
-    this.accuracyHorizontal = accuracyHorizontal;
-    normalizeLatitudeAndLongitude();
-  }
-
-  /**
    * Constructor building a fully qualified GIS Position in one stroke.
    *
    * @param latitude           the latitude in decimal degrees
@@ -310,15 +289,15 @@ public class GISPosition implements Serializable {
    * @return a new GIS Position instance
    */
   public static GISPosition getInstance(Double latitude, Double longitude, Double elevation, String datum, Double accuracyVertical, Double accuracyHorizontal) {
-    GISPosition position = new GISPosition();
-    position.setLatitude(latitude);
-    position.setLongitude(longitude);
-    position.setElevation(elevation);
-    position.setDatum(datum);
-    position.setAccuracyVertical(accuracyVertical);
-    position.setAccuracyHorizontal(accuracyHorizontal);
-    position.normalizeLatitudeAndLongitude();
-    return position;
+    GISPosition g = new GISPosition();
+    g.setLatitude(latitude);
+    g.setLongitude(longitude);
+    g.setElevation(elevation);
+    g.setDatum(datum);
+    g.setAccuracyVertical(accuracyVertical);
+    g.setAccuracyHorizontal(accuracyHorizontal);
+    g.normalizeLatitudeAndLongitude();
+    return g;
   }
 
   /**
@@ -329,7 +308,11 @@ public class GISPosition implements Serializable {
    * @return a new GIS Position instance
    */
   public static GISPosition getInstance(double latitude, double longitude) {
-    return new GISPosition(latitude, longitude, null, null, null, null);
+    GISPosition g = new GISPosition();
+    g.setLatitude(latitude);
+    g.setLongitude(longitude);
+    g.normalizeLatitudeAndLongitude();
+    return g;
   }
 
   /**
@@ -340,7 +323,7 @@ public class GISPosition implements Serializable {
    * @return a new GIS Position instance
    */
   public static GISPosition getInstance(Point point) {
-    return new GISPosition(point.getY(), point.getX(), null, null, null, null);
+    return GISPosition.getInstance(point.getY(), point.getX());
   }
 
   /**
@@ -354,7 +337,7 @@ public class GISPosition implements Serializable {
    * @return a new GIS Position instance
    */
   public static GISPosition getInstance(Coordinate point) {
-    return new GISPosition(point.y, point.x, point.z, null, null, null);
+    return GISPosition.getInstance(point.y, point.x);
   }
 
   // <editor-fold defaultstate="collapsed" desc="Constructor Support methods">
@@ -693,7 +676,7 @@ public class GISPosition implements Serializable {
     double elevenMeter = 0.00010;
     GISPosition other = (GISPosition) coordinate;
     return (Math.abs(this.latitude - other.getLatitude()) <= elevenMeter)
-            && (Math.abs(this.longitude - other.getLongitude()) <= elevenMeter);
+      && (Math.abs(this.longitude - other.getLongitude()) <= elevenMeter);
   }
 
   /**

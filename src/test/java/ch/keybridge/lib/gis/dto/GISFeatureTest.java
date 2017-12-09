@@ -24,9 +24,9 @@ public class GISFeatureTest {
 
   @Test
   public void testFeature() throws JAXBException, Exception {
-    GISPosition position = new GISPosition(34.123, -87.654, 12345.0, "NAD83", 20.0, 10.0);
-    GISAddress address = new GISAddress("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
-    GISFeature feature = new GISFeature("featureType", "featureName", address, position, position.asPoint().buffer(.75));
+    GISPosition position = GISPosition.getInstance(34.123, -87.654, 12345.0, "NAD83", 20.0, 10.0);
+    GISAddress address = GISAddress.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
+    GISFeature feature = GISFeature.getInstance("featureType", "featureName", address, position, position.asPoint().buffer(.75));
 
     System.out.println(JaxbUtility.marshal(feature));
 

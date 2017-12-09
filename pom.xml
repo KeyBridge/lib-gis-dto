@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>1.1.2</version>
+  <version>1.2.0</version>
   <packaging>jar</packaging>
 
   <name>lib-gis-dto</name>
@@ -13,6 +13,7 @@
     v1.1.0 - refactor extension to properties, add position name
     v1.1.1 - retain insertion order of GISFeatures in a GISFeatureCollection
     v1.1.2 - update dependencies
+    v1.2.0 - use getInstance factory constructors
   </description>
 
   <organization>
