@@ -16,15 +16,9 @@ package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
-import ch.keybridge.lib.xml.adapter.XmlMapStringAdapter;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -52,12 +46,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * "featureType", rename "Extension" XML element to "Metadata"
  *
  * @author Jesse Caulfield
- * @since 12/17/14
+ * @since v0.0.1 created 12/17/14
+ * @since v1.2.0 updated 12/10/17 to extend AbstractGISFeature with properties
+ * and styling
  */
 @XmlRootElement(name = "GISFeature")
 @XmlType(name = "GISFeature")
 @XmlAccessorType(XmlAccessType.FIELD)
-public final class GISFeature implements Serializable, Comparable<GISFeature> {
+public final class GISFeature extends AbstractGISFeature implements Serializable, Comparable<GISFeature> {
 
   private static final long serialVersionUID = 1L;
 
@@ -99,13 +95,6 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
   @XmlElement(name = "Shape", required = true)
   @XmlJavaTypeAdapter(XmlGeometryAdapter.class)
   private Geometry geometry;
-
-  /**
-   * URI-encoded key value pairs.
-   */
-  @XmlElement(name = "Properties")
-  @XmlJavaTypeAdapter(XmlMapStringAdapter.class)
-  private Map<String, String> properties;
 
   /**
    * Construct a new GIS Object instance.
@@ -291,169 +280,11 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
   }
 
   /**
-   * Get a sorted Map containing all of the extensions in this GISFeature
-   * container.
-   *
-   * @return a non-null TreeMap instance
-   */
-  public Map<String, String> getProperties() {
-    /**
-     * Developer note: A sorted TreeMap is required for GeoJSON encoding as the
-     * key/value pairs are formatted and encoded separately. Sorting is required
-     * to preserve the association.
-     * <p>
-     * Update 05/24/17: sorted map no longer required as of gis-geojson-1.0.2.
-     * Changed to HashMap because it has better performance characteristics
-     * (constant time vs long(n) as in TreeMap for common operations).
-     */
-    if (properties == null) {
-      properties = new HashMap<>();
-    }
-    return properties;
-  }
-
-  /**
-   * Extracts the desired value encoded within the extension field addressable
-   * by the key.
-   *
-   * @param key the extension index KEY
-   * @return the value, null if not present
-   */
-  public String getProperty(String key) {
-    return getProperties().get(key);
-  }
-
-  /**
-   * Encodes the provided value within the extension, associated with the
-   * provided key. This method will discard the entry if the key is null or
-   * empty.
-   *
-   * @param key   the key
-   * @param value the value
-   */
-  public final void setProperty(String key, Object value) {
-    if (key != null && !key.isEmpty()) {
-      if (value == null) {
-        getProperties().remove(key);
-      } else if (value instanceof Date) {
-        getProperties().put(key, new SimpleDateFormat().format((Date) value));
-      } else {
-        getProperties().put(key, String.valueOf(value));
-      }
-    }
-  }
-
-  /**
-   * Returns a Boolean with a value represented by the specified string. The
-   * Boolean returned represents a true value if the string argument is not null
-   * and is equal, ignoring case, to the string "true".
-   *
-   * @param key the key index
-   * @return the value, FALSE if not set.
-   */
-  public Boolean getPropertyBoolean(String key) {
-    return Boolean.valueOf(getProperty(key));
-  }
-
-  /**
-   * Returns a Date with a value represented by the specified string.
-   *
-   * @param key the key index
-   * @return the value, NULL if not set.
-   */
-  public Date getPropertyDate(String key) {
-    try {
-      return new SimpleDateFormat().parse(getProperty(key));
-    } catch (ParseException | NullPointerException exception) {
-      return null;
-    }
-  }
-
-  /**
-   * Returns a Double object holding the double value represented by the
-   * argument string s.
-   * <p>
-   * Fails silently: If the value is null or misconfigured a
-   * NumberFormatException is caught and NULL is returned.
-   *
-   * @param key the key index
-   * @return the value, null on error
-   */
-  public Double getPropertyDouble(String key) {
-    try {
-      return Double.valueOf(getProperty(key));
-    } catch (NumberFormatException | NullPointerException exception) {
-      return null;
-    }
-  }
-
-  /**
-   * Returns an Integer object holding the value of the specified String. The
-   * argument is interpreted as representing a signed decimal integer, exactly
-   * as if the argument were given to the Integer.parseInt(java.lang.String)
-   * method. The result is an Integer object that represents the integer value
-   * specified by the string.
-   * <p>
-   * Fails silently: If the value is null or misconfigured a
-   * NumberFormatException is caught and NULL is returned.
-   *
-   * @param key the key index
-   * @return the value, null on error
-   */
-  public Integer getPropertyInteger(String key) {
-    try {
-      return Integer.valueOf(getProperty(key));
-    } catch (NumberFormatException | NullPointerException exception) {
-      return null;
-    }
-  }
-
-  /**
-   * Returns a Long object holding the value of the specified String. The
-   * argument is interpreted as representing a signed decimal long, exactly as
-   * if the argument were given to the Long.parseLong(java.lang.String) method.
-   * The result is a Long object that represents the integer value specified by
-   * the string.
-   * <p>
-   * Fails silently: If the value is null or misconfigured a
-   * NumberFormatException is caught and NULL is returned.
-   *
-   * @param key the key index
-   * @return the value, null on error
-   */
-  public Long getPropertyLong(String key) {
-    try {
-      return Long.valueOf(getProperty(key));
-    } catch (NumberFormatException | NullPointerException exception) {
-      return null;
-    }
-  }
-
-  /**
-   * Set all extensions at once. This replaces the current extension
-   * configuration.
-   *
-   * @param properties a map of KEY/VALUE pairs
-   */
-  public final void setProperties(Map<String, String> properties) {
-    clearProperties();
-    if (properties != null) {
-      getProperties().putAll(properties);
-    }
-  }
-
-  /**
-   * Helper method to clear the metadata extensions.
-   */
-  public void clearProperties() {
-    getProperties().clear();
-  }
-
-  /**
    * Get the 2-character ISO 3166-1 alpha-2 country code.
    *
    * @return the ISO2 country code. e.g. 'US'
    */
+  @XmlElement(name = "Country")
   public String getIso2() {
     return getProperty("iso2");
   }
@@ -530,7 +361,7 @@ public final class GISFeature implements Serializable, Comparable<GISFeature> {
       + "] type [" + featureType
       + "] name [" + name
       + "] geometry [" + (geometry != null ? geometry.getGeometryType() + "[" + geometry.getCoordinates().length + "]" : "")
-      + "] metadata [" + properties
+      + "] metadata [" + getProperties()
       + ']';
   }
 

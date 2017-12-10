@@ -14,11 +14,12 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.xml.adapter.XmlMapStringAdapter;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Objects;
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * A Generic GIS Data transfer object for collections of GIS Features. This
@@ -42,11 +43,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *
  * @author Jesse Caulfield
  * @since v1.3.4 created 09/01/16
+ * @since v1.2.0 updated 12/10/17 to extend AbstractGISFeature with properties
+ * and styling
  */
 @XmlRootElement(name = "GISFeatureCollection")
 @XmlType(name = "GISFeatureCollection")
 @XmlAccessorType(XmlAccessType.FIELD)
-public final class GISFeatureCollection implements Serializable, Comparable<GISFeatureCollection> {
+public final class GISFeatureCollection extends AbstractGISFeature implements Serializable, Comparable<GISFeatureCollection> {
 
   private static final long serialVersionUID = 1L;
 
@@ -73,13 +76,6 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
   @XmlElementWrapper(name = "Features")
   @XmlElement(name = "Feature")
   protected Collection<GISFeature> features;
-
-  /**
-   * URI-encoded key value pairs.
-   */
-  @XmlElement(name = "Properties")
-  @XmlJavaTypeAdapter(XmlMapStringAdapter.class)
-  private Map<String, String> properties;
 
   /**
    * Construct a new GIS Feature Collection instance.
@@ -193,70 +189,8 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
    */
   public void addFeatures(GISFeature... features) {
     if (features != null) {
-      for (GISFeature feature : features) {
-        getFeatures().add(feature);
-      }
+      getFeatures().addAll(Arrays.asList(features));
     }
-  }
-
-  /**
-   * Get a sorted Map containing all of the extensions in this GISFeature
-   * container.
-   *
-   * @return a non-null TreeMap instance
-   */
-  public Map<String, String> getProperties() {
-    if (properties == null) {
-      properties = new HashMap<>();
-    }
-    return properties;
-  }
-
-  /**
-   * Extracts the desired value encoded within the extension field addressable
-   * by the key.
-   *
-   * @param key the extension index KEY
-   * @return the value, null if not present
-   */
-  public String getProperty(String key) {
-    return getProperties().get(key);
-  }
-
-  /**
-   * Encodes the provided value within the extension, associated with the
-   * provided key. This method will discard the entry if the key is null or
-   * empty.
-   *
-   * @param key   the key
-   * @param value the value
-   */
-  public final void setProperty(String key, String value) {
-    if (key != null && !key.isEmpty()) {
-      if (value == null || value.isEmpty()) {
-        getProperties().remove(key);
-      } else {
-        getProperties().put(key, value);
-      }
-    }
-  }
-
-  /**
-   * Set all extensions at once. This replaces the current extension
-   * configuration.
-   *
-   * @param properties a map of KEY/VALUE pairs
-   */
-  public final void setProperties(Map<String, String> properties) {
-    clearProperties();
-    getProperties().putAll(properties);
-  }
-
-  /**
-   * Helper method to clear the metadata extensions.
-   */
-  public void clearProperties() {
-    getProperties().clear();
   }
 
   /**
@@ -318,11 +252,11 @@ public final class GISFeatureCollection implements Serializable, Comparable<GISF
 
   public String toStringFull() {
     return "GISFeatureCollection"
-            + " id [" + id
-            + "] type [" + featureType
-            + "] name [" + name
-            + "] metadata [" + properties
-            + ']';
+      + " id [" + id
+      + "] type [" + featureType
+      + "] name [" + name
+      + "] metadata [" + getProperties()
+      + ']';
   }
 
 }
