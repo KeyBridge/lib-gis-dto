@@ -1,4 +1,4 @@
-lib-gis-dto
+# lib-gis-dto
 
 **GIS Data Transfer Objects**
 
@@ -11,15 +11,15 @@ The main benefit of a DTO is reducing the amount of data that must be exchanged 
 
 A DTO is a dumb object - it just holds properties and has getters and setters, but no other logic of any significance (other than maybe a compare() or equals() implementation).
 
-### Uses
+**Uses**
 
 Key Bridge uses this the DTO classes in this library in our GIS API.
 
-### References
+**References**
 
 See [Data Transfer Object](https://martinfowler.com/eaaCatalog/dataTransferObject.html)
 
-### History
+**History**
 
  *   v1.0.0 - migrated from keybridge-common to gis-common to this
  *   v1.1.0 - refactor extension to properties, add position name
