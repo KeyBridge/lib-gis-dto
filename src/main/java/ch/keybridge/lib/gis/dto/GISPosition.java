@@ -634,7 +634,7 @@ public class GISPosition implements Serializable {
    * Returns true if the latitude and longitude are not null or close to zero
    * (e.g. not set to [0, 0] degrees decimal).
    *
-   * @return
+   * @return true if the latitude and longitude are not null or close to zero
    */
   public boolean isComplete() {
     return latitude != null && longitude != null;
