@@ -24,7 +24,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
@@ -54,7 +57,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @since v1.2.0 created 10/10/17
  * @see <a href="https://github.com/mapbox/simplestyle-spec">SimplyStyle</a>
  */
-public class AbstractGISFeature {
+@XmlType(name = "AbstractGISFeature")
+@XmlAccessorType(XmlAccessType.FIELD)
+public abstract class AbstractGISFeature {
 
   /**
    * URI-encoded key value pairs.
