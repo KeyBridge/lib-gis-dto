@@ -9,17 +9,6 @@
 
   <xs:element name="GISPosition" type="GISPosition"/>
 
-  <xs:complexType name="GISAddress">
-    <xs:sequence>
-      <xs:element name="Street" type="xs:string" minOccurs="0"/>
-      <xs:element name="City" type="xs:string" minOccurs="0"/>
-      <xs:element name="County" type="xs:string" minOccurs="0"/>
-      <xs:element name="State" type="xs:string" minOccurs="0"/>
-      <xs:element name="PostalCode" type="xs:string" minOccurs="0"/>
-      <xs:element name="Country" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:complexType name="GISPosition">
     <xs:sequence>
       <xs:element name="Name" type="xs:string" minOccurs="0"/>
@@ -37,17 +26,30 @@
     <xs:attribute name="accuracyVertical" type="xs:string"/>
   </xs:complexType>
 
-  <xs:complexType name="GISFeature" final="extension restriction">
+  <xs:complexType name="GISAddress">
+    <xs:sequence>
+      <xs:element name="Street" type="xs:string" minOccurs="0"/>
+      <xs:element name="City" type="xs:string" minOccurs="0"/>
+      <xs:element name="County" type="xs:string" minOccurs="0"/>
+      <xs:element name="State" type="xs:string" minOccurs="0"/>
+      <xs:element name="PostalCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="Country" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GISFeatureCollection" final="extension restriction">
     <xs:complexContent>
       <xs:extension base="AbstractGISFeature">
         <xs:sequence>
           <xs:element name="ID" type="xs:string" minOccurs="0"/>
           <xs:element name="Name" type="xs:string" minOccurs="0"/>
-          <xs:element name="Address" type="GISAddress" minOccurs="0"/>
-          <xs:element name="Position" type="GISPosition" minOccurs="0"/>
-          <xs:element name="Shape" type="xs:string"/>
-          <xs:element name="Envelope" type="xs:string"/>
-          <xs:element name="Country" type="xs:string" minOccurs="0"/>
+          <xs:element name="Features" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Feature" type="GISFeature" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
         </xs:sequence>
         <xs:attribute name="featureType" type="xs:string"/>
       </xs:extension>
@@ -70,6 +72,23 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="GISFeature" final="extension restriction">
+    <xs:complexContent>
+      <xs:extension base="AbstractGISFeature">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" minOccurs="0"/>
+          <xs:element name="Name" type="xs:string" minOccurs="0"/>
+          <xs:element name="Address" type="GISAddress" minOccurs="0"/>
+          <xs:element name="Position" type="GISPosition" minOccurs="0"/>
+          <xs:element name="Shape" type="xs:string"/>
+          <xs:element name="Envelope" type="xs:string"/>
+          <xs:element name="Country" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="featureType" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
   <xs:complexType name="entryList">
     <xs:sequence>
       <xs:element name="Entry" type="entryType" minOccurs="0" maxOccurs="unbounded"/>
@@ -82,25 +101,6 @@
         <xs:attribute name="key" type="xs:string"/>
       </xs:extension>
     </xs:simpleContent>
-  </xs:complexType>
-
-  <xs:complexType name="GISFeatureCollection" final="extension restriction">
-    <xs:complexContent>
-      <xs:extension base="AbstractGISFeature">
-        <xs:sequence>
-          <xs:element name="ID" type="xs:string" minOccurs="0"/>
-          <xs:element name="Name" type="xs:string" minOccurs="0"/>
-          <xs:element name="Features" minOccurs="0">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="Feature" type="GISFeature" minOccurs="0" maxOccurs="unbounded"/>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-        </xs:sequence>
-        <xs:attribute name="featureType" type="xs:string"/>
-      </xs:extension>
-    </xs:complexContent>
   </xs:complexType>
 </xs:schema>
 
