@@ -91,16 +91,16 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
   /**
    * Construct a new fully qualified GISAddress entity.
    *
-   * @param address    the street street
+   * @param street     the street street
    * @param city       the city
    * @param state      the state (or region)
    * @param postalCode the postal code (zip)
    * @param country    the ISO-2 country code
    * @return a new fully qualified GISAddress entity.
    */
-  public static GISAddress getInstance(String address, String city, String state, String postalCode, String country) {
+  public static GISAddress getInstance(String street, String city, String state, String postalCode, String country) {
     GISAddress g = new GISAddress();
-    g.setStreet(state);
+    g.setStreet(street);
     g.setCity(city);
     g.setState(state);
     g.setPostalCode(postalCode);
