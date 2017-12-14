@@ -318,7 +318,7 @@ public abstract class AbstractGISFeature {
    */
   @XmlElement(name = "MarkerSize")
   public String getMarkerSize() {
-    return getProperty("marker-size", "medium");
+    return getProperty("markerSize", "medium");
   }
 
   /**
@@ -330,7 +330,7 @@ public abstract class AbstractGISFeature {
    * @param markerSize the value
    */
   public void setMarkerSize(String markerSize) {
-    setProperty("marker-size", markerSize);
+    setProperty("markerSize", markerSize);
   }
 
   /**
@@ -347,7 +347,7 @@ public abstract class AbstractGISFeature {
    */
   @XmlElement(name = "MarkerSymbol")
   public String getMarkerSymbol() {
-    return getProperty("marker-symbol");
+    return getProperty("markerSymbol");
   }
 
   /**
@@ -363,7 +363,7 @@ public abstract class AbstractGISFeature {
    * @param markerSymbol the value
    */
   public void setMarkerSymbol(String markerSymbol) {
-    setProperty("marker-symbol", markerSymbol);
+    setProperty("markerSymbol", markerSymbol);
   }
 
   /**
@@ -375,7 +375,7 @@ public abstract class AbstractGISFeature {
    */
   @XmlElement(name = "MarkerColor")
   public String getMarkerColor() {
-    return getProperty("marker-color", "7e7e7e");
+    return getProperty("markerColor", "7e7e7e");
   }
 
   /**
@@ -386,7 +386,7 @@ public abstract class AbstractGISFeature {
    * @param markerColor the value
    */
   public void setMarkerColor(String markerColor) {
-    setProperty("marker-color", markerColor);
+    setProperty("markerColor", markerColor);
   }
 
   /**
@@ -422,7 +422,7 @@ public abstract class AbstractGISFeature {
    */
   @XmlElement(name = "StrokeOpacity")
   public double getStrokeOpacity() {
-    return getPropertyDouble("stroke-opacity", 1.0);
+    return getPropertyDouble("strokeOpacity", 1.0);
   }
 
   /**
@@ -434,7 +434,7 @@ public abstract class AbstractGISFeature {
    * @param strokeOpacity the value
    */
   public void setStrokeOpacity(double strokeOpacity) {
-    setProperty("stroke-opacity", strokeOpacity);
+    setProperty("strokeOpacity", strokeOpacity);
   }
 
   /**
@@ -447,7 +447,7 @@ public abstract class AbstractGISFeature {
    */
   @XmlElement(name = "StrokeWidth")
   public double getStrokeWidth() {
-    return getPropertyDouble("stroke-width", 2.0);
+    return getPropertyDouble("strokeWidth", 2.0);
   }
 
   /**
@@ -459,7 +459,7 @@ public abstract class AbstractGISFeature {
    * @param strokeWidth the value
    */
   public void setStrokeWidth(double strokeWidth) {
-    setProperty("stroke-width", strokeWidth);
+    setProperty("strokeWidth", strokeWidth);
   }
 
   /**
@@ -496,7 +496,7 @@ public abstract class AbstractGISFeature {
    */
   @XmlElement(name = "FillOpacity")
   public double getFillOpacity() {
-    return getPropertyDouble("fill-opacity", 0.6);
+    return getPropertyDouble("fillOpacity", 0.6);
   }
 
   /**
@@ -509,7 +509,7 @@ public abstract class AbstractGISFeature {
    * @param fillOpacity the value
    */
   public void setFillOpacity(double fillOpacity) {
-    setProperty("fill-opacity", fillOpacity);
+    setProperty("fillOpacity", fillOpacity);
   }
 
 }
