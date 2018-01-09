@@ -189,7 +189,7 @@ public final class GISFeature extends AbstractGISFeature implements Serializable
    *
    * @return TRUE if the position is not null.
    */
-  public boolean isSetCoordinate() {
+  public boolean isSetPosition() {
     return this.position != null;
   }
 
