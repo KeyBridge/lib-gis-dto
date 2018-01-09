@@ -258,7 +258,7 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
       sb.append(", ");
     }
     if (isMeaningful(state)) {
-      sb.append(state.toUpperCase());
+      sb.append(state);
     }
     if (!sb.toString().trim().isEmpty() && isMeaningful(postalCode)) {
       sb.append(" ");
