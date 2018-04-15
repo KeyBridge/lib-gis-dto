@@ -97,8 +97,8 @@ public class GeoJSONWriter {
      * JSONWriter requires this.
      */
     String[] keys = gisFeatures.getFeatures().stream()
-            .flatMap(feature -> feature.getProperties().keySet().stream())
-            .distinct().toArray(String[]::new);
+      .flatMap(feature -> feature.getProperties().keySet().stream())
+      .distinct().toArray(String[]::new);
     for (GISFeature feature : gisFeatures.getFeatures()) {
       featureCollection.add(buildSimpleFeature(feature, keys));
     }
@@ -250,10 +250,10 @@ public class GeoJSONWriter {
     Envelope e = geometry.getEnvelopeInternal();
     DecimalFormat df = new DecimalFormat("#.0000");
     return "[" + df.format(e.getMinX())
-            + "," + df.format(e.getMaxX())
-            + "," + df.format(e.getMinY())
-            + "," + df.format(e.getMaxY())
-            + "]";
+      + "," + df.format(e.getMaxX())
+      + "," + df.format(e.getMinY())
+      + "," + df.format(e.getMaxY())
+      + "]";
   }
 
   /**
