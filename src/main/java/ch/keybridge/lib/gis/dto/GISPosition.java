@@ -696,10 +696,10 @@ public class GISPosition implements Serializable {
    * Returns TRUE if the latitude and longitude are both not null AND not close
    * to zero (e.g. not set to [0, 0] degrees decimal).
    * <p>
-   * It is typically an ERROR to have lat & lon =~ 0. It is also typically an
-   * error if the latitude and longitude are equal. Positions with null or zero
-   * lat/lon are invalid and should most always be discarded. The position 0,0
-   * is not within any country or territory.
+   * It is typically an ERROR to have lat &amp; lon approx 0. It is also
+   * typically an error if the latitude and longitude are equal. Positions with
+   * null or zero lat/lon are invalid and should most always be discarded. The
+   * position 0,0 is not within any country or territory.
    *
    * @since 1.3.1 added 04/15/18 copy from keybridge-commons Position
    * @return TRUE if the latitude and longitude are both not super close to
