@@ -692,6 +692,34 @@ public class GISPosition implements Serializable {
   }
 
   /**
+   * Inspects this position to determine that it is correctly configured.
+   * Returns TRUE if the latitude and longitude are both not null AND not close
+   * to zero (e.g. not set to [0, 0] degrees decimal).
+   * <p>
+   * It is typically an ERROR to have lat & lon =~ 0. It is also typically an
+   * error if the latitude and longitude are equal. Positions with null or zero
+   * lat/lon are invalid and should most always be discarded. The position 0,0
+   * is not within any country or territory.
+   *
+   * @since 1.3.1 added 04/15/18 copy from keybridge-commons Position
+   * @return TRUE if the latitude and longitude are both not super close to
+   *         zero.
+   */
+  public boolean isValid() {
+    /**
+     * 0.00010 degrees at the equator (corresponds to approximately 11 meters).
+     * This value (11 meters) is used to validate position configurations.
+     */
+    final double ELEVEN_METER = 0.00010;
+    /**
+     * Fail if the Position is not usable. It is typically an ERROR to have lat
+     * & lon =~ 0. It is also typically an error if the latitude and longitude
+     * are equal.
+     */
+    return !(Math.abs(latitude) <= ELEVEN_METER && Math.abs(longitude) <= ELEVEN_METER);
+  }
+
+  /**
    * Normalize an arbitrary azimuth into a well-formed heading value, ensuring
    * that the heading range is between [-180 and +180] with ZERO defined as TRUE
    * NORTH.
