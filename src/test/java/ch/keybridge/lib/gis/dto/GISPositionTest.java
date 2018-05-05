@@ -48,13 +48,14 @@ public class GISPositionTest {
   @Test
   public void testPositionNullZ() throws JAXBException {
     GISPosition position = GISPosition.getInstance(10.0, 20.0);
+
+    System.out.println(position.toString());
+
     System.out.println(JaxbUtility.marshal(position));
 
     Coordinate coordinate = position.asCoordinate();
     System.out.println("as coordinate " + coordinate);
-
     TestCase.assertEquals(Double.NaN, coordinate.z);
-
   }
 
 }
