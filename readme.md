@@ -41,7 +41,7 @@ See the `io` utility classes or unit tests for usage examples.
 
 Copyright 2017-2018 Key Bridge. License is **Apache 2.0**.
 
-#History
+# History
 
     v1.0.0 - migrated from keybridge-common to gis-common to this
     v1.1.0 - refactor extension to properties, add position name
