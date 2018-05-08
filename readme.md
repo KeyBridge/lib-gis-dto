@@ -15,19 +15,19 @@ A DTO is a dumb object - it just holds properties and has getters and setters, b
 
 This library provide the following DTO classes:
 
-  *  GISFeatureCollection - a collection of features
-  *  GISFeature - a feature
-  *  GISAddress - a fully qualified (mailing) address
-  *  GISPosition - a fully qualified geographic position
-  *  GISImage - describes a map image overlay
-  *  AbstractGISFeature - provides support for map styles and other properties
+  *  **GISFeatureCollection** - a collection of features
+  *  **GISFeature** - a feature
+  *  **GISAddress** - a fully qualified (mailing) address
+  *  **GISPosition** - a fully qualified geographic position
+  *  **GISImage** - describes a map image overlay
+  *  **AbstractGISFeature** - provides support for map styles and other properties
 
 
 This library provides the following utility classes (in the `io` directory)
 
-  *  GeoJSONWriter - transform GIS DTO instances to **GeoJSON**
-  *  KmlReader - transform KML files to GIS DTO instances
-  *  KmlWriter - transform GIS DTO instances to a **KML** document
+  *  **GeoJSONWriter** - transform GIS DTO instances to **GeoJSON**
+  *  **KmlReader** - transform KML files to GIS DTO instances
+  *  **KmlWriter** - transform GIS DTO instances to a **KML** document
 
 #Uses
 
