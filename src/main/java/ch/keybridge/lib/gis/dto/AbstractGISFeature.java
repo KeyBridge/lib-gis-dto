@@ -264,6 +264,19 @@ public abstract class AbstractGISFeature {
   }
 
   /**
+   * Add a collection of properties at once. This ammends the current extension
+   * configuration.
+   *
+   * @param properties a map of KEY/VALUE pairs
+   */
+  public final void addProperties(Map<String, String> properties) {
+    clearProperties();
+    if (properties != null) {
+      getProperties().putAll(properties);
+    }
+  }
+
+  /**
    * Helper method to clear the metadata extensions.
    */
   public void clearProperties() {
