@@ -23,6 +23,7 @@ import com.vividsolutions.jts.io.WKTReader;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.xml.bind.JAXBException;
+import net.opengis.kml.Kml;
 import org.junit.Test;
 
 /**
@@ -39,7 +40,7 @@ public class KMLWriterTest {
     WKTReader reader = new WKTReader();
     Geometry geometry = reader.read("POLYGON((0 0, 10 20, 20 0, 0 0))");
 
-//    String kml = KMLWriter.write(geometry);
+//    String kml = KmlWriter.write(geometry);
 //    System.out.println("KML");
 //    System.out.println(kml);
   }
@@ -48,7 +49,7 @@ public class KMLWriterTest {
   public void testF() throws IOException, ParseException, JAXBException {
     GISFeature feature = buildGISFeature();
 
-    String kml = KMLWriter.write(feature);
+    String kml = KmlWriter.toText(feature);
     System.out.println("GIS Feature");
     System.out.println(kml);
   }
@@ -57,7 +58,7 @@ public class KMLWriterTest {
   public void testFC() throws IOException, ParseException, JAXBException {
     GISFeatureCollection featureCollection = buildFeatureCollection();
 
-    String kml = KMLWriter.write(featureCollection);
+    Kml kml = KmlWriter.write(featureCollection);
     System.out.println("GIS FeatureCollection");
     System.out.println(kml);
   }
