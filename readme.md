@@ -10,7 +10,6 @@ it from one subsystem of an application to another.
 DTOs are most commonly used by the Services layer in an N-Tier application to transfer data between itself and the UI layer. In a distributed application a DTO provides a convenient, neutral message container that does not impose any design constraint on the receiving system.
 
 The main benefit of a DTO is reducing the amount of data that must be exchanged in distributed applications. They also make great models in the MVC pattern.
-
 A DTO is a dumb object - it just holds properties and has getters and setters, but no other logic of any significance (other than maybe a compare() or equals() implementation).
 
 This library provide the following DTO classes:
@@ -22,19 +21,18 @@ This library provide the following DTO classes:
   *  **GISImage** - describes a map image overlay
   *  **AbstractGISFeature** - provides support for map styles and other properties
 
-
 This library provides the following utility classes (in the `io` directory)
 
   *  **GeoJSONWriter** - transform GIS DTO instances to **GeoJSON**
   *  **KmlReader** - transform KML files to GIS DTO instances
   *  **KmlWriter** - transform GIS DTO instances to a **KML** document
 
-#Uses
+# Uses
 
 Key Bridge uses this the DTO classes in this library in our GIS API.
 See the `io` utility classes or unit tests for usage examples.
 
-#References
+# References
 
  * [GIS DTO v1.4.0](docs/xsd/gis-dto.2018-05-08.xsd)  XML Schema Document
  * [Data Transfer Object](https://martinfowler.com/eaaCatalog/dataTransferObject.html)
