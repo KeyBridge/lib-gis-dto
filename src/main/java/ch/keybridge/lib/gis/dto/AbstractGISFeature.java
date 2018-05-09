@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Key Bridge.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,10 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
@@ -51,19 +48,127 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * and #RGB order. Other color formats or named colors are not supported.
  *
  * @author Key Bridge
- * @since v1.2.0 created 10/10/17
  * @see <a href="https://github.com/mapbox/simplestyle-spec">SimplyStyle</a>
+ * @since v1.2.0 created 10/10/17
+ * @since v1.4.0 move id, name, type, description fields to AbstractGISFeature
  */
 @XmlType(name = "AbstractGISFeature")
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class AbstractGISFeature {
 
   /**
+   * The Feature Object lookup identifier.
+   */
+  @XmlElement(name = "ID")
+  protected String id;
+
+  /**
+   * The geographic feature type. e.g. border, boundary, zone, etc. This is used
+   * to categories features.
+   */
+  @XmlAttribute(name = "featureType")
+  protected String featureType;
+
+  /**
+   * The feature name. This is a free-text, human readable name describing the
+   * geographic feature. e.g. "Statue of Liberty".
+   */
+  @XmlElement(name = "Name")
+  protected String name;
+
+  /**
+   * The feature description. This is a free-text, human readable description of
+   * the geographic feature. e.g. "Statue of Liberty". This is typically a
+   * (markdown) description to show when this item is clicked or hovered over.
+   */
+  @XmlElement(name = "Description")
+  protected String description;
+
+  /**
    * URI-encoded key value pairs.
    */
   @XmlElement(name = "Properties")
   @XmlJavaTypeAdapter(XmlMapStringAdapter.class)
-  private Map<String, String> properties;
+  protected Map<String, String> properties;
+
+  /**
+   * Get the optional ID attribute. This may be the OSM ID, etc.
+   *
+   * @return the ID attribute
+   */
+  public String getId() {
+    return id;
+  }
+
+  /**
+   * Set the optional ID attribute. This may be the OSM ID, etc.
+   * <p>
+   * Note that the provided ID is converted to a String and its object type is
+   * lost in translation.
+   *
+   * @param id the ID attribute
+   */
+  public void setId(Object id) {
+    this.id = String.valueOf(id);
+  }
+
+  /**
+   * Get the feature name. This is a free-text, human readable name describing
+   * the geographic feature. e.g. "Statue of Liberty".
+   *
+   * @return the feature name.
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Set the feature name. This is a free-text, human readable name describing
+   * the geographic feature. e.g. "Statue of Liberty".
+   *
+   * @param name the feature name.
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Get the geographic feature type. e.g. border, boundary, zone, etc.
+   *
+   * @return the geographic feature type
+   */
+  public String getFeatureType() {
+    return featureType;
+  }
+
+  /**
+   * Set the geographic feature type. e.g. border, boundary, zone, etc.
+   *
+   * @param featureType the geographic feature type
+   */
+  public void setFeatureType(String featureType) {
+    this.featureType = featureType;
+  }
+
+  /**
+   * The feature description. This is a free-text, human readable description of
+   * the geographic feature. e.g. "Statue of Liberty". This is typically a
+   * (markdown) description to show when this item is clicked or hovered over.
+   *
+   * @return the value. Default is null.
+   */
+  public String getDescription() {
+    return description;
+  }
+
+  /**
+   * A description to show when this item is clicked or hovered over.
+   *
+   * @param description the value
+   */
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   /**
    * Get a sorted Map containing all of the extensions in this GISFeature
@@ -297,25 +402,6 @@ public abstract class AbstractGISFeature {
    */
   public void setTitle(String title) {
     setProperty("title", title);
-  }
-
-  /**
-   * A description to show when this item is clicked or hovered over.
-   *
-   * @return the value. Default is null.
-   */
-  @XmlElement(name = "Description")
-  public String getDescription() {
-    return getProperty("description");
-  }
-
-  /**
-   * A description to show when this item is clicked or hovered over.
-   *
-   * @param description the value
-   */
-  public void setDescription(String description) {
-    setProperty("description", description);
   }
 
   /**

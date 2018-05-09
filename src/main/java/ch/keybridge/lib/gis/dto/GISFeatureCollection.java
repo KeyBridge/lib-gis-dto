@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Key Bridge.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,9 +16,9 @@
 package ch.keybridge.lib.gis.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
 
@@ -46,6 +46,7 @@ import javax.xml.bind.annotation.*;
  * @since v1.3.4 created 09/01/16
  * @since v1.2.0 updated 12/10/17 to extend AbstractGISFeature with properties
  * and styling
+ * @since v1.4.0 move id, name, type, description fields to AbstractGISFeature
  */
 @XmlRootElement(name = "GISFeatureCollection")
 @XmlType(name = "GISFeatureCollection")
@@ -55,25 +56,9 @@ public final class GISFeatureCollection extends AbstractGISFeature implements Se
   private static final long serialVersionUID = 1L;
 
   /**
-   * The Feature Object lookup identifier.
+   * The collection of GISFeature. This is a simple ArrayList; sorting and
+   * uniqueness should be externally established.
    */
-  @XmlElement(name = "ID")
-  private String id;
-
-  /**
-   * The geographic feature type. e.g. border, boundary, zone, etc. This is used
-   * to categories features.
-   */
-  @XmlAttribute(name = "featureType")
-  private String featureType;
-
-  /**
-   * The feature name. This is a free-text, human readable name describing the
-   * geographic feature. e.g. "Statue of Liberty".
-   */
-  @XmlElement(name = "Name")
-  private String name;
-
   @XmlElementWrapper(name = "Features")
   @XmlElement(name = "Feature")
   protected Collection<GISFeature> features;
@@ -104,72 +89,13 @@ public final class GISFeatureCollection extends AbstractGISFeature implements Se
   }
 
   /**
-   * Get the optional ID attribute. This may be the OSM ID, etc.
-   *
-   * @return the ID attribute
-   */
-  public String getId() {
-    return id;
-  }
-
-  /**
-   * Set the optional ID attribute. This may be the OSM ID, etc.
-   * <p>
-   * Note that the provided ID is converted to a String and its object type is
-   * lost in translation.
-   *
-   * @param id the ID attribute
-   */
-  public void setId(Object id) {
-    this.id = String.valueOf(id);
-  }
-
-  /**
-   * Get the feature name. This is a free-text, human readable name describing
-   * the geographic feature. e.g. "Statue of Liberty".
-   *
-   * @return the feature name.
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Set the feature name. This is a free-text, human readable name describing
-   * the geographic feature. e.g. "Statue of Liberty".
-   *
-   * @param name the feature name.
-   */
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  /**
-   * Get the geographic feature type. e.g. border, boundary, zone, etc.
-   *
-   * @return the geographic feature type
-   */
-  public String getFeatureType() {
-    return featureType;
-  }
-
-  /**
-   * Set the geographic feature type. e.g. border, boundary, zone, etc.
-   *
-   * @param featureType the geographic feature type
-   */
-  public void setFeatureType(String featureType) {
-    this.featureType = featureType;
-  }
-
-  /**
    * Get the Features collection.
    *
-   * @return a non-null TreeSet.
+   * @return a non-null ArrayList.
    */
   public Collection<GISFeature> getFeatures() {
     if (this.features == null) {
-      this.features = new LinkedHashSet<>();
+      this.features = new ArrayList<>();
     }
     return features;
   }

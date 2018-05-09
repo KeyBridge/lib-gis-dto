@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Key Bridge.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,6 +52,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @since v0.0.1 created 12/17/14
  * @since v1.2.0 updated 12/10/17 to extend AbstractGISFeature with properties
  * and styling
+ * @since v1.4.0 move id, name, type, description fields to AbstractGISFeature
  */
 @XmlRootElement(name = "GISFeature")
 @XmlType(name = "GISFeature")
@@ -59,26 +60,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public final class GISFeature extends AbstractGISFeature implements Serializable, Comparable<GISFeature> {
 
   private static final long serialVersionUID = 1L;
-
-  /**
-   * The Feature Object lookup identifier.
-   */
-  @XmlElement(name = "ID")
-  private String id;
-
-  /**
-   * The geographic feature type. e.g. border, boundary, zone, etc. This is used
-   * to categories features.
-   */
-  @XmlAttribute(name = "featureType")
-  private String featureType;
-
-  /**
-   * The feature name. This is a free-text, human readable name describing the
-   * geographic feature. e.g. "Statue of Liberty".
-   */
-  @XmlElement(name = "Name")
-  private String name;
 
   @XmlElement(name = "Address")
   private GISAddress address;
@@ -224,65 +205,6 @@ public final class GISFeature extends AbstractGISFeature implements Serializable
   }
 
   /**
-   * Get the optional ID attribute. This may be the OSM ID, etc.
-   *
-   * @return the ID attribute
-   */
-  public String getId() {
-    return id;
-  }
-
-  /**
-   * Set the optional ID attribute. This may be the OSM ID, etc.
-   * <p>
-   * Note that the provided ID is converted to a String and its object type is
-   * lost in translation.
-   *
-   * @param id the ID attribute
-   */
-  public void setId(Object id) {
-    this.id = String.valueOf(id);
-  }
-
-  /**
-   * Get the feature name. This is a free-text, human readable name describing
-   * the geographic feature. e.g. "Statue of Liberty".
-   *
-   * @return the feature name.
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Set the feature name. This is a free-text, human readable name describing
-   * the geographic feature. e.g. "Statue of Liberty".
-   *
-   * @param name the feature name.
-   */
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  /**
-   * Get the geographic feature type. e.g. border, boundary, zone, etc.
-   *
-   * @return the geographic feature type
-   */
-  public String getFeatureType() {
-    return featureType;
-  }
-
-  /**
-   * Set the geographic feature type. e.g. border, boundary, zone, etc.
-   *
-   * @param featureType the geographic feature type
-   */
-  public void setFeatureType(String featureType) {
-    this.featureType = featureType;
-  }
-
-  /**
    * Get the 2-character ISO 3166-1 alpha-2 country code.
    *
    * @return the ISO2 country code. e.g. 'US'
@@ -343,9 +265,9 @@ public final class GISFeature extends AbstractGISFeature implements Serializable
       return this.name.compareTo(o.getName());
     }
     /**
-     * Cannot compare. Assume equal.
+     * Cannot compare. Assume not equal.
      */
-    return 0;
+    return -1;
   }
 
   /**
