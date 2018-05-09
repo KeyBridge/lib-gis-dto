@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Key Bridge.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,6 @@
  */
 package ch.keybridge.lib.gis.io;
 
-import ch.keybridge.lib.gis.dto.AbstractGISFeature;
 import ch.keybridge.lib.gis.dto.GISFeature;
 import ch.keybridge.lib.gis.dto.GISFeatureCollection;
 import com.vividsolutions.jts.geom.GeometryCollection;
@@ -34,7 +33,8 @@ import net.opengis.kml.*;
  * {@code GISFeatureCollection} and {@code GISFeature} DTO object instances.
  *
  * @author Key Bridge
- * @since v1.4.0 added 05/08/18 to support KML ETL
+ * @since v1.4.0 added 05/08/18 to support KML ETL; rewrite 05/09/18 using
+ * recursion
  */
 public class KmlReader {
 
@@ -66,103 +66,84 @@ public class KmlReader {
    * @param kml a KML document object
    * @return a non-null ArrayList
    */
-  public Collection<AbstractGISFeature> transformKml(Kml kml) {
-    /**
-     * Initialize an abstract collection of GSI DTO features.
-     */
-    Collection<AbstractGISFeature> gisFeatures = new ArrayList<>();
+  public GISFeatureCollection read(Kml kml) {
     /**
      * Get the Kml document. The document should NEVER be null, but check just
      * in case.
      */
     Document document = (Document) kml.getFeature();
-    if (document == null) {
-      return gisFeatures;
-    }
     /**
-     * Scan the document features. We are only looking for Folders, which
-     * contain a collection of Placemarks, and Placemarks.
+     * Recursively transform the top level document into a collection of GIS DTO
+     * features.
      */
-    for (Feature feature : document.getFeature()) {
-      /**
-       * If the feature is a Folder then process the folder contents as a
-       * collection of features, i.e. a FeatureCollection :). A Folder is a
-       * Feature with a collection of Placemarks.
-       */
-      if (feature instanceof Folder) {
-        GISFeatureCollection gisFeatureCollection = transformFolder((Folder) feature);
-        System.out.println(gisFeatureCollection);
-        /**
-         * Collect the feature collection.
-         */
-        gisFeatures.add(gisFeatureCollection);
-      }
-
-      /**
-       * If the feature is a Placemark then process the placemark. A Placemark
-       * is a Feature with an associated Geometry.
-       */
-      if (feature instanceof Placemark) {
-        Placemark placemark = (Placemark) feature;
-        GISFeature gisFeature = transformPlacemark(placemark);
-        /**
-         * Collect the feature.
-         */
-        gisFeatures.add(gisFeature);
-      }
-
-      /**
-       * Other possible features are mostly for display and eye candy:
-       * <pre>
-       * Container
-       * Document
-       * Folder           (capture)
-       * GroundOverlay
-       * NetworkLink
-       * Overlay
-       * PhotoOverlay
-       * Placemark        (capture)
-       * ScreenOverlay
-       * Tour
-       * </pre>
-       */
-    }
-
-    return gisFeatures;
+    GISFeatureCollection featureCollection = transformFeature(document);
+    /**
+     * Here we capture only three feature types. Others are for display and eye
+     * candy and ignored.
+     * <pre>
+     * Container
+     * Document         (capture)  (recursive docs are allowed)
+     * Folder           (capture)
+     * GroundOverlay
+     * NetworkLink
+     * Overlay
+     * PhotoOverlay
+     * Placemark        (capture)
+     * ScreenOverlay
+     * Tour
+     * </pre>
+     */
+    return featureCollection;
   }
 
   /**
-   * Transform a Folder into a GISFeatureCollection instance.
+   * Recursively transform a {@code Feature} into a GISFeatureCollection
+   * instance.
+   * <p>
+   * Supported Feature instances are {@code Folder}, {@code Document},
+   * {@code Placemark}.
    * <p>
    * A Folder is used to arrange other Features hierarchically (Folders,
    * Placemarks, NetworkLinks, or Overlays). A Feature is visible only if it and
    * all its ancestors are visible.
    *
-   * @param folder a KML Folder
+   * @param feature a KML Folder
    * @return a GISFeatureCollection instance.
    */
-  protected GISFeatureCollection transformFolder(Folder folder) {
+  protected GISFeatureCollection transformFeature(Feature feature) {
     /**
      * Construct a new GIS Feature. If the feature has extended data then set
      * the feature properties.
      */
     GISFeatureCollection featureCollection = new GISFeatureCollection();
-    featureCollection.setId(folder.getId());
-    featureCollection.setName(folder.getName());
-    featureCollection.setDescription(folder.getDescription());
-    featureCollection.addProperties(transformExtendedData(folder));
+    featureCollection.setId(feature.getId());
+    featureCollection.setName(feature.getName());
+    featureCollection.setDescription(feature.getDescription());
+    featureCollection.addProperties(transformExtendedData(feature));
     /**
-     * We only care about the placemark contents of the folder.
+     * We only care about the placemark contents of the folder. Recursively seek
+     * into folders. Flatten into one feature collection.
      */
-    for (Feature feature : folder.getFeature()) {
-      /**
-       * Transform the feature if it is a Placemark.
-       */
-      if (feature instanceof Placemark) {
-        Placemark placemark = (Placemark) feature;
-        featureCollection.addFeatures(transformPlacemark(placemark));
+    if (feature instanceof Folder) {
+      for (Feature f : ((Folder) feature).getFeature()) {
+        featureCollection.getFeatures().addAll(transformFeature(f).getFeatures());
       }
     }
+    /**
+     * Recursively seek into documents. Flatten into one feature collection.
+     */
+    if (feature instanceof Document) {
+      for (Feature f : ((Document) feature).getFeature()) {
+        featureCollection.getFeatures().addAll(transformFeature(f).getFeatures());
+      }
+    }
+    /**
+     * Transform the feature if it is a Placemark.
+     */
+    if (feature instanceof Placemark) {
+      featureCollection.addFeatures(transformPlacemark((Placemark) feature));
+    }
+
     return featureCollection;
   }
 
