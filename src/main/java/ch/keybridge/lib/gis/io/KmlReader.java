@@ -68,15 +68,11 @@ public class KmlReader {
    */
   public GISFeatureCollection read(Kml kml) {
     /**
-     * Get the Kml document. The document should NEVER be null, but check just
-     * in case.
+     * Recursively transform the top level Kml Feature element into a collection
+     * of GIS DTO features. The top level feature could be anything, but is
+     * typically a Document or Folder.
      */
-    Document document = (Document) kml.getFeature();
-    /**
-     * Recursively transform the top level document into a collection of GIS DTO
-     * features.
-     */
-    GISFeatureCollection featureCollection = transformFeature(document);
+    GISFeatureCollection featureCollection = transformFeature(kml.getFeature());
     /**
      * Here we capture only three feature types. Others are for display and eye
      * candy and ignored.
@@ -121,19 +117,18 @@ public class KmlReader {
     featureCollection.setDescription(feature.getDescription());
     featureCollection.addProperties(transformExtendedData(feature));
     /**
-     * We only care about the placemark contents of the folder. Recursively seek
-     * into folders. Flatten into one feature collection.
-     */
-    if (feature instanceof Folder) {
-      for (Feature f : ((Folder) feature).getFeature()) {
-        featureCollection.getFeatures().addAll(transformFeature(f).getFeatures());
-      }
-    }
-    /**
      * Recursively seek into documents. Flatten into one feature collection.
      */
     if (feature instanceof Document) {
       for (Feature f : ((Document) feature).getFeature()) {
+        featureCollection.getFeatures().addAll(transformFeature(f).getFeatures());
+      }
+    }
+    /**
+     * Recursively seek into Folders. Flatten into one feature collection.
+     */
+    if (feature instanceof Folder) {
+      for (Feature f : ((Folder) feature).getFeature()) {
         featureCollection.getFeatures().addAll(transformFeature(f).getFeatures());
       }
     }
