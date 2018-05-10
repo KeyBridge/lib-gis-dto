@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>1.4.0</version>
+  <version>1.5.0</version>
   <packaging>jar</packaging>
 
   <name>lib-gis-dto</name>
@@ -33,6 +33,7 @@
     v1.3.0 - add GeoJSON and KML writers
     v1.3.1 - add isValid check to GISPosition
     v1.4.0 - add KML reader utility class; rewrite KML writer
+    v1.5.0 - move readers and writers to their respective projects
 
   </description>
 
@@ -59,23 +60,6 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
       <version>1.0.3</version>
-    </dependency>
-    <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-main</artifactId>
-      <version>10.8</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-geojson</artifactId>
-      <version>10.8</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>gis-kml</artifactId>
-      <version>1.1.0</version>
     </dependency>
     <dependency>
       <groupId>keybridge.lib</groupId>
