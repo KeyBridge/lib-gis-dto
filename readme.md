@@ -51,6 +51,7 @@ Copyright 2017-2018 Key Bridge. License is **Apache 2.0**.
     v1.3.0 - add GeoJSON and KML writers
     v1.3.1 - add isValid check to GISPosition
     v1.4.0 - add KML reader utility class; rewrite KML writer
+    v1.5.0 - move readers and writers to their respective projects
 
 
   
