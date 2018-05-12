@@ -490,13 +490,14 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
   /**
    * The color of a line as part of a polygon, polyline, or multigeometry
    * <p>
-   * Value must follow COLOR RULES. Default is "555555" if not set.
+   * Value must follow COLOR RULES. Default is "999999" if not set; slightly
+   * darker than the default fill.
    *
    * @return the value
    */
   @XmlElement(name = "Stroke")
   public String getStroke() {
-    return getProperty("stroke", "555555");
+    return getProperty("stroke", "999999");
   }
 
   /**
