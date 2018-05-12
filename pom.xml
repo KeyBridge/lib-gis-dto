@@ -24,6 +24,8 @@
     A DTO is a dumb object - it just holds properties and has getters and setters,
     but no other logic of any significance.
 
+    Developer note: JTS is passively imported via xml-adapter with scope PROVIDED. 
+
     History:
     v1.0.0 - migrated from keybridge-common to gis-common to this
     v1.1.0 - refactor extension to properties, add position name
