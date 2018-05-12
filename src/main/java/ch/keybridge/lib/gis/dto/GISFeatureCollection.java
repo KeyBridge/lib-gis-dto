@@ -15,11 +15,9 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Objects;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -51,7 +49,7 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "GISFeatureCollection")
 @XmlType(name = "GISFeatureCollection")
 @XmlAccessorType(XmlAccessType.FIELD)
-public final class GISFeatureCollection extends AbstractGISFeature implements Serializable, Comparable<GISFeatureCollection> {
+public final class GISFeatureCollection extends AbstractGISFeature {
 
   private static final long serialVersionUID = 1L;
 
@@ -118,63 +116,6 @@ public final class GISFeatureCollection extends AbstractGISFeature implements Se
     if (features != null) {
       getFeatures().addAll(Arrays.asList(features));
     }
-  }
-
-  /**
-   * Hashcode, Equality and Comparison are calculated from the NAME parameter.
-   *
-   * @return a hashcode
-   */
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    hash = 67 * hash + Objects.hashCode(this.name);
-    return hash;
-  }
-
-  /**
-   * Hashcode, Equality and Comparison are calculated from the NAME parameter.
-   *
-   * @param obj the other object
-   * @return TRUE if the names are equal
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final GISFeatureCollection other = (GISFeatureCollection) obj;
-    return Objects.equals(this.name, other.getName());
-  }
-
-  /**
-   * Hashcode, Equality and Comparison are calculated from the NAME parameter.
-   *
-   * @param o the other object
-   * @return a sorted, alphabetic comparison
-   */
-  @Override
-  public int compareTo(GISFeatureCollection o) {
-    if (this.name != null) {
-      return this.name.compareTo(o.getName());
-    }
-    /**
-     * Cannot compare. Assume equal.
-     */
-    return 0;
-  }
-
-  /**
-   * ToString returns the GIS feature name.
-   *
-   * @return the GIS feature name.
-   */
-  @Override
-  public String toString() {
-    return name;
   }
 
   public String toStringFull() {

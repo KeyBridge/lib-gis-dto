@@ -16,11 +16,13 @@
 package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.adapter.XmlMapStringAdapter;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -54,7 +56,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlType(name = "AbstractGISFeature")
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class AbstractGISFeature {
+public abstract class AbstractGISFeature implements Serializable, Comparable<AbstractGISFeature> {
 
   /**
    * The Feature Object lookup identifier.
@@ -606,6 +608,63 @@ public abstract class AbstractGISFeature {
    */
   public void setFillOpacity(double fillOpacity) {
     setProperty("fillOpacity", fillOpacity);
+  }
+
+  /**
+   * Hashcode and Equality are calculated from the ID parameter.
+   *
+   * @return a hashcode
+   */
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 67 * hash + Objects.hashCode(this.id);
+    return hash;
+  }
+
+  /**
+   * Hashcode and Equality are calculated from the ID parameter.
+   *
+   * @param obj the other object
+   * @return TRUE if the names are equal
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final GISFeature other = (GISFeature) obj;
+    return Objects.equals(this.id, other.getId());
+  }
+
+  /**
+   * Comparison is calculated from the NAME parameter.
+   *
+   * @param o the other object
+   * @return a sorted, alphabetic comparison
+   */
+  @Override
+  public int compareTo(AbstractGISFeature o) {
+    if (this.name != null) {
+      return this.name.compareTo(o.getName());
+    }
+    /**
+     * Cannot compare. Assume not equal.
+     */
+    return -1;
+  }
+
+  /**
+   * ToString returns the GIS feature name.
+   *
+   * @return the GIS feature name.
+   */
+  @Override
+  public String toString() {
+    return name;
   }
 
 }

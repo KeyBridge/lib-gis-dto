@@ -20,8 +20,6 @@ import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
-import java.io.Serializable;
-import java.util.Objects;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -57,7 +55,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "GISFeature")
 @XmlType(name = "GISFeature")
 @XmlAccessorType(XmlAccessType.FIELD)
-public final class GISFeature extends AbstractGISFeature implements Serializable, Comparable<GISFeature> {
+public final class GISFeature extends AbstractGISFeature {
 
   private static final long serialVersionUID = 1L;
 
@@ -221,63 +219,6 @@ public final class GISFeature extends AbstractGISFeature implements Serializable
    */
   public void setIso2(String iso2) {
     setProperty("iso2", iso2);
-  }
-
-  /**
-   * Hashcode, Equality and Comparison are calculated from the NAME parameter.
-   *
-   * @return a hashcode
-   */
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    hash = 67 * hash + Objects.hashCode(this.name);
-    return hash;
-  }
-
-  /**
-   * Hashcode, Equality and Comparison are calculated from the NAME parameter.
-   *
-   * @param obj the other object
-   * @return TRUE if the names are equal
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final GISFeature other = (GISFeature) obj;
-    return Objects.equals(this.name, other.getName());
-  }
-
-  /**
-   * Hashcode, Equality and Comparison are calculated from the NAME parameter.
-   *
-   * @param o the other object
-   * @return a sorted, alphabetic comparison
-   */
-  @Override
-  public int compareTo(GISFeature o) {
-    if (this.name != null) {
-      return this.name.compareTo(o.getName());
-    }
-    /**
-     * Cannot compare. Assume not equal.
-     */
-    return -1;
-  }
-
-  /**
-   * ToString returns the GIS feature name.
-   *
-   * @return the GIS feature name.
-   */
-  @Override
-  public String toString() {
-    return name;
   }
 
   public String toStringFull() {
