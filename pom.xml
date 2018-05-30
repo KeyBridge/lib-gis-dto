@@ -24,7 +24,7 @@
     A DTO is a dumb object - it just holds properties and has getters and setters,
     but no other logic of any significance.
 
-    Developer note: JTS is passively imported via xml-adapter with scope PROVIDED. 
+    Developer note: JTS is passively imported via xml-adapter with scope PROVIDED.
 
     History:
     v1.0.0 - migrated from keybridge-common to gis-common to this
@@ -54,7 +54,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
-      <version>1.0.3</version>
+      <version>1.2.0</version>
       <type>jar</type>
     </dependency>
 
@@ -69,6 +69,12 @@
       <artifactId>gis-common</artifactId>
       <version>3.2.2</version>
       <scope>test</scope>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.vividsolutions</groupId>
+      <artifactId>jts</artifactId>
+      <version>1.13</version>
       <type>jar</type>
     </dependency>
   </dependencies>
