@@ -15,12 +15,10 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -219,22 +217,6 @@ public final class GISFeature extends AbstractGISFeature {
    */
   public void setIso2(String iso2) {
     setProperty("iso2", iso2);
-  }
-
-  public String toStringFull() {
-    try {
-      return JaxbUtility.marshal(this);
-    } catch (JAXBException ex) {
-      return "GISFeature"
-        + " id [" + id
-        + "] type [" + featureType
-        + "] name [" + name
-        + "] address [" + address
-        + "] position [" + position
-        + "] geometry [" + (geometry != null ? geometry.getGeometryType() + "[" + geometry.getCoordinates().length + "]" : "")
-        + "] metadata [" + getProperties()
-        + ']';
-    }
   }
 
 }

@@ -118,13 +118,4 @@ public final class GISFeatureCollection extends AbstractGISFeature {
     }
   }
 
-  public String toStringFull() {
-    return "GISFeatureCollection"
-      + " id [" + id
-      + "] type [" + featureType
-      + "] name [" + name
-      + "] metadata [" + getProperties()
-      + ']';
-  }
-
 }
