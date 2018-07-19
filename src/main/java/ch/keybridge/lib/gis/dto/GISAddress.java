@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Key Bridge.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.*;
  * A valid street requires at least that the city, state and country are
  * identified.
  * <p>
- * WSIF street attributes and names are chosen to closely match existing US
+ * Street attributes and names are chosen to closely match existing US
  * Government databases (e.g. Postal Service, FCC, NOAA, NASA) and to also
  * support international street content requirements.
  *

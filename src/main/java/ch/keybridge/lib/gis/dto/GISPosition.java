@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Key Bridge.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,15 +33,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * GIS Coordinate data transfer object.
  * <p>
- * This is based upon the logical data model container for the WSIF coordinate
+ * This is based upon the logical data model container for the coordinate
  * database table.
  * <p>
- * The WSIF coordinate object is influenced by and extends the W3C Geolocation
- * API Specification and the Google Geolocation API, which is an implementation
- * of the W3C Geolocation API Specification.
+ * The coordinate object is influenced by and extends the W3C Geolocation API
+ * Specification and the Google Geolocation API, which is an implementation of
+ * the W3C Geolocation API Specification.
  * <p>
- * The WSIF coordinate definition supports machine-friendly access to
- * geographical location (position) information.
+ * The coordinate definition supports machine-friendly access to geographical
+ * location (position) information.
  * <p>
  * This entity class represents a persistable standard representation of a
  * geographic point location by coordinates. This specification is an extension
@@ -78,7 +78,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * attributes of this coordinate are measured in the indicated datum. If the
  * datum attribute is not set (null) then the latitude and longitude attributes
  * are measured in the WGS84 datum according to the W3C specification. The
- * presence of the datum attribute modifies how this WSIF contact MUST be
+ * presence of the datum attribute modifies how this contact MUST be
  * interpreted, and is slightly different from the standard definitions of
  * latitude and longitude as defined in the W3C document.
  * <p>
@@ -607,10 +607,10 @@ public class GISPosition implements Serializable {
   }// </editor-fold>
 
   /**
-   * Convert this WSIF coordinate into a POINT geometry. The x, y, z ordinals
-   * are configured with the longitude, latitude and elevation, respectively.
+   * Convert this coordinate into a POINT geometry. The x, y, z ordinals are
+   * configured with the longitude, latitude and elevation, respectively.
    *
-   * @return this WSIF coordinate as a POINT geometry
+   * @return this coordinate as a POINT geometry
    */
   public Point asPoint() {
     normalizeLatitudeAndLongitude();
@@ -620,10 +620,10 @@ public class GISPosition implements Serializable {
   }
 
   /**
-   * Convert this WSIF coordinate into a JTS GISPosition. The x, y, z ordinals
-   * are configured with the longitude, latitude and elevation, respectively.
+   * Convert this coordinate into a JTS GISPosition. The x, y, z ordinals are
+   * configured with the longitude, latitude and elevation, respectively.
    *
-   * @return this WSIF coordinate as a JTS GISPosition
+   * @return this coordinate as a JTS GISPosition
    */
   public com.vividsolutions.jts.geom.Coordinate asCoordinate() {
     normalizeLatitudeAndLongitude();

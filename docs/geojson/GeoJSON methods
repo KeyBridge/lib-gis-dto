@@ -334,7 +334,7 @@
    * This method is also accessed by the Spectrum Explorer and Data Browser to
    * explain what the contours mean.
    * <p/>
-   * @param whitespaceType the Enum_WsifWhitespaceType
+   * @param whitespaceType the Enum_WhitespaceType
    * @return an HTML color.
    */
   public static String mapColor(EWhitespaceType whitespaceType) {
