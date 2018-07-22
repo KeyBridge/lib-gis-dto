@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>1.6.0</version>
+  <version>1.7.0</version>
 
   <packaging>jar</packaging>
 
@@ -38,6 +38,9 @@
     v1.4.0 - add KML reader utility class; rewrite KML writer
     v1.5.0 - move readers and writers to their respective projects
     v1.6.0 - make some dependencies 'provided' to avoid transitive version errors
+    v1.7.0 - bump xml dependencies, imports
+
+
 
   </description>
 
@@ -56,7 +59,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
-      <version>1.4.0</version>
+      <version>1.5.0</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
