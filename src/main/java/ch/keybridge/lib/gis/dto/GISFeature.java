@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * A Generic GIS Data transfer object. This simple container facilitates the
- * exchange of geographic features having an associated geometry.
+ * exchange of geographic features having an associated shape.
  * <p>
  * A <em>data transfer object</em> is an object that carries data between
  * processes. The motivation for its use has to do with the fact that
@@ -57,9 +57,21 @@ public final class GISFeature extends AbstractGISFeature {
 
   private static final long serialVersionUID = 1L;
 
+  /**
+   * GISAddress is a standardized container for physical (e.g. mailing) street
+   * information. This is a simplified implementation similar to the IETF ‘civic
+   * street’ concept.
+   */
   @XmlElement(name = "Address")
   private GISAddress address;
-
+  /**
+   * GIS Coordinate data transfer object. This is based upon the logical data
+   * model container for the coordinate database table.
+   * <p>
+   * The coordinate object is influenced by and extends the W3C Geolocation API
+   * Specification and the Google Geolocation API, which is an implementation of
+   * the W3C Geolocation API Specification.
+   */
   @XmlElement(name = "Position")
   private GISPosition position;
 
@@ -74,7 +86,7 @@ public final class GISFeature extends AbstractGISFeature {
    */
   @XmlElement(name = "Shape", required = true)
   @XmlJavaTypeAdapter(XmlGeometryAdapter.class)
-  private Geometry geometry;
+  private Geometry shape;
 
   /**
    * Construct a new GIS Object instance.
@@ -85,14 +97,14 @@ public final class GISFeature extends AbstractGISFeature {
   /**
    * Construct a new GISFeature instance with minimal configuration.
    *
-   * @param name     the name. e.g. Alaska
-   * @param geometry the geometry
+   * @param name  the name. e.g. Alaska
+   * @param shape the shape
    * @return a new GISFeature instance
    */
-  public static GISFeature getInstance(String name, Geometry geometry) {
+  public static GISFeature getInstance(String name, Geometry shape) {
     GISFeature f = new GISFeature();
     f.setName(name);
-    f.setGeometry(geometry);
+    f.setShape(shape);
     return f;
   }
 
@@ -103,35 +115,53 @@ public final class GISFeature extends AbstractGISFeature {
    * @param name        the feature name
    * @param address     the address
    * @param position    the position
-   * @param geometry    the geometry
+   * @param shape       the shape
    * @return a new GISFeature instance
    */
-  public static GISFeature getInstance(String featureType, String name, GISAddress address, GISPosition position, Geometry geometry) {
+  public static GISFeature getInstance(String featureType, String name, GISAddress address, GISPosition position, Geometry shape) {
     GISFeature f = new GISFeature();
     f.setFeatureType(featureType);
     f.setName(name);
     f.setAddress(address);
     f.setPosition(position);
-    f.setGeometry(geometry);
+    f.setShape(shape);
+    return f;
+  }
+
+  /**
+   * Get a GISFeature instance with CSS configurations. This facilitates
+   * rendering when conversion to GeoJSON.
+   *
+   * @return a GIS Feature with stroke and fill configurations.
+   */
+  public static GISFeature getInstanceWithCss() {
+    GISFeature f = new GISFeature();
+    f.setMarkerSize("medium");
+    f.setMarkerColor("7e7e7e");
+    f.setStroke("999999");
+    f.setStrokeOpacity(1.0);
+    f.setStrokeWidth(2.0);
+    f.setFill("555555");
+    f.setFillOpacity(0.6);
     return f;
   }
 
   /**
    * Get the geometric shape of this GIS Object.
    *
-   * @return the configured geometry
+   * @return the configured shape
    */
-  public Geometry getGeometry() {
-    return geometry;
+  public Geometry getShape() {
+    return shape;
   }
 
   /**
    * Set the geometric shape of this GIS Object.
    *
-   * @param geometry any valid geometry type
+   * @param shape any valid shape type
    */
-  public void setGeometry(Geometry geometry) {
-    this.geometry = geometry;
+  public void setShape(Geometry shape) {
+    this.shape = shape;
   }
 
   /**
@@ -143,7 +173,7 @@ public final class GISFeature extends AbstractGISFeature {
   @XmlElement(name = "Envelope", required = true)
   @XmlJavaTypeAdapter(XmlEnvelopeAdapter.class)
   public Envelope getEnvelope() {
-    return this.geometry != null ? this.geometry.getEnvelopeInternal() : null;
+    return this.shape != null ? this.shape.getEnvelopeInternal() : null;
   }
 
   /**
