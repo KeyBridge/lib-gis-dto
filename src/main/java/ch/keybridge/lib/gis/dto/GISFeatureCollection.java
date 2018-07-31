@@ -87,6 +87,24 @@ public final class GISFeatureCollection extends AbstractGISFeature {
   }
 
   /**
+   * Get a GISFeatureCollection instance with CSS configurations. This
+   * facilitates rendering when conversion to GeoJSON.
+   *
+   * @return a GISFeatureCollection with stroke and fill configurations.
+   */
+  public static GISFeatureCollection getInstanceWithCss() {
+    GISFeatureCollection f = new GISFeatureCollection();
+    f.setMarkerSize("medium");
+    f.setMarkerColor("7e7e7e");
+    f.setStroke("999999");
+    f.setStrokeOpacity(1.0);
+    f.setStrokeWidth(2.0);
+    f.setFill("555555");
+    f.setFillOpacity(0.6);
+    return f;
+  }
+
+  /**
    * Get the Features collection.
    *
    * @return a non-null ArrayList.
