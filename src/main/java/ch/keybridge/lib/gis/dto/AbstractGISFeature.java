@@ -283,11 +283,11 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    * @param key the key index
    * @return the value, null on error
    */
-  public double getPropertyDouble(String key) {
+  public Double getPropertyDouble(String key) {
     try {
       return Double.parseDouble(getProperty(key));
     } catch (NumberFormatException | NullPointerException exception) {
-      return 0.0;
+      return null;
     }
   }
 
@@ -302,13 +302,13 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    * @param defaultValue the default value if not set
    * @return the value, null on error
    */
-  public double getPropertyDouble(String key, double defaultValue) {
+  public Double getPropertyDouble(String key, double defaultValue) {
     try {
       return isSetProperty(key)
              ? Double.parseDouble(getProperty(key))
              : defaultValue;
     } catch (NumberFormatException | NullPointerException exception) {
-      return 0.0;
+      return defaultValue;
     }
   }
 
@@ -416,7 +416,7 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    */
   @XmlElement(name = "MarkerSize")
   public String getMarkerSize() {
-    return getProperty("markerSize", "medium");
+    return getProperty("markerSize");
   }
 
   /**
@@ -473,7 +473,7 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    */
   @XmlElement(name = "MarkerColor")
   public String getMarkerColor() {
-    return getProperty("markerColor", "7e7e7e");
+    return getProperty("markerColor");
   }
 
   /**
@@ -497,7 +497,7 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    */
   @XmlElement(name = "Stroke")
   public String getStroke() {
-    return getProperty("stroke", "999999");
+    return getProperty("stroke");
   }
 
   /**
@@ -520,8 +520,8 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    * @return the value
    */
   @XmlElement(name = "StrokeOpacity")
-  public double getStrokeOpacity() {
-    return getPropertyDouble("strokeOpacity", 1.0);
+  public Double getStrokeOpacity() {
+    return getPropertyDouble("strokeOpacity");
   }
 
   /**
@@ -545,8 +545,8 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    * @return the value
    */
   @XmlElement(name = "StrokeWidth")
-  public double getStrokeWidth() {
-    return getPropertyDouble("strokeWidth", 2.0);
+  public Double getStrokeWidth() {
+    return getPropertyDouble("strokeWidth");
   }
 
   /**
@@ -570,7 +570,7 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    */
   @XmlElement(name = "Fill")
   public String getFill() {
-    return getProperty("fill", "555555");
+    return getProperty("fill");
   }
 
   /**
@@ -594,8 +594,8 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    * @return the value
    */
   @XmlElement(name = "FillOpacity")
-  public double getFillOpacity() {
-    return getPropertyDouble("fillOpacity", 0.6);
+  public Double getFillOpacity() {
+    return getPropertyDouble("fillOpacity");
   }
 
   /**
