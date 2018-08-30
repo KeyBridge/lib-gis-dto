@@ -15,7 +15,7 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.xml.adapter.XmlMapStringAdapter;
+import ch.keybridge.xml.adapter.XmlMapAdapter;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -90,7 +90,7 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    * URI-encoded key value pairs.
    */
   @XmlElement(name = "Properties")
-  @XmlJavaTypeAdapter(XmlMapStringAdapter.class)
+  @XmlJavaTypeAdapter(XmlMapAdapter.class)
   protected Map<String, String> properties;
 
   /**
