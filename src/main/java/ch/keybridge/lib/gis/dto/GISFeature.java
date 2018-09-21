@@ -15,8 +15,8 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.xml.adapter.XmlEnvelopeAdapter;
-import ch.keybridge.xml.adapter.XmlGeometryAdapter;
+import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
+import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 import javax.xml.bind.annotation.*;
