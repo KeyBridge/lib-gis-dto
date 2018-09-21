@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>2.1.0</version>
+  <version>2.1.1</version>
 
   <packaging>jar</packaging>
 
@@ -41,7 +41,7 @@
     v1.7.0 - bump xml dependencies, imports
     v2.0.0 - rename "geometry" field to 'shape'; feature map attributes are not exposed by default
     v2.1.0 - use XmlMapAdapter for feature properties; changes XML representation
-
+    v2.1.1 - fix bug for large or small values in normalize methods
 
   </description>
 
@@ -60,7 +60,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
-      <version>1.5.0</version>
+      <version>1.6.0</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>

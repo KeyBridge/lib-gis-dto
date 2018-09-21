@@ -360,27 +360,19 @@ public class GISPosition implements Serializable {
     /**
      * Normalize the latitude to range between [-90, +90].
      */
-    double latDouble = latitude;
-    if (Math.abs(latDouble) == 180) {
-      latDouble = 0d;
-    }
+    double latDouble = latitude % 180;
+    latDouble = (latDouble + 180) % 180;
     if (latDouble > 90) {
-      latDouble = 90 - (latDouble % 90);
-    } else if (latDouble < -90) {
-      latDouble = -90 - (latDouble % 90);
+      latDouble -= 180;
     }
     setLatitude(latDouble);
     /**
      * Normalize the longitude to range between [-180, +180]
      */
-    double lonDouble = longitude;
-    if (Math.abs(lonDouble) == 360) {
-      lonDouble = 0d;
-    }
+    double lonDouble = longitude % 360;
+    lonDouble = (lonDouble + 360) % 360;
     if (lonDouble > 180) {
-      lonDouble = (lonDouble % 360) - 360;
-    } else if (lonDouble < -180) {
-      lonDouble = (lonDouble % 360) + 360;
+      lonDouble -= 360;
     }
     setLongitude(lonDouble);
   }// </editor-fold>
