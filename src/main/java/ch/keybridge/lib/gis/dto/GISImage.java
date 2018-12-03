@@ -15,6 +15,7 @@
  */
 package ch.keybridge.lib.gis.dto;
 
+import ch.keybridge.lib.xml.adapter.XmlBase64Adapter;
 import ch.keybridge.lib.xml.adapter.XmlDateTimeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
 import com.vividsolutions.jts.geom.Coordinate;
@@ -22,7 +23,6 @@ import com.vividsolutions.jts.geom.Geometry;
 import java.util.Date;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
@@ -105,7 +105,7 @@ public class GISImage {
    * two-character hexadecimal number.
    */
   @XmlElement(name = "Image")
-  @XmlJavaTypeAdapter(value = HexBinaryAdapter.class)
+  @XmlJavaTypeAdapter(value = XmlBase64Adapter.class)
   private byte[] image;
 
   public GISImage() {
