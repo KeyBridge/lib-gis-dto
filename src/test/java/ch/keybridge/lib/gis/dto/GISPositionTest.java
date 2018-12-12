@@ -14,7 +14,7 @@
 package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.JaxbUtility;
-import com.vividsolutions.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Coordinate;
 import javax.xml.bind.JAXBException;
 import junit.framework.TestCase;
 import org.junit.Test;

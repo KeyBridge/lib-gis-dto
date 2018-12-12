@@ -17,8 +17,8 @@ package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.adapter.XmlDateTimeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;

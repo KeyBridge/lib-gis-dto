@@ -11,8 +11,8 @@ package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 import javax.xml.bind.JAXBException;
 import org.junit.Test;
 
