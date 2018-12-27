@@ -15,13 +15,13 @@
  */
 package ch.keybridge.lib.gis.dto;
 
+import ch.keybridge.lib.xml.adapter.XmlBase64Adapter;
 import ch.keybridge.lib.xml.adapter.XmlDateTimeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 import java.util.Objects;
@@ -106,7 +106,7 @@ public class GISImage {
    * two-character hexadecimal number.
    */
   @XmlElement(name = "Image")
-  @XmlJavaTypeAdapter(value = HexBinaryAdapter.class)
+  @XmlJavaTypeAdapter(value = XmlBase64Adapter.class)
   private byte[] image;
 
   public GISImage() {
