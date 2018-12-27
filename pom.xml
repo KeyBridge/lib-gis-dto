@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>3.0.0</version>
+  <version>3.1.0</version>
 
   <packaging>jar</packaging>
 
@@ -44,6 +44,7 @@
     v2.1.1 - fix bug for large or small values in normalize methods
     v2.2.0 - refactor using xml adapter v2.x
     v3.0.0 - dependency update (JTS) that introduces breaking changes
+    v3.1.0 - add GISImages
 
   </description>
 
