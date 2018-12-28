@@ -18,10 +18,10 @@ package ch.keybridge.lib.gis.dto;
 import ch.keybridge.lib.xml.adapter.XmlDouble02PrecisionAdapter;
 import ch.keybridge.lib.xml.adapter.XmlDouble06PrecisionAdapter;
 import ch.keybridge.lib.xml.adapter.XmlMapDoublesAdapter;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.PrecisionModel;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.PrecisionModel;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
@@ -607,8 +607,8 @@ public class GISPosition implements Serializable {
   public Point asPoint() {
     normalizeLatitudeAndLongitude();
     return new GeometryFactory(new PrecisionModel(Math.pow(10, 6))).createPoint(elevation != null
-                                                                                ? new com.vividsolutions.jts.geom.Coordinate(longitude, latitude, elevation)
-                                                                                : new com.vividsolutions.jts.geom.Coordinate(longitude, latitude));
+                                                                                ? new Coordinate(longitude, latitude, elevation)
+                                                                                : new Coordinate(longitude, latitude));
   }
 
   /**
@@ -617,11 +617,11 @@ public class GISPosition implements Serializable {
    *
    * @return this coordinate as a JTS GISPosition
    */
-  public com.vividsolutions.jts.geom.Coordinate asCoordinate() {
+  public Coordinate asCoordinate() {
     normalizeLatitudeAndLongitude();
     return elevation != null
-           ? new com.vividsolutions.jts.geom.Coordinate(longitude, latitude, elevation)
-           : new com.vividsolutions.jts.geom.Coordinate(longitude, latitude);
+           ? new Coordinate(longitude, latitude, elevation)
+           : new Coordinate(longitude, latitude);
   }
 
   /**

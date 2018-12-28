@@ -15,7 +15,10 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.xml.adapter.XmlMapAdapter;
+import ch.keybridge.lib.xml.adapter.XmlMapStringAdapter;
+
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,8 +26,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * A generic, abstract GIS Data transfer object supporting styled GIS features.
@@ -90,7 +91,7 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    * URI-encoded key value pairs.
    */
   @XmlElement(name = "Properties")
-  @XmlJavaTypeAdapter(XmlMapAdapter.class)
+  @XmlJavaTypeAdapter(XmlMapStringAdapter.class)
   protected Map<String, String> properties;
 
   /**

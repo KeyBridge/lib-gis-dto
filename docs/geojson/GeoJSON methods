@@ -315,7 +315,7 @@
     Double s = null;
     Double e = null;
     Double w = null;
-    for (com.vividsolutions.jts.geom.Coordinate coordinate : geometry.getEnvelope().getCoordinates()) {
+    for (org.locationtech.jts.geom.Coordinate coordinate : geometry.getEnvelope().getCoordinates()) {
       n = n == null ? coordinate.y : n < coordinate.y ? coordinate.y : n;
       s = s == null ? coordinate.y : s > coordinate.y ? coordinate.y : s;
       e = e == null ? coordinate.x : e < coordinate.x ? coordinate.x : e;
