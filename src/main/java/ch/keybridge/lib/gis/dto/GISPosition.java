@@ -675,14 +675,14 @@ public class GISPosition implements Serializable {
 
   /**
    * Returns a pretty print name of this GISPosition with latitude and longitude
-   * values formatted in decimal.
+   * values formatted in decimal. Note that the format is X, Y.
    *
    * @return e.g. String formatted as "DEC, DEC". e.g.
-   *         <code>12.123, -117.456</code>
+   *         <code>-117.456, 12.123</code>
    */
   @Override
   public String toString() {
-    return latitude + ", " + longitude;
+    return isComplete() ? asPoint().toString() : longitude + ", " + latitude;
   }
 
   /**
