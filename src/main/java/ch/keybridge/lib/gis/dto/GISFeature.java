@@ -55,8 +55,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 public final class GISFeature extends AbstractGISFeature {
 
-  private static final long serialVersionUID = 1L;
-
   /**
    * GISAddress is a standardized container for physical (e.g. mailing) street
    * information. This is a simplified implementation similar to the IETF ‘civic
