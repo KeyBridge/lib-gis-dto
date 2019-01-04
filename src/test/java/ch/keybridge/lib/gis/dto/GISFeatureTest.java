@@ -9,8 +9,10 @@
  */
 package ch.keybridge.lib.gis.dto;
 
+import ch.keybridge.lib.json.JsonUtility;
 import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 import javax.xml.bind.JAXBException;
@@ -43,6 +45,26 @@ public class GISFeatureTest {
     System.out.println("Unmarshal");
     Envelope envelope = adapter.unmarshal(env);
     System.out.println(envelope);
+
+  }
+
+  @Test
+  public void testToJson() throws JsonProcessingException, JAXBException {
+    GISPosition position = GISPosition.getInstance(34.0123456, -87.0654321, 12345.0, "NAD83", 20.0, 10.0);
+    GISAddress address = GISAddress.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
+//    GISFeature feature = GISFeature.getInstance("featureType", "featureName", address, position, position.asPoint().buffer(.75));
+    GISFeature feature = GISFeature.getInstanceWithCss();
+    feature.setFeatureType("featureType");
+    feature.setName("featureName");
+    feature.setAddress(address);
+    feature.setPosition(position);
+    feature.setShape(position.asPoint().buffer(.75));
+    feature.setId(1024);
+    feature.setDescription("featureDescription");
+
+//    "featureType", "featureName", address, position, position.asPoint().buffer(.75));
+    System.out.println(JsonUtility.marshal(feature));
+    System.out.println(JaxbUtility.marshal(feature));
 
   }
 

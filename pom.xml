@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>2.2.0</version>
+  <version>2.3.0</version>
 
   <packaging>jar</packaging>
 
@@ -43,6 +43,7 @@
     v2.1.0 - use XmlMapAdapter for feature properties; changes XML representation
     v2.1.1 - fix bug for large or small values in normalize methods
     v2.2.0 - refactor using xml adapter v2.x
+    v2.3.0 - add JSON serializer annotations, dependency on lib-json-adapter
 
   </description>
 
@@ -58,11 +59,20 @@
   </properties>
 
   <dependencies>
+    <!-- dependencies are marked 'provided' so applications
+    may use the most recent compatible (minor) version -->
+
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
       <version>2.0.3</version>
       <type>jar</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.keybridge</groupId>
+      <artifactId>json-adapter</artifactId>
+      <version>1.0.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -86,7 +96,6 @@
       <scope>test</scope>
       <type>jar</type>
     </dependency>
-
 
   </dependencies>
 
