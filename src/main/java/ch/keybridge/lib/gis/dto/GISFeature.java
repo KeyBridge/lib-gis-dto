@@ -15,8 +15,12 @@
  */
 package ch.keybridge.lib.gis.dto;
 
+import ch.keybridge.lib.json.adapter.JsonEnvelopeAdapter;
+import ch.keybridge.lib.json.adapter.JsonGeometryAdapter;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 import javax.xml.bind.annotation.*;
@@ -84,6 +88,8 @@ public final class GISFeature extends AbstractGISFeature {
    */
   @XmlElement(name = "Shape", required = true)
   @XmlJavaTypeAdapter(XmlGeometryAdapter.class)
+  @JsonSerialize(using = JsonGeometryAdapter.Serializer.class)
+  @JsonDeserialize(using = JsonGeometryAdapter.Deserializer.class)
   private Geometry shape;
 
   /**
@@ -170,6 +176,7 @@ public final class GISFeature extends AbstractGISFeature {
    */
   @XmlElement(name = "Envelope", required = true)
   @XmlJavaTypeAdapter(XmlEnvelopeAdapter.class)
+  @JsonSerialize(using = JsonEnvelopeAdapter.Serializer.class)
   public Envelope getEnvelope() {
     return this.shape != null ? this.shape.getEnvelopeInternal() : null;
   }
