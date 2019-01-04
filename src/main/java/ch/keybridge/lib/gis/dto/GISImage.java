@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class GISImage {
 
   /**
-   * The ID for the image
+   * The ID for the image.
    */
   @XmlElement(name = "ID")
   private String id;
@@ -367,8 +367,8 @@ public class GISImage {
    *
    * @return the Northern boundary extent.
    */
-  public Double getNorth() {
-    double north = Double.MIN_VALUE;
+  public double getNorth() {
+    double north = Double.NEGATIVE_INFINITY;
     for (Coordinate coordinate : getBoundary().getCoordinates()) {
       north = coordinate.y > north ? coordinate.y : north;
     }
@@ -380,8 +380,8 @@ public class GISImage {
    *
    * @return the Southern boundary extent.
    */
-  public Double getSouth() {
-    double south = Double.MAX_VALUE;
+  public double getSouth() {
+    double south = Double.POSITIVE_INFINITY;
     for (Coordinate coordinate : getBoundary().getCoordinates()) {
       south = coordinate.y < south ? coordinate.y : south;
     }
@@ -393,8 +393,8 @@ public class GISImage {
    *
    * @return the Eastern boundary extent.
    */
-  public Double getEast() {
-    double east = Double.MIN_VALUE;
+  public double getEast() {
+    double east = Double.NEGATIVE_INFINITY;
     for (Coordinate coordinate : getBoundary().getCoordinates()) {
       east = coordinate.x > east ? coordinate.x : east;
     }
@@ -406,8 +406,8 @@ public class GISImage {
    *
    * @return the Western boundary extent.
    */
-  public Double getWest() {
-    double west = Double.MAX_VALUE;
+  public double getWest() {
+    double west = Double.POSITIVE_INFINITY;
     for (Coordinate coordinate : getBoundary().getCoordinates()) {
       west = coordinate.x < west ? coordinate.x : west;
     }
