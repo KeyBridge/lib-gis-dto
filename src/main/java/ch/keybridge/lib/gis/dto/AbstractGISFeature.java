@@ -414,7 +414,6 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    *
    * @return the value.
    */
-  @XmlElement(name = "MarkerSize")
   public String getMarkerSize() {
     return getProperty("markerSize");
   }
@@ -443,7 +442,6 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    *
    * @return the value
    */
-  @XmlElement(name = "MarkerSymbol")
   public String getMarkerSymbol() {
     return getProperty("markerSymbol");
   }
@@ -471,7 +469,6 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    *
    * @return the value.
    */
-  @XmlElement(name = "MarkerColor")
   public String getMarkerColor() {
     return getProperty("markerColor");
   }
@@ -495,7 +492,6 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    *
    * @return the value
    */
-  @XmlElement(name = "Stroke")
   public String getStroke() {
     return getProperty("stroke");
   }
@@ -519,7 +515,6 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    *
    * @return the value
    */
-  @XmlElement(name = "StrokeOpacity")
   public Double getStrokeOpacity() {
     return getPropertyDouble("strokeOpacity");
   }
@@ -544,7 +539,6 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    *
    * @return the value
    */
-  @XmlElement(name = "StrokeWidth")
   public Double getStrokeWidth() {
     return getPropertyDouble("strokeWidth");
   }
@@ -568,7 +562,6 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    *
    * @return the value
    */
-  @XmlElement(name = "Fill")
   public String getFill() {
     return getProperty("fill");
   }
@@ -593,7 +586,6 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    *
    * @return the value
    */
-  @XmlElement(name = "FillOpacity")
   public Double getFillOpacity() {
     return getPropertyDouble("fillOpacity");
   }
