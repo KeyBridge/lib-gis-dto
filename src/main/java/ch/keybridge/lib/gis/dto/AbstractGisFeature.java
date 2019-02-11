@@ -56,7 +56,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlType(name = "AbstractGISFeature")
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class AbstractGISFeature implements Serializable, Comparable<AbstractGISFeature> {
+public abstract class AbstractGisFeature implements Serializable, Comparable<AbstractGisFeature> {
 
   /**
    * The Feature Object lookup identifier.
@@ -629,7 +629,7 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
     if (getClass() != obj.getClass()) {
       return false;
     }
-    final GISFeature other = (GISFeature) obj;
+    final Feature other = (Feature) obj;
     return Objects.equals(this.id, other.getId());
   }
 
@@ -640,7 +640,7 @@ public abstract class AbstractGISFeature implements Serializable, Comparable<Abs
    * @return a sorted, alphabetic comparison
    */
   @Override
-  public int compareTo(AbstractGISFeature o) {
+  public int compareTo(AbstractGisFeature o) {
     if (this.name != null) {
       return this.name.compareTo(o.getName());
     }

@@ -21,8 +21,8 @@ import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -57,7 +57,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "GISFeature")
 @XmlType(name = "GISFeature")
 @XmlAccessorType(XmlAccessType.FIELD)
-public final class GISFeature extends AbstractGISFeature {
+public final class Feature extends AbstractGisFeature {
 
   /**
    * GISAddress is a standardized container for physical (e.g. mailing) street
@@ -65,7 +65,7 @@ public final class GISFeature extends AbstractGISFeature {
    * street’ concept.
    */
   @XmlElement(name = "Address")
-  private GISAddress address;
+  private Address address;
   /**
    * GIS Coordinate data transfer object. This is based upon the logical data
    * model container for the coordinate database table.
@@ -75,7 +75,7 @@ public final class GISFeature extends AbstractGISFeature {
    * the W3C Geolocation API Specification.
    */
   @XmlElement(name = "Position")
-  private GISPosition position;
+  private Position position;
 
   /**
    * The geometric shape of this GIS Object.
@@ -95,7 +95,7 @@ public final class GISFeature extends AbstractGISFeature {
   /**
    * Construct a new GIS Object instance.
    */
-  public GISFeature() {
+  public Feature() {
   }
 
   /**
@@ -105,8 +105,8 @@ public final class GISFeature extends AbstractGISFeature {
    * @param shape the shape
    * @return a new GISFeature instance
    */
-  public static GISFeature getInstance(String name, Geometry shape) {
-    GISFeature f = new GISFeature();
+  public static Feature getInstance(String name, Geometry shape) {
+    Feature f = new Feature();
     f.setName(name);
     f.setShape(shape);
     return f;
@@ -122,8 +122,8 @@ public final class GISFeature extends AbstractGISFeature {
    * @param shape       the shape
    * @return a new GISFeature instance
    */
-  public static GISFeature getInstance(String featureType, String name, GISAddress address, GISPosition position, Geometry shape) {
-    GISFeature f = new GISFeature();
+  public static Feature getInstance(String featureType, String name, Address address, Position position, Geometry shape) {
+    Feature f = new Feature();
     f.setFeatureType(featureType);
     f.setName(name);
     f.setAddress(address);
@@ -138,8 +138,8 @@ public final class GISFeature extends AbstractGISFeature {
    *
    * @return a GIS Feature with stroke and fill configurations.
    */
-  public static GISFeature getInstanceWithCss() {
-    GISFeature f = new GISFeature();
+  public static Feature getInstanceWithCss() {
+    Feature f = new Feature();
     f.setMarkerSize("medium");
     f.setMarkerColor("7e7e7e");
     f.setStroke("999999");
@@ -186,7 +186,7 @@ public final class GISFeature extends AbstractGISFeature {
    *
    * @return the position
    */
-  public GISPosition getPosition() {
+  public Position getPosition() {
     return position;
   }
 
@@ -195,7 +195,7 @@ public final class GISFeature extends AbstractGISFeature {
    *
    * @param position the position
    */
-  public void setPosition(GISPosition position) {
+  public void setPosition(Position position) {
     this.position = position;
   }
 
@@ -213,7 +213,7 @@ public final class GISFeature extends AbstractGISFeature {
    *
    * @return the Address
    */
-  public GISAddress getAddress() {
+  public Address getAddress() {
     return address;
   }
 
@@ -222,7 +222,7 @@ public final class GISFeature extends AbstractGISFeature {
    *
    * @param address the Address
    */
-  public void setAddress(GISAddress address) {
+  public void setAddress(Address address) {
     this.address = address;
   }
 

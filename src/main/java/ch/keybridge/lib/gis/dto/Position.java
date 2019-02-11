@@ -23,10 +23,10 @@ import ch.keybridge.lib.xml.adapter.XmlDouble06PrecisionAdapter;
 import ch.keybridge.lib.xml.adapter.XmlMapDoublesAdapter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.PrecisionModel;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.PrecisionModel;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
@@ -103,7 +103,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "GISPosition")
 @XmlType(name = "GISPosition")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GISPosition implements Serializable {
+public class Position implements Serializable {
 
   private static final long serialVersionUID = 1L;
   /**
@@ -290,7 +290,7 @@ public class GISPosition implements Serializable {
   /**
    * Default no argument constructor.
    */
-  public GISPosition() {
+  public Position() {
   }
 
   /**
@@ -305,8 +305,8 @@ public class GISPosition implements Serializable {
    * @param accuracyHorizontal the elevation horizontal accuracy (meters)
    * @return a new GIS Position instance
    */
-  public static GISPosition getInstance(Double latitude, Double longitude, Double elevation, String datum, Double accuracyVertical, Double accuracyHorizontal) {
-    GISPosition g = new GISPosition();
+  public static Position getInstance(Double latitude, Double longitude, Double elevation, String datum, Double accuracyVertical, Double accuracyHorizontal) {
+    Position g = new Position();
     g.setLatitude(latitude);
     g.setLongitude(longitude);
     g.setElevation(elevation);
@@ -324,8 +324,8 @@ public class GISPosition implements Serializable {
    * @param longitude the longitude in decimal degrees
    * @return a new GIS Position instance
    */
-  public static GISPosition getInstance(double latitude, double longitude) {
-    GISPosition g = new GISPosition();
+  public static Position getInstance(double latitude, double longitude) {
+    Position g = new Position();
     g.setLatitude(latitude);
     g.setLongitude(longitude);
     g.normalizeLatitudeAndLongitude();
@@ -339,8 +339,8 @@ public class GISPosition implements Serializable {
    * @param point a POINT geometry.
    * @return a new GIS Position instance
    */
-  public static GISPosition getInstance(Point point) {
-    return GISPosition.getInstance(point.getY(), point.getX());
+  public static Position getInstance(Point point) {
+    return Position.getInstance(point.getY(), point.getX());
   }
 
   /**
@@ -353,8 +353,8 @@ public class GISPosition implements Serializable {
    * @param point a JTS coordinate
    * @return a new GIS Position instance
    */
-  public static GISPosition getInstance(Coordinate point) {
-    return GISPosition.getInstance(point.y, point.x);
+  public static Position getInstance(Coordinate point) {
+    return Position.getInstance(point.y, point.x);
   }
 
   // <editor-fold defaultstate="collapsed" desc="Constructor Support methods">
@@ -622,8 +622,8 @@ public class GISPosition implements Serializable {
   public Point asPoint() {
     normalizeLatitudeAndLongitude();
     return new GeometryFactory(new PrecisionModel(Math.pow(10, 6))).createPoint(elevation != null
-                                                                                ? new com.vividsolutions.jts.geom.Coordinate(longitude, latitude, elevation)
-                                                                                : new com.vividsolutions.jts.geom.Coordinate(longitude, latitude));
+                                                                                ? new org.locationtech.jts.geom.Coordinate(longitude, latitude, elevation)
+                                                                                : new org.locationtech.jts.geom.Coordinate(longitude, latitude));
   }
 
   /**
@@ -632,11 +632,11 @@ public class GISPosition implements Serializable {
    *
    * @return this coordinate as a JTS GISPosition
    */
-  public com.vividsolutions.jts.geom.Coordinate asCoordinate() {
+  public org.locationtech.jts.geom.Coordinate asCoordinate() {
     normalizeLatitudeAndLongitude();
     return elevation != null
-           ? new com.vividsolutions.jts.geom.Coordinate(longitude, latitude, elevation)
-           : new com.vividsolutions.jts.geom.Coordinate(longitude, latitude);
+           ? new org.locationtech.jts.geom.Coordinate(longitude, latitude, elevation)
+           : new org.locationtech.jts.geom.Coordinate(longitude, latitude);
   }
 
   /**
@@ -679,11 +679,11 @@ public class GISPosition implements Serializable {
    */
   @Override
   public boolean equals(Object coordinate) {
-    if (!(coordinate instanceof GISPosition)) {
+    if (!(coordinate instanceof Position)) {
       return false;
     }
     double elevenMeter = 0.00010;
-    GISPosition other = (GISPosition) coordinate;
+    Position other = (Position) coordinate;
     return (Math.abs(this.latitude - other.getLatitude()) <= elevenMeter)
       && (Math.abs(this.longitude - other.getLongitude()) <= elevenMeter);
   }

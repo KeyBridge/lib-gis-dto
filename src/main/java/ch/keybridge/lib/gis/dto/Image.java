@@ -23,8 +23,8 @@ import ch.keybridge.lib.xml.adapter.XmlDateTimeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
 import java.util.Date;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "GISImage")
 @XmlType(name = "GISImage")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GISImage {
+public class Image {
 
   /**
    * The ID for the image.
@@ -119,7 +119,7 @@ public class GISImage {
   @JsonDeserialize(using = JsonBase64Adapter.Deserializer.class)
   private byte[] image;
 
-  public GISImage() {
+  public Image() {
   }
 
   //<editor-fold defaultstate="collapsed" desc="Getter and Setter">
@@ -440,7 +440,7 @@ public class GISImage {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    final GISImage other = (GISImage) obj;
+    final Image other = (Image) obj;
     return Objects.equals(this.id, other.id);
   }
 

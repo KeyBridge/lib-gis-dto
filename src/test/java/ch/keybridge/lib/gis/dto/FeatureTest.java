@@ -13,8 +13,8 @@ import ch.keybridge.lib.json.JsonUtility;
 import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 import javax.xml.bind.JAXBException;
 import org.junit.Test;
 
@@ -22,13 +22,13 @@ import org.junit.Test;
  *
  * @author Key Bridge LLC
  */
-public class GISFeatureTest {
+public class FeatureTest {
 
   @Test
   public void testFeature() throws JAXBException, Exception {
-    GISPosition position = GISPosition.getInstance(34.123, -87.654, 12345.0, "NAD83", 20.0, 10.0);
-    GISAddress address = GISAddress.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
-    GISFeature feature = GISFeature.getInstance("featureType", "featureName", address, position, position.asPoint().buffer(.75));
+    Position position = Position.getInstance(34.123, -87.654, 12345.0, "NAD83", 20.0, 10.0);
+    Address address = Address.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
+    Feature feature = Feature.getInstance("featureType", "featureName", address, position, position.asPoint().buffer(.75));
 
     System.out.println(JaxbUtility.marshal(feature));
 
@@ -50,10 +50,10 @@ public class GISFeatureTest {
 
   @Test
   public void testToJson() throws JsonProcessingException, JAXBException {
-    GISPosition position = GISPosition.getInstance(34.0123456, -87.0654321, 12345.0, "NAD83", 20.0, 10.0);
-    GISAddress address = GISAddress.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
+    Position position = Position.getInstance(34.0123456, -87.0654321, 12345.0, "NAD83", 20.0, 10.0);
+    Address address = Address.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
 //    GISFeature feature = GISFeature.getInstance("featureType", "featureName", address, position, position.asPoint().buffer(.75));
-    GISFeature feature = GISFeature.getInstanceWithCss();
+    Feature feature = Feature.getInstanceWithCss();
     feature.setFeatureType("featureType");
     feature.setName("featureName");
     feature.setAddress(address);

@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "GISAddress")
 @XmlType(name = "GISAddress")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GISAddress implements Serializable, Comparable<GISAddress> {
+public class Address implements Serializable, Comparable<Address> {
 
   private static final long serialVersionUID = 1L;
 
@@ -87,7 +87,7 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
    * Construct a new Address entity class with a time-based record ID number
    * automatically assigned.
    */
-  public GISAddress() {
+  public Address() {
   }
 
   /**
@@ -100,8 +100,8 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
    * @param country    the ISO-2 country code
    * @return a new fully qualified GISAddress entity.
    */
-  public static GISAddress getInstance(String street, String city, String state, String postalCode, String country) {
-    GISAddress g = new GISAddress();
+  public static Address getInstance(String street, String city, String state, String postalCode, String country) {
+    Address g = new Address();
     g.setStreet(street);
     g.setCity(city);
     g.setState(state);
@@ -401,7 +401,7 @@ public class GISAddress implements Serializable, Comparable<GISAddress> {
    * @return comparison order -1, 0, 1
    */
   @Override
-  public int compareTo(GISAddress o) {
+  public int compareTo(Address o) {
     if (o == null) {
       return 1;
     }

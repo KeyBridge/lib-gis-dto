@@ -34,28 +34,28 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "GISImages")
 @XmlType(name = "GISImages")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GisImages {
+public class Images {
 
   /**
    * A list of images
    */
   @XmlElementWrapper(name = "Images")
   @XmlElement(name = "Image")
-  private List<GISImage> images;
+  private List<Image> images;
 
-  public GisImages() {
+  public Images() {
     this.images = new ArrayList<>();
   }
 
-  public List<GISImage> getImages() {
+  public List<Image> getImages() {
     return images;
   }
 
-  public void setImages(List<GISImage> images) {
+  public void setImages(List<Image> images) {
     this.images = images;
   }
 
-  public void addImages(GISImage... images) {
+  public void addImages(Image... images) {
     this.images.addAll(Arrays.asList(images));
   }
 
@@ -83,7 +83,7 @@ public class GisImages {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    final GisImages other = (GisImages) obj;
+    final Images other = (Images) obj;
     return this.images.containsAll(other.getImages()) && other.getImages().containsAll(images);
   }
 

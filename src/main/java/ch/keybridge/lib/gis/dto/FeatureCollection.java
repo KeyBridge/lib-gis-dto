@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "GISFeatureCollection")
 @XmlType(name = "GISFeatureCollection")
 @XmlAccessorType(XmlAccessType.FIELD)
-public final class GISFeatureCollection extends AbstractGISFeature {
+public final class FeatureCollection extends AbstractGisFeature {
 
   private static final long serialVersionUID = 1L;
 
@@ -59,12 +59,12 @@ public final class GISFeatureCollection extends AbstractGISFeature {
    */
   @XmlElementWrapper(name = "Features")
   @XmlElement(name = "Feature")
-  protected Collection<GISFeature> features;
+  protected Collection<Feature> features;
 
   /**
    * Construct a new GIS Feature Collection instance.
    */
-  public GISFeatureCollection() {
+  public FeatureCollection() {
   }
 
   /**
@@ -77,8 +77,8 @@ public final class GISFeatureCollection extends AbstractGISFeature {
    * @param features    a collection of features
    * @return a GISFeatureCollection instance
    */
-  public static GISFeatureCollection getInstance(String id, String featureType, String name, Collection<GISFeature> features) {
-    GISFeatureCollection collection = new GISFeatureCollection();
+  public static FeatureCollection getInstance(String id, String featureType, String name, Collection<Feature> features) {
+    FeatureCollection collection = new FeatureCollection();
     collection.setId(id);
     collection.setFeatureType(featureType);
     collection.setName(name);
@@ -92,8 +92,8 @@ public final class GISFeatureCollection extends AbstractGISFeature {
    *
    * @return a GISFeatureCollection with stroke and fill configurations.
    */
-  public static GISFeatureCollection getInstanceWithCss() {
-    GISFeatureCollection f = new GISFeatureCollection();
+  public static FeatureCollection getInstanceWithCss() {
+    FeatureCollection f = new FeatureCollection();
     f.setMarkerSize("medium");
     f.setMarkerColor("7e7e7e");
     f.setStroke("999999");
@@ -109,7 +109,7 @@ public final class GISFeatureCollection extends AbstractGISFeature {
    *
    * @return a non-null ArrayList.
    */
-  public Collection<GISFeature> getFeatures() {
+  public Collection<Feature> getFeatures() {
     if (this.features == null) {
       this.features = new ArrayList<>();
     }
@@ -121,7 +121,7 @@ public final class GISFeatureCollection extends AbstractGISFeature {
    *
    * @param features the a collection of features.
    */
-  public void setFeatures(Collection<GISFeature> features) {
+  public void setFeatures(Collection<Feature> features) {
     this.features = features;
   }
 
@@ -130,7 +130,7 @@ public final class GISFeatureCollection extends AbstractGISFeature {
    *
    * @param features the a collection of features.
    */
-  public void addFeatures(GISFeature... features) {
+  public void addFeatures(Feature... features) {
     if (features != null) {
       getFeatures().addAll(Arrays.asList(features));
     }

@@ -14,7 +14,7 @@
 package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.JaxbUtility;
-import com.vividsolutions.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Coordinate;
 import javax.xml.bind.JAXBException;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -23,14 +23,14 @@ import org.junit.Test;
  *
  * @author Key Bridge LLC
  */
-public class GISPositionTest {
+public class PositionTest {
 
-  public GISPositionTest() {
+  public PositionTest() {
   }
 
   @Test
   public void testPositionXYZ() throws JAXBException {
-    GISPosition position = GISPosition.getInstance(10.0, 20.0, 30.0, "WGS84", 0.5, 0.5);
+    Position position = Position.getInstance(10.0, 20.0, 30.0, "WGS84", 0.5, 0.5);
     System.out.println(JaxbUtility.marshal(position));
 
     Coordinate coordinate = position.asCoordinate();
@@ -47,7 +47,7 @@ public class GISPositionTest {
 
   @Test
   public void testPositionNullZ() throws JAXBException {
-    GISPosition position = GISPosition.getInstance(10.0, 20.0);
+    Position position = Position.getInstance(10.0, 20.0);
 
     System.out.println(position.toString());
 

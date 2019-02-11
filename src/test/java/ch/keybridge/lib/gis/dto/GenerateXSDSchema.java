@@ -43,10 +43,10 @@ public class GenerateXSDSchema {
     System.out.println("Generate a XML Schema and store it in the docs/xsd directory");
 
     Set<Class> classes = new HashSet<>();
-    classes.add(GISFeatureCollection.class);
-    classes.add(GISFeature.class);
-    classes.add(GISAddress.class);
-    classes.add(GISPosition.class);
+    classes.add(FeatureCollection.class);
+    classes.add(Feature.class);
+    classes.add(Address.class);
+    classes.add(Position.class);
 //    classes.add(GISImage.class);
 
     JAXBContext jaxb = JAXBContext.newInstance(classes.toArray(new Class[classes.size()]));

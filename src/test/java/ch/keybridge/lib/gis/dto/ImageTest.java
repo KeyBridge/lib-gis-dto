@@ -9,19 +9,19 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
 import junit.framework.TestCase;
 
 /**
  *
  * @author Key Bridge LLC
  */
-public class GISImageTest extends TestCase {
+public class ImageTest extends TestCase {
 
-  public GISImageTest(String testName) {
+  public ImageTest(String testName) {
     super(testName);
   }
 
@@ -30,7 +30,7 @@ public class GISImageTest extends TestCase {
     Point point = new GeometryFactory().createPoint(new Coordinate(0, 0));
     Geometry circle = point.buffer(10);
 
-    GISImage image = new GISImage();
+    Image image = new Image();
     image.setBoundary(circle);
 
 //    System.out.println("Geometry : " + circle);
