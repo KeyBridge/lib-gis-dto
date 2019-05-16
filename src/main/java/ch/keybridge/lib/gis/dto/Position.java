@@ -15,18 +15,12 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.json.adapter.JsonDouble02PrecisionAdapter;
-import ch.keybridge.lib.json.adapter.JsonDouble06PrecisionAdapter;
-import ch.keybridge.lib.json.adapter.JsonMapOfDoublesAdapter;
+//import ch.keybridge.lib.json.adapter.JsonDouble02PrecisionAdapter;
+//import ch.keybridge.lib.json.adapter.JsonDouble06PrecisionAdapter;
+//import ch.keybridge.lib.json.adapter.JsonMapOfDoublesAdapter;
 import ch.keybridge.lib.xml.adapter.XmlDouble02PrecisionAdapter;
 import ch.keybridge.lib.xml.adapter.XmlDouble06PrecisionAdapter;
 import ch.keybridge.lib.xml.adapter.XmlMapDoublesAdapter;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.Point;
-import org.locationtech.jts.geom.PrecisionModel;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
@@ -34,6 +28,10 @@ import java.util.Objects;
 import java.util.TreeMap;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.PrecisionModel;
 
 /**
  * GIS Coordinate data transfer object.
@@ -133,7 +131,7 @@ public class Position implements Serializable {
    */
   @XmlElement(name = "Latitude", required = true)
   @XmlJavaTypeAdapter(XmlDouble06PrecisionAdapter.class)
-  @JsonSerialize(using = JsonDouble06PrecisionAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonDouble06PrecisionAdapter.Serializer.class)
   private Double latitude;
   /**
    * Longitude in decimal degrees (WGS84) datum.
@@ -144,7 +142,7 @@ public class Position implements Serializable {
    */
   @XmlElement(name = "Longitude", required = true)
   @XmlJavaTypeAdapter(XmlDouble06PrecisionAdapter.class)
-  @JsonSerialize(using = JsonDouble06PrecisionAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonDouble06PrecisionAdapter.Serializer.class)
   private Double longitude;
   /**
    * Elevation height in meters (WGS84 datum) above mean sea level, or null if
@@ -157,7 +155,7 @@ public class Position implements Serializable {
    */
   @XmlElement(name = "Elevation")
   @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
-  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
   private Double elevation;
   /**
    * Denotes the direction of travel of the reporting device in degrees counting
@@ -178,7 +176,7 @@ public class Position implements Serializable {
    */
   @XmlElement(name = "Heading")
   @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
-  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
   private Double heading;
   /**
    * Denotes the magnitude of the horizontal component of the reporting device's
@@ -195,7 +193,7 @@ public class Position implements Serializable {
    */
   @XmlElement(name = "Speed")
   @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
-  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
   private Double speed;
 
   /**
@@ -243,7 +241,7 @@ public class Position implements Serializable {
    */
   @XmlAttribute(name = "accuracyHorizontal")
   @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
-  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
   private Double accuracyHorizontal;
   /**
    * The vertical accuracy of the position in meters, or null if not available.
@@ -257,7 +255,7 @@ public class Position implements Serializable {
    */
   @XmlAttribute(name = "accuracyVertical")
   @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
-  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
   private Double accuracyVertical;
 
   /**
@@ -272,7 +270,7 @@ public class Position implements Serializable {
    */
   @XmlElement(name = "HAAT")
   @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
-  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
   private Double haat;
 
   /**
@@ -283,8 +281,8 @@ public class Position implements Serializable {
    */
   @XmlElement(name = "RadialHAAT")
   @XmlJavaTypeAdapter(XmlMapDoublesAdapter.class)
-  @JsonSerialize(using = JsonMapOfDoublesAdapter.Serializer.class)
-  @JsonDeserialize(using = JsonMapOfDoublesAdapter.Deserializer.class)
+//  @JsonSerialize(using = JsonMapOfDoublesAdapter.Serializer.class)
+//  @JsonDeserialize(using = JsonMapOfDoublesAdapter.Deserializer.class)
   private Map<Double, Double> radialHaat;
 
   /**

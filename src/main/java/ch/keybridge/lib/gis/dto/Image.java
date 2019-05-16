@@ -15,20 +15,15 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.json.adapter.JsonBase64Adapter;
-import ch.keybridge.lib.json.adapter.JsonDateTimeAdapter;
-import ch.keybridge.lib.json.adapter.JsonGeometryAdapter;
 import ch.keybridge.lib.xml.adapter.XmlBase64Adapter;
 import ch.keybridge.lib.xml.adapter.XmlDateTimeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
 import java.util.Date;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
 
 /**
  * A Generic Data transfer object for an Image. This simple container
@@ -67,8 +62,8 @@ public class Image {
    */
   @XmlAttribute(name = "dateTimeCreated")
   @XmlJavaTypeAdapter(type = Date.class, value = XmlDateTimeAdapter.class)
-  @JsonSerialize(using = JsonDateTimeAdapter.Serializer.class)
-  @JsonDeserialize(using = JsonDateTimeAdapter.Deserializer.class)
+//  @JsonSerialize(using = JsonDateTimeAdapter.Serializer.class)
+//  @JsonDeserialize(using = JsonDateTimeAdapter.Deserializer.class)
   private Date dateCreated;
   /**
    * Image MIME type.
@@ -101,8 +96,8 @@ public class Image {
    */
   @XmlElement(name = "Boundary")
   @XmlJavaTypeAdapter(XmlGeometryAdapter.class)
-  @JsonSerialize(using = JsonGeometryAdapter.Serializer.class)
-  @JsonDeserialize(using = JsonGeometryAdapter.Deserializer.class)
+//  @JsonSerialize(using = JsonGeometryAdapter.Serializer.class)
+//  @JsonDeserialize(using = JsonGeometryAdapter.Deserializer.class)
   private Geometry boundary;
 
   /**
@@ -115,8 +110,8 @@ public class Image {
    */
   @XmlElement(name = "Image")
   @XmlJavaTypeAdapter(value = XmlBase64Adapter.class)
-  @JsonSerialize(using = JsonBase64Adapter.Serializer.class)
-  @JsonDeserialize(using = JsonBase64Adapter.Deserializer.class)
+//  @JsonSerialize(using = JsonBase64Adapter.Serializer.class)
+//  @JsonDeserialize(using = JsonBase64Adapter.Deserializer.class)
   private byte[] image;
 
   public Image() {

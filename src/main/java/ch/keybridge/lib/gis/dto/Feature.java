@@ -15,16 +15,12 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.json.adapter.JsonEnvelopeAdapter;
-import ch.keybridge.lib.json.adapter.JsonGeometryAdapter;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.locationtech.jts.geom.Envelope;
-import org.locationtech.jts.geom.Geometry;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 
 /**
  * A Generic GIS Data transfer object. This simple container facilitates the
@@ -88,8 +84,8 @@ public final class Feature extends AbstractGisFeature {
    */
   @XmlElement(name = "Shape", required = true)
   @XmlJavaTypeAdapter(XmlGeometryAdapter.class)
-  @JsonSerialize(using = JsonGeometryAdapter.Serializer.class)
-  @JsonDeserialize(using = JsonGeometryAdapter.Deserializer.class)
+//  @JsonSerialize(using = JsonGeometryAdapter.Serializer.class)
+//  @JsonDeserialize(using = JsonGeometryAdapter.Deserializer.class)
   private Geometry shape;
 
   /**
@@ -176,7 +172,7 @@ public final class Feature extends AbstractGisFeature {
    */
   @XmlElement(name = "Envelope", required = true)
   @XmlJavaTypeAdapter(XmlEnvelopeAdapter.class)
-  @JsonSerialize(using = JsonEnvelopeAdapter.Serializer.class)
+//  @JsonSerialize(using = JsonEnvelopeAdapter.Serializer.class)
   public Envelope getEnvelope() {
     return this.shape != null ? this.shape.getEnvelopeInternal() : null;
   }
