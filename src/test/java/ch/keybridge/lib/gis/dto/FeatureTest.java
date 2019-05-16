@@ -9,14 +9,14 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.json.JsonUtility;
+//import ch.keybridge.lib.json.JsonUtility;
 import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.locationtech.jts.geom.Envelope;
-import org.locationtech.jts.geom.Geometry;
 import javax.xml.bind.JAXBException;
 import org.junit.Test;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 
 /**
  *
@@ -63,7 +63,7 @@ public class FeatureTest {
     feature.setDescription("featureDescription");
 
 //    "featureType", "featureName", address, position, position.asPoint().buffer(.75));
-    System.out.println(JsonUtility.marshal(feature));
+//    System.out.println(JsonUtility.marshal(feature));
     System.out.println(JaxbUtility.marshal(feature));
 
   }
