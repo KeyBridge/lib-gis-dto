@@ -34,8 +34,8 @@ import javax.xml.bind.annotation.*;
  *
  * @author jesse
  */
-@XmlRootElement(name = "GISAddress")
-@XmlType(name = "GISAddress")
+@XmlRootElement(name = "Address")
+@XmlType(name = "Address")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Address implements Serializable, Comparable<Address> {
 

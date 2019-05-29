@@ -98,8 +98,8 @@ import org.locationtech.jts.geom.PrecisionModel;
  * representation of coordinates</a>
  * @author jesse
  */
-@XmlRootElement(name = "GISPosition")
-@XmlType(name = "GISPosition")
+@XmlRootElement(name = "Position")
+@XmlType(name = "Position")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Position implements Serializable {
 

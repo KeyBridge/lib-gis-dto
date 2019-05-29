@@ -50,8 +50,8 @@ import org.locationtech.jts.geom.Geometry;
  * and styling
  * @since v1.4.0 move id, name, type, description fields to AbstractGISFeature
  */
-@XmlRootElement(name = "GISFeature")
-@XmlType(name = "GISFeature")
+@XmlRootElement(name = "Feature")
+@XmlType(name = "Feature")
 @XmlAccessorType(XmlAccessType.FIELD)
 public final class Feature extends AbstractGisFeature {
 

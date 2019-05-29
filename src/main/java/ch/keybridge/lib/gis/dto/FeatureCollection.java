@@ -46,8 +46,8 @@ import javax.xml.bind.annotation.*;
  * and styling
  * @since v1.4.0 move id, name, type, description fields to AbstractGISFeature
  */
-@XmlRootElement(name = "GISFeatureCollection")
-@XmlType(name = "GISFeatureCollection")
+@XmlRootElement(name = "FeatureCollection")
+@XmlType(name = "FeatureCollection")
 @XmlAccessorType(XmlAccessType.FIELD)
 public final class FeatureCollection extends AbstractGisFeature {
 

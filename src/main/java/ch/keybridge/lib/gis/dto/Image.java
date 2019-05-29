@@ -32,8 +32,8 @@ import org.locationtech.jts.geom.Geometry;
  * @author Key Bridge LLC
  * @since 10/12/15
  */
-@XmlRootElement(name = "GISImage")
-@XmlType(name = "GISImage")
+@XmlRootElement(name = "Image")
+@XmlType(name = "Image")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Image {
 

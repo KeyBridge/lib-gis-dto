@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.*;
  * @author Key Bridge LLC
  * @since 12/14/18
  */
-@XmlRootElement(name = "GISImages")
-@XmlType(name = "GISImages")
+@XmlRootElement(name = "Images")
+@XmlType(name = "Images")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Images {
 
