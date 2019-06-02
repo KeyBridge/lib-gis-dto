@@ -27,12 +27,12 @@ import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
- * A generic, abstract GIS Data transfer object supporting styled GIS features.
+ * A generic, abstract Feature Data transfer object supporting arbitrary
+ * property assignment and CSS styling of JSON instances.
  * <p>
  * This abstract class implements {@code simplestyle}, a a set of agreed-upon
  * 'special values' for the GeoJSON data standard that define how a GeoJSON
  * Feature or FeatureCollection should be rendered and styled on a slippy map.
- * <p>
  * The entirety of the {@code simplestyle} specification is optional so any
  * combination of specified properties are valid. When properties are not given
  * the defaults are assumed by implementations.
@@ -54,9 +54,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @since v1.2.0 created 10/10/17
  * @since v1.4.0 move id, name, type, description fields to AbstractGISFeature
  */
-@XmlType(name = "AbstractGISFeature")
+@XmlType(name = "AbstractFeature")
 @XmlAccessorType(XmlAccessType.FIELD)
-public abstract class AbstractGisFeature implements Serializable, Comparable<AbstractGisFeature> {
+public abstract class AbstractFeature implements Serializable, Comparable<AbstractFeature> {
 
   /**
    * The Feature Object lookup identifier.
@@ -640,7 +640,7 @@ public abstract class AbstractGisFeature implements Serializable, Comparable<Abs
    * @return a sorted, alphabetic comparison
    */
   @Override
-  public int compareTo(AbstractGisFeature o) {
+  public int compareTo(AbstractFeature o) {
     if (this.name != null) {
       return this.name.compareTo(o.getName());
     }

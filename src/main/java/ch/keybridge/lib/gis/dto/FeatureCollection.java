@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "FeatureCollection")
 @XmlType(name = "FeatureCollection")
 @XmlAccessorType(XmlAccessType.FIELD)
-public final class FeatureCollection extends AbstractGisFeature {
+public final class FeatureCollection extends AbstractFeature {
 
   private static final long serialVersionUID = 1L;
 

@@ -53,7 +53,7 @@ import org.locationtech.jts.geom.Geometry;
 @XmlRootElement(name = "Feature")
 @XmlType(name = "Feature")
 @XmlAccessorType(XmlAccessType.FIELD)
-public final class Feature extends AbstractGisFeature {
+public final class Feature extends AbstractFeature {
 
   /**
    * GISAddress is a standardized container for physical (e.g. mailing) street
