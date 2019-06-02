@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>3.2.0</version>
+  <version>3.3.0</version>
   <packaging>jar</packaging>
 
   <parent>
@@ -58,7 +58,8 @@
     v3.0.0 - remove 'GIS' prefix from DTO classes; upgrade 02/11/19 with GeoTools v20.1 and JTS v1.16.0
     v3.0.1 - upgrade GeoTools to version 20.3
     v3.1.0 - remove JSON annotation
-    v3.2.0 -  remove 'GIS' refix from XML annotation
+    v3.2.0 - remove 'GIS' prefix from XML annotation;
+    v3.3.0 - rename AbstractGISFeature to AbstractFeature; add package-info with namespace "http://keybridge.ch/gis/dto"
 
   </description>
 
