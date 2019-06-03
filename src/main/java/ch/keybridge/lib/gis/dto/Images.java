@@ -37,6 +37,17 @@ import javax.xml.bind.annotation.*;
 public class Images {
 
   /**
+   * Description of the image.
+   */
+  @XmlElement(name = "Description")
+  private String description;
+  /**
+   * An image category to help sort and organize the image.
+   */
+  @XmlElement(name = "Category")
+  private String category;
+
+  /**
    * A list of images
    */
   @XmlElementWrapper(name = "Images")
@@ -57,6 +68,26 @@ public class Images {
 
   public void addImages(Image... images) {
     this.images.addAll(Arrays.asList(images));
+  }
+
+  public void addImage(Image image) {
+    images.add(image);
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
   }
 
   @Override
