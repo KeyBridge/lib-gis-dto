@@ -17,13 +17,12 @@ package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.adapter.XmlBase64Adapter;
 import ch.keybridge.lib.xml.adapter.XmlDateTimeAdapter;
-import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
+import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import java.util.Date;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Envelope;
 
 /**
  * A Generic Data transfer object for an Image. This simple container
@@ -94,11 +93,11 @@ public class Image {
   /**
    * The geographic boundary of this image.
    */
-  @XmlElement(name = "Boundary")
-  @XmlJavaTypeAdapter(XmlGeometryAdapter.class)
+  @XmlElement(name = "Envelope")
+  @XmlJavaTypeAdapter(XmlEnvelopeAdapter.class)
 //  @JsonSerialize(using = JsonGeometryAdapter.Serializer.class)
 //  @JsonDeserialize(using = JsonGeometryAdapter.Deserializer.class)
-  private Geometry boundary;
+  private Envelope envelope;
 
   /**
    * The image. XML output is encoded hexBinary is binary data encoded in
@@ -341,8 +340,8 @@ public class Image {
    *
    * @return the image geographic boundary.
    */
-  public Geometry getBoundary() {
-    return boundary;
+  public Envelope getEnvelope() {
+    return envelope;
   }
 
   /**
@@ -351,10 +350,10 @@ public class Image {
    * Note: The ENVELOPE of the input geometry type is recorded, not the actual
    * input geometry.
    *
-   * @param boundary the image geographic boundary.
+   * @param envelope the image geographic boundary.
    */
-  public void setBoundary(Geometry boundary) {
-    this.boundary = boundary != null ? boundary.getEnvelope() : null;
+  public void setEnvelope(Envelope envelope) {
+    this.envelope = envelope;
   }
 
   /**
@@ -363,11 +362,7 @@ public class Image {
    * @return the Northern boundary extent.
    */
   public double getNorth() {
-    double north = Double.NEGATIVE_INFINITY;
-    for (Coordinate coordinate : getBoundary().getCoordinates()) {
-      north = coordinate.y > north ? coordinate.y : north;
-    }
-    return north;
+    return envelope.getMaxY();
   }
 
   /**
@@ -376,11 +371,7 @@ public class Image {
    * @return the Southern boundary extent.
    */
   public double getSouth() {
-    double south = Double.POSITIVE_INFINITY;
-    for (Coordinate coordinate : getBoundary().getCoordinates()) {
-      south = coordinate.y < south ? coordinate.y : south;
-    }
-    return south;
+    return envelope.getMinY();
   }
 
   /**
@@ -389,11 +380,7 @@ public class Image {
    * @return the Eastern boundary extent.
    */
   public double getEast() {
-    double east = Double.NEGATIVE_INFINITY;
-    for (Coordinate coordinate : getBoundary().getCoordinates()) {
-      east = coordinate.x > east ? coordinate.x : east;
-    }
-    return east;
+    return envelope.getMinX();
   }
 
   /**
@@ -402,11 +389,7 @@ public class Image {
    * @return the Western boundary extent.
    */
   public double getWest() {
-    double west = Double.POSITIVE_INFINITY;
-    for (Coordinate coordinate : getBoundary().getCoordinates()) {
-      west = coordinate.x < west ? coordinate.x : west;
-    }
-    return west;
+    return envelope.getMaxX();
   }//</editor-fold>
 
   /**
