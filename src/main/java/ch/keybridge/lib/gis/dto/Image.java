@@ -380,7 +380,7 @@ public class Image {
    * @return the Eastern boundary extent.
    */
   public double getEast() {
-    return envelope.getMinX();
+    return envelope.getMaxX();
   }
 
   /**
@@ -389,7 +389,7 @@ public class Image {
    * @return the Western boundary extent.
    */
   public double getWest() {
-    return envelope.getMaxX();
+    return envelope.getMinX();
   }//</editor-fold>
 
   /**
