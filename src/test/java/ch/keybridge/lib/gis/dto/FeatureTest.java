@@ -12,7 +12,6 @@ package ch.keybridge.lib.gis.dto;
 //import ch.keybridge.lib.json.JsonUtility;
 import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import javax.xml.bind.JAXBException;
 import org.junit.Test;
 import org.locationtech.jts.geom.Envelope;
@@ -49,7 +48,7 @@ public class FeatureTest {
   }
 
   @Test
-  public void testToJson() throws JsonProcessingException, JAXBException {
+  public void testToJson() throws JAXBException {
     Position position = Position.getInstance(34.0123456, -87.0654321, 12345.0, "NAD83", 20.0, 10.0);
     Address address = Address.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
 //    GISFeature feature = GISFeature.getInstance("featureType", "featureName", address, position, position.asPoint().buffer(.75));

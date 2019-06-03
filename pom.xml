@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>3.3.0</version>
+  <version>3.4.0</version>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>keybridge.lib</groupId>
     <artifactId>gis</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
   </parent>
 
   <name>lib-gis-dto</name>
@@ -60,6 +60,7 @@
     v3.1.0 - remove JSON annotation
     v3.2.0 - remove 'GIS' prefix from XML annotation;
     v3.3.0 - rename AbstractGISFeature to AbstractFeature; add package-info with namespace "http://keybridge.ch/gis/dto"
+    v3.4.0 - change Image boundary class from Geometry to Envelope
 
   </description>
 

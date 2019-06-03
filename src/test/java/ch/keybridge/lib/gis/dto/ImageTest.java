@@ -9,11 +9,11 @@
  */
 package ch.keybridge.lib.gis.dto;
 
+import junit.framework.TestCase;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
-import junit.framework.TestCase;
 
 /**
  *
@@ -31,10 +31,10 @@ public class ImageTest extends TestCase {
     Geometry circle = point.buffer(10);
 
     Image image = new Image();
-    image.setBoundary(circle);
+    image.setEnvelope(circle.getEnvelopeInternal());
 
 //    System.out.println("Geometry : " + circle);
-    System.out.println("Boundary : " + image.getBoundary());
+    System.out.println("Boundary : " + image.getEnvelope());
     System.out.println("north : " + image.getNorth());
     System.out.println("south : " + image.getSouth());
     System.out.println("east  : " + image.getEast());
