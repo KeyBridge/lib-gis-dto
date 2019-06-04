@@ -25,16 +25,18 @@ import java.util.Objects;
 import javax.xml.bind.annotation.*;
 
 /**
- * A Generic Data transfer object for an list of Image objects. This simple
+ * A Generic Data transfer object for a collection of Image objects. This simple
  * container facilitates the exchange of generated images.
  *
  * @author Key Bridge LLC
  * @since 12/14/18
+ * @since v3.4.0 renamed from 'Images' to 'ImageCollection' to follow Feature
+ * example.
  */
-@XmlRootElement(name = "Images")
-@XmlType(name = "Images")
+@XmlRootElement(name = "ImageCollection")
+@XmlType(name = "ImageCollection")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Images {
+public class ImageCollection {
 
   /**
    * Description of the image.
@@ -54,7 +56,7 @@ public class Images {
   @XmlElement(name = "Image")
   private List<Image> images;
 
-  public Images() {
+  public ImageCollection() {
     this.images = new ArrayList<>();
   }
 
@@ -114,7 +116,7 @@ public class Images {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    final Images other = (Images) obj;
+    final ImageCollection other = (ImageCollection) obj;
     return this.images.containsAll(other.getImages()) && other.getImages().containsAll(images);
   }
 
