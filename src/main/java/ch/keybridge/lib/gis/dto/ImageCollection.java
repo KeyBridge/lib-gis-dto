@@ -50,10 +50,9 @@ public class ImageCollection {
   private String category;
 
   /**
-   * A list of images
+   * A list of images.
    */
-  @XmlElementWrapper(name = "Images")
-  @XmlElement(name = "Image")
+  @XmlElement(name = "Images")
   private List<Image> images;
 
   public ImageCollection() {

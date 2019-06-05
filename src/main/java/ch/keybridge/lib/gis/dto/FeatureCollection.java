@@ -57,8 +57,7 @@ public final class FeatureCollection extends AbstractFeature {
    * The collection of GISFeature. This is a simple ArrayList; sorting and
    * uniqueness should be externally established.
    */
-  @XmlElementWrapper(name = "Features")
-  @XmlElement(name = "Feature")
+  @XmlElement(name = "Features")
   protected Collection<Feature> features;
 
   /**

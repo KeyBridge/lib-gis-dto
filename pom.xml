@@ -61,6 +61,8 @@
     v3.2.0 - remove 'GIS' prefix from XML annotation;
     v3.3.0 - rename AbstractGISFeature to AbstractFeature; add package-info with namespace "http://keybridge.ch/gis/dto"
     v3.4.0 - change Image boundary class from Geometry to Envelope
+    - remove Xml element wrapper from FeatureCollection and ImageCollection
+
 
   </description>
 
