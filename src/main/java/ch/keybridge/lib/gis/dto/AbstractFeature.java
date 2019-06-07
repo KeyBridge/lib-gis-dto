@@ -61,7 +61,7 @@ public abstract class AbstractFeature implements Serializable, Comparable<Abstra
   /**
    * The Feature Object lookup identifier.
    */
-  @XmlElement(name = "ID")
+  @XmlElement(name = "Id")
   protected String id;
 
   /**
@@ -111,7 +111,7 @@ public abstract class AbstractFeature implements Serializable, Comparable<Abstra
    * @param id the ID attribute
    */
   public void setId(Object id) {
-    this.id = String.valueOf(id);
+    this.id = id == null ? null : String.valueOf(id);
   }
 
   /**
@@ -641,7 +641,9 @@ public abstract class AbstractFeature implements Serializable, Comparable<Abstra
    */
   @Override
   public int compareTo(AbstractFeature o) {
-    if (this.name != null) {
+    if (this.id != null) {
+      return this.id.compareTo(o.getId());
+    } else if (this.name != null) {
       return this.name.compareTo(o.getName());
     }
     /**
