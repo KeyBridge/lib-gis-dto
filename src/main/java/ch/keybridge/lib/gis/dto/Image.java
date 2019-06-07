@@ -15,10 +15,10 @@
  */
 package ch.keybridge.lib.gis.dto;
 
-import ch.keybridge.lib.xml.adapter.XmlBase64Adapter;
-import ch.keybridge.lib.xml.adapter.XmlDateTimeAdapter;
+import ch.keybridge.lib.xml.adapter.XmlBase64CompressedAdapter;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
-import java.util.Date;
+import ch.keybridge.lib.xml.adapter.XmlZonedDateTimeAdapter;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -39,7 +39,7 @@ public class Image {
   /**
    * The ID for the image.
    */
-  @XmlElement(name = "ID")
+  @XmlElement(name = "Id")
   private String id;
   /**
    * The filename, if requested.
@@ -58,31 +58,33 @@ public class Image {
   private String category;
   /**
    * Date Time stamp when this image was created.
+   *
+   * @since v3.4.0 change from Data to ZonedDateTime
    */
-  @XmlAttribute(name = "dateTimeCreated")
-  @XmlJavaTypeAdapter(type = Date.class, value = XmlDateTimeAdapter.class)
+  @XmlAttribute(name = "dateCreated")
+  @XmlJavaTypeAdapter(XmlZonedDateTimeAdapter.class)
 //  @JsonSerialize(using = JsonDateTimeAdapter.Serializer.class)
 //  @JsonDeserialize(using = JsonDateTimeAdapter.Deserializer.class)
-  private Date dateCreated;
+  private ZonedDateTime dateCreated;
   /**
    * Image MIME type.
    */
-  @XmlAttribute(name = "mimeType")
+  @XmlElement(name = "MimeType")
   private String mimeType;
   /**
    * The width of the image in pixels.
    */
-  @XmlAttribute(name = "width")
+  @XmlElement(name = "Width")
   private Integer width;
   /**
    * The height of the image in pixels.
    */
-  @XmlAttribute(name = "height")
+  @XmlElement(name = "Height")
   private Integer height;
   /**
    * The size of the image in bytes.
    */
-  @XmlAttribute(name = "size")
+  @XmlElement(name = "Size")
   private Integer size;
   /**
    * The direct URL link to the the image.
@@ -108,7 +110,8 @@ public class Image {
    * two-character hexadecimal number.
    */
   @XmlElement(name = "Image")
-  @XmlJavaTypeAdapter(value = XmlBase64Adapter.class)
+  @XmlJavaTypeAdapter(value = XmlBase64CompressedAdapter.class)
+//  @XmlMimeType("application/octet-stream")
 //  @JsonSerialize(using = JsonBase64Adapter.Serializer.class)
 //  @JsonDeserialize(using = JsonBase64Adapter.Deserializer.class)
   private byte[] image;
@@ -154,21 +157,21 @@ public class Image {
   }
 
   /**
-   * Get time uploaded, epoch time
+   * Get time uploaded. Expect UTC timezone.
    *
-   * @return Time uploaded, epoch time
+   * @return Time uploaded.
    */
-  public Date getDateCreated() {
-    return dateCreated != null ? new Date(dateCreated.getTime()) : null;
+  public ZonedDateTime getDateCreated() {
+    return dateCreated;
   }
 
   /**
-   * Set time uploaded, epoch time
+   * Set time uploaded. Expect UTC timezone.
    *
-   * @param dateCreated Time uploaded, epoch time
+   * @param dateCreated Time uploaded
    */
-  public void setDateCreated(Date dateCreated) {
-    this.dateCreated = dateCreated != null ? new Date(dateCreated.getTime()) : null;
+  public void setDateCreated(ZonedDateTime dateCreated) {
+    this.dateCreated = dateCreated;
   }
 
   /**
