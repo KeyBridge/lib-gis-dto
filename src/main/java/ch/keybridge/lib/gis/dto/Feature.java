@@ -17,6 +17,7 @@ package ch.keybridge.lib.gis.dto;
 
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
+import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.locationtech.jts.geom.Envelope;
@@ -248,6 +249,39 @@ public final class Feature extends AbstractFeature {
    */
   public void setIso2(String iso2) {
     setProperty("iso2", iso2);
+  }
+
+  /**
+   * Equals and hashcode are generated from the shape field.
+   *
+   * @return the hashcode
+   */
+  @Override
+  public int hashCode() {
+    int hash = 5;
+    hash = 61 * hash + Objects.hashCode(this.shape);
+    return hash;
+  }
+
+  /**
+   * Equals and hashcode are generated from the shape field.
+   *
+   * @param obj the other object
+   * @return equality status
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Feature other = (Feature) obj;
+    return Objects.equals(this.shape, other.shape);
   }
 
 }
