@@ -62,7 +62,9 @@
     v3.3.0 - rename AbstractGISFeature to AbstractFeature; add package-info with namespace "http://keybridge.ch/gis/dto"
     v3.4.0 - change Image boundary class from Geometry to Envelope
     - remove Xml element wrapper from FeatureCollection and ImageCollection
-
+    - add hashcode and equals on Feature shape field
+    - rename AbstractFeature 'ID' field to 'Id'; check id in CompareTo method
+    - update Image; change from Data to ZonedDateTime; convert xml attributes to elements; use compressed adapter on image data
 
   </description>
 
