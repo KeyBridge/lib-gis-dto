@@ -111,7 +111,6 @@ public class Image {
    */
   @XmlElement(name = "Image")
   @XmlJavaTypeAdapter(value = XmlBase64CompressedAdapter.class)
-//  @XmlMimeType("application/octet-stream")
 //  @JsonSerialize(using = JsonBase64Adapter.Serializer.class)
 //  @JsonDeserialize(using = JsonBase64Adapter.Deserializer.class)
   private byte[] image;
