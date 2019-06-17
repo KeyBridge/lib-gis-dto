@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 import javax.xml.bind.annotation.*;
 
 /**
- * GISAddress is a standardized container for physical (e.g. mailing) street
+ * Address is a standardized container for physical (e.g. mailing) street
  * information. This is a simplified implementation similar to the IETF ‘civic
  * street’ concept.
  * <p>
