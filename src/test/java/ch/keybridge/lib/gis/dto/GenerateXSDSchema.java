@@ -47,7 +47,8 @@ public class GenerateXSDSchema {
     classes.add(Feature.class);
     classes.add(Address.class);
     classes.add(Position.class);
-//    classes.add(GISImage.class);
+    classes.add(Image.class);
+    classes.add(ImageCollection.class);
 
     JAXBContext jaxb = JAXBContext.newInstance(classes.toArray(new Class[classes.size()]));
     SchemaOutputResolver resolver = new MySchemaOutputResolver();
@@ -67,7 +68,7 @@ public class GenerateXSDSchema {
       /**
        * suggestedFileName is "schema1.xsd"
        */
-      java.nio.file.Path path = Paths.get("docs", "xsd", "gis-dto." + sdf.format(new Date()) + ".xsd");
+      java.nio.file.Path path = Paths.get("docs", "xsd", "gis-dto." + sdf.format(new Date()) + "." + suggestedFileName);
       File file = path.toFile();
       System.out.println("  Writing XSD Schema file to " + file);
       StreamResult result = new StreamResult(file);
