@@ -65,6 +65,7 @@
     - add hashcode and equals on Feature shape field
     - rename AbstractFeature 'ID' field to 'Id'; check id in CompareTo method
     - update Image; change from Data to ZonedDateTime; convert xml attributes to elements; use compressed adapter on image data
+    - add image to feature converter
 
   </description>
 
@@ -90,7 +91,6 @@
       <artifactId>gis-common</artifactId>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <distributionManagement>

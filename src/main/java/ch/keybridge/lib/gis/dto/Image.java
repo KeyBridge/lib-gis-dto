@@ -22,10 +22,13 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Polygon;
 
 /**
- * A Generic Data transfer object for an Image. This simple container
+ * A Generic Data transfer object for an Image reference. This simple container
  * facilitates the exchange of generated images.
  *
  * @author Key Bridge LLC
@@ -63,8 +66,6 @@ public class Image {
    */
   @XmlAttribute(name = "dateCreated")
   @XmlJavaTypeAdapter(XmlZonedDateTimeAdapter.class)
-//  @JsonSerialize(using = JsonDateTimeAdapter.Serializer.class)
-//  @JsonDeserialize(using = JsonDateTimeAdapter.Deserializer.class)
   private ZonedDateTime dateCreated;
   /**
    * Image MIME type.
@@ -97,8 +98,6 @@ public class Image {
    */
   @XmlElement(name = "Envelope")
   @XmlJavaTypeAdapter(XmlEnvelopeAdapter.class)
-//  @JsonSerialize(using = JsonGeometryAdapter.Serializer.class)
-//  @JsonDeserialize(using = JsonGeometryAdapter.Deserializer.class)
   private Envelope envelope;
 
   /**
@@ -320,18 +319,18 @@ public class Image {
   }
 
   /**
-   * Set the image
+   * Set the image binary data.
    *
-   * @return the image
+   * @return the image data
    */
   public byte[] getImage() {
     return image;
   }
 
   /**
-   * Get the image.
+   * Get the image binary data.
    *
-   * @param image the image
+   * @param image the image data
    */
   public void setImage(byte[] image) {
     this.image = image;
@@ -393,6 +392,55 @@ public class Image {
   public double getWest() {
     return envelope.getMinX();
   }//</editor-fold>
+
+  /**
+   * Convert this Image to a Feature.
+   *
+   * @return this image as a Feature
+   * @since v3.4.0 added 06/17/19 to support geojson encoding
+   */
+  public Feature asFeature() {
+    Feature f = new Feature();
+    f.setId(id);
+    f.setName(name);
+    f.setDescription(description);
+    f.setFeatureType("image");
+    f.setProperty("category", category);
+    f.setProperty("dateCreated", dateCreated);
+    f.setProperty("mimeType", mimeType);
+    f.setProperty("width", width);
+    f.setProperty("height", height);
+    f.setProperty("size", size);
+    f.setProperty("url", url);
+    f.setShape(toGeometry(envelope));
+    return f;
+  }
+
+  /**
+   * Converts an envelope to a JTS polygon using the given JTS geometry factory.
+   * <p>
+   * <p>
+   * The resulting polygon contains an outer ring with vertices:
+   * (x1,y1),(x2,y1),(x2,y2),(x1,y2),(x1,y1)
+   *
+   * @param envelope The original envelope.
+   * @return The envelope as a polygon.
+   * @see copied from org.geotools.geometry.jts.JTS.toGeometry() method
+   * @since v3.4.0 added 06/17/19 to support geojson encoding
+   */
+  private Polygon toGeometry(final Envelope envelope) {
+    GeometryFactory factory = new GeometryFactory();
+    return factory.createPolygon(
+      factory.createLinearRing(
+        new Coordinate[]{
+          new Coordinate(envelope.getMinX(), envelope.getMinY()),
+          new Coordinate(envelope.getMaxX(), envelope.getMinY()),
+          new Coordinate(envelope.getMaxX(), envelope.getMaxY()),
+          new Coordinate(envelope.getMinX(), envelope.getMaxY()),
+          new Coordinate(envelope.getMinX(), envelope.getMinY())
+        }),
+      null);
+  }
 
   /**
    * Equals and Hash Code are based upon the ID field.
