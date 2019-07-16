@@ -66,6 +66,8 @@
     - rename AbstractFeature 'ID' field to 'Id'; check id in CompareTo method
     - update Image; change from Data to ZonedDateTime; convert xml attributes to elements; use compressed adapter on image data
     - add image to feature converter
+    - make xml adapter dependency 'provided' to avoid version conflicts
+
 
   </description>
 
@@ -78,6 +80,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <!--Deprecated since v3.1.0; use glassfish custom MessageBodyWriter instead-->
