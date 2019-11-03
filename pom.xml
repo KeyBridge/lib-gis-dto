@@ -8,8 +8,8 @@
 
   <parent>
     <groupId>keybridge.lib</groupId>
-    <artifactId>gis</artifactId>
-    <version>2.2.0</version>
+    <artifactId>geotools</artifactId>
+    <version>1.20.2</version>
   </parent>
 
   <name>lib-gis-dto</name>
@@ -67,19 +67,28 @@
     - update Image; change from Data to ZonedDateTime; convert xml attributes to elements; use compressed adapter on image data
     - add image to feature converter
     - make xml adapter dependency 'provided' to avoid version conflicts
-
+    - change parent to geotools, make jts and xml-adapter provided
 
   </description>
 
-  <properties>  </properties>
+  <properties>
+
+  </properties>
 
   <dependencies>
     <!-- dependencies are marked 'provided' so applications
     may use the most recent compatible (minor) version -->
 
     <dependency>
+      <groupId>org.locationtech.jts</groupId>
+      <artifactId>jts-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
+      <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
 
@@ -92,6 +101,7 @@
     <dependency>
       <groupId>keybridge.lib</groupId>
       <artifactId>gis-common</artifactId>
+      <version>4.2.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
