@@ -15,8 +15,8 @@
  */
 package ch.keybridge.gis.dto;
 
-import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
-import ch.keybridge.lib.xml.adapter.XmlGeometryAdapter;
+import ch.keybridge.xml.adapter.XmlEnvelopeAdapter;
+import ch.keybridge.xml.adapter.XmlGeometryAdapter;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

@@ -89,7 +89,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>xml-adapter</artifactId>
-      <version>3.1.0</version>
+      <version>4.0.0</version>
       <scope>provided</scope>
     </dependency>
 
@@ -102,7 +102,7 @@
     <dependency>
       <groupId>keybridge.lib</groupId>
       <artifactId>gis-common</artifactId>
-      <version>4.2.0</version>
+      <version>5.0.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -15,9 +15,9 @@
  */
 package ch.keybridge.gis.dto;
 
-import ch.keybridge.lib.xml.adapter.XmlBase64CompressedAdapter;
-import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
-import ch.keybridge.lib.xml.adapter.XmlZonedDateTimeAdapter;
+import ch.keybridge.xml.adapter.XmlBase64CompressedAdapter;
+import ch.keybridge.xml.adapter.XmlEnvelopeAdapter;
+import ch.keybridge.xml.adapter.XmlZonedDateTimeAdapter;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import javax.xml.bind.annotation.*;
