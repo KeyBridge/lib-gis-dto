@@ -11,8 +11,9 @@
  * Standard Product License Agreement. A copy of either Agreement can be
  * obtained upon request from: info@keybridgewireless.com
  */
-package ch.keybridge.lib.gis.dto;
+package ch.keybridge.gis.dto;
 
+import ch.keybridge.gis.dto.Position;
 import ch.keybridge.lib.xml.JaxbUtility;
 import org.locationtech.jts.geom.Coordinate;
 import javax.xml.bind.JAXBException;

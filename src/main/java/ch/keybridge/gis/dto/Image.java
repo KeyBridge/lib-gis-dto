@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ch.keybridge.lib.gis.dto;
+package ch.keybridge.gis.dto;
 
 import ch.keybridge.lib.xml.adapter.XmlBase64CompressedAdapter;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;

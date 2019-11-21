@@ -16,7 +16,7 @@
  * suppliers, if any. The intellectual and technical concepts contained herein
  * are proprietary.
  */
-package ch.keybridge.lib.gis.dto;
+package ch.keybridge.gis.dto;
 
 import java.util.ArrayList;
 import java.util.Arrays;

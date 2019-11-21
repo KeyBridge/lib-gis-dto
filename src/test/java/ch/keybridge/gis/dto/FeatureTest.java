@@ -7,9 +7,12 @@
  * See the License for specific language governing permissions and
  * limitations under the License.
  */
-package ch.keybridge.lib.gis.dto;
+package ch.keybridge.gis.dto;
 
 //import ch.keybridge.lib.json.JsonUtility;
+import ch.keybridge.gis.dto.Position;
+import ch.keybridge.gis.dto.Address;
+import ch.keybridge.gis.dto.Feature;
 import ch.keybridge.lib.xml.JaxbUtility;
 import ch.keybridge.lib.xml.adapter.XmlEnvelopeAdapter;
 import javax.xml.bind.JAXBException;

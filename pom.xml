@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>3.4.0</version>
+  <version>4.0.0</version>
   <packaging>jar</packaging>
 
   <parent>
@@ -33,7 +33,8 @@
     Developer note: JTS is passively imported via xml-adapter with scope PROVIDED.
 
     History:
-    v1.0.0 - migrated from keybridge-common to gis-common to this
+
+    v1.0.0 - migrate from keybridge-common to gis-common to this
     v1.1.0 - refactor extension to properties, add position name
     v1.1.1 - retain insertion order of GISFeatures in a GISFeatureCollection
     v1.1.2 - update dependencies
@@ -45,7 +46,6 @@
     v1.6.0 - make some dependencies 'provided' to avoid transitive version errors
     v1.7.0 - bump xml dependencies, imports
 
-    History: v2.x branch
     v2.0.0 - rename "geometry" field to 'shape'; feature map attributes are not exposed by default
     v2.1.0 - use XmlMapAdapter for feature properties; changes XML representation
     v2.1.1 - fix bug for large or small values in normalize methods
@@ -54,7 +54,6 @@
     v2.4.0 - add GIS Images dto class
     v2.4.1 - rewrite pom using 'gis' parent for improved dependency management
 
-    History: v3.x branch
     v3.0.0 - remove 'GIS' prefix from DTO classes; upgrade 02/11/19 with GeoTools v20.1 and JTS v1.16.0
     v3.0.1 - upgrade GeoTools to version 20.3
     v3.1.0 - remove JSON annotation
@@ -68,6 +67,8 @@
     - add image to feature converter
     - make xml adapter dependency 'provided' to avoid version conflicts
     - change parent to geotools, make jts and xml-adapter provided
+
+    v4.0.0 - refactor all to 'ch.keybridge.gis' base package
 
   </description>
 

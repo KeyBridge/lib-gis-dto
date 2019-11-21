@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ch.keybridge.lib.gis.dto;
+package ch.keybridge.gis.dto;
 
 //import ch.keybridge.lib.json.adapter.JsonDouble02PrecisionAdapter;
 //import ch.keybridge.lib.json.adapter.JsonDouble06PrecisionAdapter;

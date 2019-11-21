@@ -7,8 +7,14 @@
  * See the License for specific language governing permissions and
  * limitations under the License.
  */
-package ch.keybridge.lib.gis.dto;
+package ch.keybridge.gis.dto;
 
+import ch.keybridge.gis.dto.Position;
+import ch.keybridge.gis.dto.Image;
+import ch.keybridge.gis.dto.Address;
+import ch.keybridge.gis.dto.ImageCollection;
+import ch.keybridge.gis.dto.Feature;
+import ch.keybridge.gis.dto.FeatureCollection;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;

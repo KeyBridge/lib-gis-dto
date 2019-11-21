@@ -7,8 +7,9 @@
  * See the License for specific language governing permissions and
  * limitations under the License.
  */
-package ch.keybridge.lib.gis.dto;
+package ch.keybridge.gis.dto;
 
+import ch.keybridge.gis.dto.Image;
 import junit.framework.TestCase;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
