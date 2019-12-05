@@ -69,6 +69,8 @@
     - change parent to geotools, make jts and xml-adapter provided
 
     v4.0.0 - refactor all to 'ch.keybridge.gis' base package
+    - Feature returns null envelope for Point
+
 
   </description>
 

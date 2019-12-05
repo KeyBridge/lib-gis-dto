@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Point;
 
 /**
  * A Generic GIS Data transfer object. This simple container facilitates the
@@ -173,9 +174,15 @@ public final class Feature extends AbstractFeature {
    */
   @XmlElement(name = "Envelope", required = true)
   @XmlJavaTypeAdapter(XmlEnvelopeAdapter.class)
-//  @JsonSerialize(using = JsonEnvelopeAdapter.Serializer.class)
   public Envelope getEnvelope() {
-    return this.shape != null ? this.shape.getEnvelopeInternal() : null;
+    /**
+     * Return null for point instances.
+     */
+    return this.shape == null
+           ? null
+           : this.shape instanceof Point
+             ? null
+             : this.shape.getEnvelopeInternal();
   }
 
   /**
