@@ -407,81 +407,21 @@ public abstract class AbstractFeature implements Serializable, Comparable<Abstra
   }
 
   /**
-   * The size of the marker.
-   * <p>
-   * Sizes can be different pixel sizes in different implementations Value must
-   * be one of [ "small", "medium", "large"] Default is "medium" if not set.
+   * The Icon URL.
    *
-   * @return the value.
+   * @return a fully qualified URL to an icon image.
    */
-  public String getMarkerSize() {
-    return getProperty("markerSize");
+  public String getIcon() {
+    return getProperty("icon");
   }
 
   /**
-   * The size of the marker.
-   * <p>
-   * Sizes can be different pixel sizes in different implementations Value must
-   * be one of ["small", "medium", "large"] Default is "medium" if not set.
+   * Set the Icon URL.
    *
-   * @param markerSize the value
+   * @param icon a fully qualified URL to an icon image.
    */
-  public void setMarkerSize(String markerSize) {
-    setProperty("markerSize", markerSize);
-  }
-
-  /**
-   * A symbol to position in the center of this icon.
-   * <p>
-   * If not provided or null then no symbol is overlaid and only the marker is
-   * shown. Allowed values include
-   * <ul>
-   * <li> Icon ID </li>
-   * <li> An integer 0 through 9</li>
-   * <li> A lowercase character "a" through "z"</li></ul>
-   *
-   * @return the value
-   */
-  public String getMarkerSymbol() {
-    return getProperty("markerSymbol");
-  }
-
-  /**
-   * A symbol to position in the center of this icon.
-   * <p>
-   * If not provided or null then no symbol is overlaid and only the marker is
-   * shown. Allowed values include
-   * <ul>
-   * <li> Icon ID </li>
-   * <li> An integer 0 through 9</li>
-   * <li> A lowercase character "a" through "z"</li></ul>
-   *
-   * @param markerSymbol the value
-   */
-  public void setMarkerSymbol(String markerSymbol) {
-    setProperty("markerSymbol", markerSymbol);
-  }
-
-  /**
-   * The marker's color.
-   * <p>
-   * Value must follow COLOR RULES. Default is "7e7e7e" if not set.
-   *
-   * @return the value.
-   */
-  public String getMarkerColor() {
-    return getProperty("markerColor");
-  }
-
-  /**
-   * The marker's color.
-   * <p>
-   * Value must follow COLOR RULES. Default is "7e7e7e" if not set.
-   *
-   * @param markerColor the value
-   */
-  public void setMarkerColor(String markerColor) {
-    setProperty("markerColor", markerColor);
+  public void setIcon(String icon) {
+    setProperty("icon", icon);
   }
 
   /**

@@ -70,7 +70,7 @@
 
     v4.0.0 - refactor all to 'ch.keybridge.gis' base package
     - Feature returns null envelope for Point
-
+    - replace 'marker' properties with icon uri field
 
   </description>
 

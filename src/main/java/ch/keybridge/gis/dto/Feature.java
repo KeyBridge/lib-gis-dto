@@ -138,8 +138,6 @@ public final class Feature extends AbstractFeature {
    */
   public static Feature getInstanceWithCss() {
     Feature f = new Feature();
-    f.setMarkerSize("medium");
-    f.setMarkerColor("7e7e7e");
     f.setStroke("999999");
     f.setStrokeOpacity(1.0);
     f.setStrokeWidth(2.0);
