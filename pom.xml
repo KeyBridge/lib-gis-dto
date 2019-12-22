@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>4.0.0</version>
+  <version>4.1.0</version>
   <packaging>jar</packaging>
 
   <parent>
@@ -71,6 +71,7 @@
     v4.0.0 - refactor all to 'ch.keybridge.gis' base package
     - Feature returns null envelope for Point
     - replace 'marker' properties with icon uri field
+    v4.1.0 - move mediatype readers and writer to this library
 
   </description>
 
@@ -95,11 +96,21 @@
       <scope>provided</scope>
     </dependency>
 
-    <!--Deprecated since v3.1.0; use glassfish custom MessageBodyWriter instead-->
-    <!--    <dependency>
-      <groupId>ch.keybridge</groupId>
-      <artifactId>json-adapter</artifactId>
-    </dependency>-->
+    <!--for mediatype readers and writers-->
+    <dependency>
+      <groupId>keybridge.lib</groupId>
+      <artifactId>gis-geojson</artifactId>
+      <version>3.0.0</version>
+      <type>jar</type>
+      <scope>provided</scope>
+    </dependency>
+    <!--for mediatype readers and writers-->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+      <version>7.0</version>
+      <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>keybridge.lib</groupId>
