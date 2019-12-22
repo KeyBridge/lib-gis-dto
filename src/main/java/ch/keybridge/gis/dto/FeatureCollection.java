@@ -15,10 +15,14 @@
  */
 package ch.keybridge.gis.dto;
 
+import ch.keybridge.xml.adapter.XmlEnvelopeAdapter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Point;
 
 /**
  * A Generic GIS Data transfer object for collections of GIS Features. This
@@ -133,4 +137,35 @@ public final class FeatureCollection extends AbstractFeature {
     }
   }
 
+  /**
+   * The envelope containing all the collection features. This marshals as
+   * {@code [Xmin, Ymin, Xmax, Ymax]}, which is the format used by GML and WFS.
+   * <p>
+   * @return a JTS envelope
+   */
+  @XmlElement(name = "Envelope", required = true)
+  @XmlJavaTypeAdapter(XmlEnvelopeAdapter.class)
+  public Envelope getEnvelope() {
+    Envelope e = null;
+    for (Feature feature : features) {
+      /**
+       * Initialize the envelope. This works with any geometry type.
+       */
+      if (e == null) {
+        e = feature.getShape().getEnvelopeInternal();
+      }
+      /**
+       * Expand the envelope to include the feature envelope or all of its
+       * coordinates.
+       */
+      if (feature.getEnvelope() != null) {
+        e.expandToInclude(feature.getEnvelope());
+      } else {
+        // The shape is a Point
+        e.expandToInclude(((Point) feature.getShape()).getCoordinate());
+//        for (Coordinate coordinate : feature.getShape().getCoordinates()) {          e.expandToInclude(coordinate);        }
+      }
+    }
+    return e;
+  }
 }
