@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>keybridge.lib</groupId>
   <artifactId>gis-dto</artifactId>
-  <version>4.1.0</version>
+  <version>4.0.0</version>
   <packaging>jar</packaging>
 
   <parent>
@@ -71,7 +71,7 @@
     v4.0.0 - refactor all to 'ch.keybridge.gis' base package
     - Feature returns null envelope for Point
     - replace 'marker' properties with icon uri field
-    v4.1.0 - move mediatype readers and writer to this library
+
 
   </description>
 
