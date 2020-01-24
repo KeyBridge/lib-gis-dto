@@ -22,6 +22,9 @@ import ch.keybridge.xml.adapter.XmlDouble02PrecisionAdapter;
 import ch.keybridge.xml.adapter.XmlDouble06PrecisionAdapter;
 import ch.keybridge.xml.adapter.XmlMapDoublesAdapter;
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
@@ -259,6 +262,13 @@ public class Position implements Serializable {
   private Double accuracyVertical;
 
   /**
+   * The source for this position information. For DEM service this is the
+   * raster coverage library providing the elevation value.
+   */
+  @XmlElement(name = "Source")
+  private String source;
+
+  /**
    * The Height above average terrain (HAAT) in meters.
    * <p>
    * Also called EHAAT (Effective Height Above Average Terrain), HAAT is a
@@ -303,7 +313,7 @@ public class Position implements Serializable {
    * @param accuracyHorizontal the elevation horizontal accuracy (meters)
    * @return a new GIS Position instance
    */
-  public static Position getInstance(Double latitude, Double longitude, Double elevation, String datum, Double accuracyVertical, Double accuracyHorizontal) {
+  public static Position getInstance(double latitude, double longitude, double elevation, String datum, double accuracyVertical, double accuracyHorizontal) {
     Position g = new Position();
     g.setLatitude(latitude);
     g.setLongitude(longitude);
@@ -534,6 +544,26 @@ public class Position implements Serializable {
   }
 
   /**
+   * Set the timestamp from a zoned date time.
+   *
+   * @param date the time when the position object was acquired.
+   */
+  public void setDomTimeStamp(ZonedDateTime date) {
+    if (date != null) {
+      this.domTimeStamp = date.toInstant().toEpochMilli();
+    }
+  }
+
+  /**
+   * Get the timestamp as a zoned date time. The time zone is set to UTC.
+   *
+   * @return the time when the position object was acquired.
+   */
+  public ZonedDateTime getDomTimeStampZonedDateTime() {
+    return ZonedDateTime.ofInstant(Instant.ofEpochMilli(domTimeStamp), ZoneId.of("UTC"));
+  }
+
+  /**
    * @return Time when the Position object was acquired represented as a
    *         DOMTimeStamp (a number of milliseconds).
    */
@@ -609,6 +639,14 @@ public class Position implements Serializable {
    */
   public void setRadialHaat(Map<Double, Double> radialHaat) {
     this.radialHaat = radialHaat != null ? new TreeMap<>(radialHaat) : null;
+  }
+
+  public String getSource() {
+    return source;
+  }
+
+  public void setSource(String source) {
+    this.source = source;
   }// </editor-fold>
 
   /**
