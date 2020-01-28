@@ -278,7 +278,7 @@ public class Position implements Serializable {
    * broadcasts (VHF and UHF in particular, as they are line of sight
    * transmissions).
    */
-  @XmlElement(name = "HAAT")
+  @XmlElement(name = "Haat")
   @XmlJavaTypeAdapter(XmlDouble02PrecisionAdapter.class)
 //  @JsonSerialize(using = JsonDouble02PrecisionAdapter.Serializer.class)
   private Double haat;
@@ -289,7 +289,7 @@ public class Position implements Serializable {
    * This is a ordered map of the HAAT values calculated in each of 360 radial
    * directions around a position.
    */
-  @XmlElement(name = "RadialHAAT")
+  @XmlElement(name = "RadialHat")
   @XmlJavaTypeAdapter(XmlMapDoublesAdapter.class)
 //  @JsonSerialize(using = JsonMapOfDoublesAdapter.Serializer.class)
 //  @JsonDeserialize(using = JsonMapOfDoublesAdapter.Deserializer.class)
