@@ -18,8 +18,13 @@ package ch.keybridge.gis.dto;
 import ch.keybridge.xml.adapter.XmlBase64CompressedAdapter;
 import ch.keybridge.xml.adapter.XmlEnvelopeAdapter;
 import ch.keybridge.xml.adapter.XmlZonedDateTimeAdapter;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.ZonedDateTime;
 import java.util.Objects;
+import javax.imageio.ImageIO;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.locationtech.jts.geom.Coordinate;
@@ -101,8 +106,8 @@ public class Image {
   private Envelope envelope;
 
   /**
-   * The image. XML output is encoded hexBinary is binary data encoded in
-   * hexadecimal.
+   * The binary image data. XML output is encoded hexBinary is binary data
+   * encoded in hexadecimal.
    * <p>
    * The xsd:hexBinary type represents binary data as a sequence of binary
    * octets. It uses hexadecimal encoding, where each binary octet is a
@@ -115,6 +120,27 @@ public class Image {
   private byte[] image;
 
   public Image() {
+  }
+
+  /**
+   * Read image data from an InputStream. The image type must also be provided.
+   * <p>
+   * Calls ImageIO to build a BufferedImage as the result of decoding a supplied
+   * InputStream with an ImageReader chosen automatically from among those
+   * currently registered. This method does not close the provided InputStream
+   * after the read operation has completed; it is the responsibility of the
+   * caller to close the stream, if desired.
+   *
+   * @param inputStream an InputStream to read from.
+   * @param formatName  a String containg the informal name of the image format.
+   *                    e.g. [png, jpg, jpeg, gif]
+   * @throws IOException if the inputstream fails to read
+   */
+  public void readImageData(InputStream inputStream, String formatName) throws IOException {
+    BufferedImage bufferedImage = ImageIO.read(inputStream);
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    ImageIO.write(bufferedImage, formatName, outputStream);
+    this.image = outputStream.toByteArray();
   }
 
   //<editor-fold defaultstate="collapsed" desc="Getter and Setter">
