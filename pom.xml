@@ -97,13 +97,6 @@
     </dependency>
 
     <!--for mediatype readers and writers-->
-    <dependency>
-      <groupId>keybridge.lib</groupId>
-      <artifactId>gis-geojson</artifactId>
-      <version>3.0.0</version>
-      <type>jar</type>
-      <scope>provided</scope>
-    </dependency>
     <!--for mediatype readers and writers-->
     <dependency>
       <groupId>javax</groupId>
