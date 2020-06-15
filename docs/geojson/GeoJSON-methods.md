@@ -1,3 +1,13 @@
+# GeoJSON conversion code
+
+The following LEGACY code is provided for reference only. It is deprecated and not in use.
+
+These methods were previously used to directly convert a `WhitespaceRegistration` service record
+to GeoJSON for map rendering. The current strategy uses automated media type readers and writers.
+
+
+
+```java
 
   /**
    * Convert all the WirelessService records belonging to a single License to a
@@ -540,3 +550,5 @@
     }
     return urlBase + "marker/" + color + "/marker" + number + ".png";
   }
+
+```

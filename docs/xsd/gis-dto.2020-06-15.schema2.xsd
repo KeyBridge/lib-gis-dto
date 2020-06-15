@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://keybridge.ch/gis/dto" xmlns:tns="http://keybridge.ch/gis/dto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://keybridge.ch/lib/xml/adapter/map">
+
+  <xs:import namespace="http://keybridge.ch/lib/xml/adapter/map" schemaLocation="gis-dto.2020-06-15.schema1.xsd"/>
+
+  <xs:element name="Address" type="tns:Address"/>
+
+  <xs:element name="Feature" type="tns:Feature"/>
+
+  <xs:element name="FeatureCollection" type="tns:FeatureCollection"/>
+
+  <xs:element name="Image" type="tns:Image"/>
+
+  <xs:element name="ImageCollection" type="tns:ImageCollection"/>
+
+  <xs:element name="Position" type="tns:Position"/>
+
+  <xs:complexType name="Position">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Latitude" type="xs:double"/>
+      <xs:element name="Longitude" type="xs:double"/>
+      <xs:element name="Elevation" type="xs:double" minOccurs="0"/>
+      <xs:element name="Heading" type="xs:double" minOccurs="0"/>
+      <xs:element name="Speed" type="xs:double" minOccurs="0"/>
+      <xs:element name="Source" type="xs:string" minOccurs="0"/>
+      <xs:element name="Haat" type="xs:double" minOccurs="0"/>
+      <xs:element name="RadialHat" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="datum" type="xs:string"/>
+    <xs:attribute name="domTimeStamp" type="xs:long"/>
+    <xs:attribute name="accuracyHorizontal" type="xs:double"/>
+    <xs:attribute name="accuracyVertical" type="xs:double"/>
+  </xs:complexType>
+
+  <xs:complexType name="ImageCollection">
+    <xs:sequence>
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+      <xs:element name="Category" type="xs:string" minOccurs="0"/>
+      <xs:element name="Images" type="tns:Image" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Image">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="0"/>
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+      <xs:element name="Category" type="xs:string" minOccurs="0"/>
+      <xs:element name="MimeType" type="xs:string" minOccurs="0"/>
+      <xs:element name="Width" type="xs:int" minOccurs="0"/>
+      <xs:element name="Height" type="xs:int" minOccurs="0"/>
+      <xs:element name="Size" type="xs:int" minOccurs="0"/>
+      <xs:element name="URL" type="xs:string" minOccurs="0"/>
+      <xs:element name="Envelope" type="xs:string" minOccurs="0"/>
+      <xs:element name="Image" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="dateCreated" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element name="Street" type="xs:string" minOccurs="0"/>
+      <xs:element name="City" type="xs:string" minOccurs="0"/>
+      <xs:element name="County" type="xs:string" minOccurs="0"/>
+      <xs:element name="State" type="xs:string" minOccurs="0"/>
+      <xs:element name="PostalCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="Country" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Feature" final="extension restriction">
+    <xs:complexContent>
+      <xs:extension base="tns:AbstractFeature">
+        <xs:sequence>
+          <xs:element name="Address" type="tns:Address" minOccurs="0"/>
+          <xs:element name="Position" type="tns:Position" minOccurs="0"/>
+          <xs:element name="Shape" type="xs:string"/>
+          <xs:element name="Envelope" type="xs:string"/>
+          <xs:element name="Country" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AbstractFeature" abstract="true">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" minOccurs="0"/>
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+      <xs:element name="Properties" type="ns1:EntrySet" minOccurs="0"/>
+      <xs:element name="Title" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="featureType" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="FeatureCollection" final="extension restriction">
+    <xs:complexContent>
+      <xs:extension base="tns:AbstractFeature">
+        <xs:sequence>
+          <xs:element name="Features" type="tns:Feature" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Envelope" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+

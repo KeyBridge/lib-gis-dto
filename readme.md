@@ -14,44 +14,33 @@ A DTO is a dumb object - it just holds properties and has getters and setters, b
 
 This library provide the following DTO classes:
 
-  *  **GISFeatureCollection** - a collection of features
-  *  **GISFeature** - a feature
-  *  **GISAddress** - a fully qualified (mailing) address
-  *  **GISPosition** - a fully qualified geographic position
-  *  **GISImage** - describes a map image overlay
-  *  **AbstractGISFeature** - provides support for map styles and other properties
+  *  **FeatureCollection** - a collection of features
+  *  **Feature** - a feature
+  *  **Address** - a fully qualified (mailing) address
+  *  **Position** - a fully qualified geographic position
+  *  **Image** - describes a map image overlay
+  *  **AbstractFeature** - provides support for map styles and other properties
 
-This library provides the following utility classes (in the `io` directory)
 
-  *  **GeoJSONWriter** - transform GIS DTO instances to **GeoJSON**
-  *  **KmlReader** - transform KML files to GIS DTO instances
-  *  **KmlWriter** - transform GIS DTO instances to a **KML** document
+## Uses
 
-# Uses
+Key Bridge uses this the DTO classes in this library in our GIS API and other services.
 
-Key Bridge uses this the DTO classes in this library in our GIS API.
-See the `io` utility classes or unit tests for usage examples.
+**Schema**
 
-# References
+Look in docs/xsd. Current is:
 
- * [GIS DTO v1.4.0](docs/xsd/gis-dto.2018-05-08.xsd)  XML Schema Document
+ * [XML Schema](gis-dto.2020-06-15.schema2.xsd)  XML Schema Document
+
+
+
+
+## References
+
  * [Data Transfer Object](https://martinfowler.com/eaaCatalog/dataTransferObject.html)
-
+ * [GeoJSON code snippets](docs/geojson/GeoJSON-methods.md)
+ 
 # License
 
-Copyright 2017-2018 Key Bridge. License is **Apache 2.0**.
-
-# History
-
-    v1.0.0 - migrated from keybridge-common to gis-common to this
-    v1.1.0 - refactor extension to properties, add position name
-    v1.1.1 - retain insertion order of GISFeatures in a GISFeatureCollection
-    v1.1.2 - update dependencies
-    v1.2.0 - use getInstance factory constructors
-    v1.3.0 - add GeoJSON and KML writers
-    v1.3.1 - add isValid check to GISPosition
-    v1.4.0 - add KML reader utility class; rewrite KML writer
-    v1.5.0 - move readers and writers to their respective projects
-
-
-  
+Copyright (C) Key Bridge. License is **Apache 2.0**.
+ 
