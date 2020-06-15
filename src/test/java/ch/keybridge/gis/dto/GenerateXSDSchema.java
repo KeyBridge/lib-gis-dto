@@ -9,12 +9,6 @@
  */
 package ch.keybridge.gis.dto;
 
-import ch.keybridge.gis.dto.Position;
-import ch.keybridge.gis.dto.Image;
-import ch.keybridge.gis.dto.Address;
-import ch.keybridge.gis.dto.ImageCollection;
-import ch.keybridge.gis.dto.Feature;
-import ch.keybridge.gis.dto.FeatureCollection;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;

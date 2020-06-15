@@ -10,15 +10,11 @@
 package ch.keybridge.gis.dto;
 
 //import ch.keybridge.lib.json.JsonUtility;
-import ch.keybridge.gis.dto.Position;
-import ch.keybridge.gis.dto.Address;
-import ch.keybridge.gis.dto.Feature;
+import ch.keybridge.json.JsonUtility;
 import ch.keybridge.xml.JaxbUtility;
-import ch.keybridge.xml.adapter.XmlEnvelopeAdapter;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javax.xml.bind.JAXBException;
 import org.junit.Test;
-import org.locationtech.jts.geom.Envelope;
-import org.locationtech.jts.geom.Geometry;
 
 /**
  *
@@ -27,31 +23,7 @@ import org.locationtech.jts.geom.Geometry;
 public class FeatureTest {
 
   @Test
-  public void testFeature() throws JAXBException, Exception {
-    Position position = Position.getInstance(34.123, -87.654, 12345.0, "NAD83", 20.0, 10.0);
-    Address address = Address.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
-    Feature feature = Feature.getInstance("featureType", "featureName", address, position, position.asPoint().buffer(.75));
-
-    System.out.println(JaxbUtility.marshal(feature));
-
-    Geometry geometry = position.asPoint().buffer(10);
-//    System.out.println("Geometry " + geometry);
-//    System.out.println("Boundary " + geometry.getEnvelope());
-//    System.out.println("Envelope " + geometry.getEnvelopeInternal());
-
-    XmlEnvelopeAdapter adapter = new XmlEnvelopeAdapter();
-
-    System.out.println("Marshal");
-    String env = adapter.marshal(geometry.getEnvelopeInternal());
-    System.out.println(env);
-    System.out.println("Unmarshal");
-    Envelope envelope = adapter.unmarshal(env);
-    System.out.println(envelope);
-
-  }
-
-  @Test
-  public void testToJson() throws JAXBException {
+  public void testToText() throws JAXBException, JsonProcessingException {
     Position position = Position.getInstance(34.0123456, -87.0654321, 12345.0, "NAD83", 20.0, 10.0);
     Address address = Address.getInstance("10101 Binary Blvd.", "Boolean", "IO", "090909", "CONGO");
 //    GISFeature feature = GISFeature.getInstance("featureType", "featureName", address, position, position.asPoint().buffer(.75));
@@ -65,8 +37,13 @@ public class FeatureTest {
     feature.setDescription("featureDescription");
 
 //    "featureType", "featureName", address, position, position.asPoint().buffer(.75));
-//    System.out.println(JsonUtility.marshal(feature));
-    System.out.println(JaxbUtility.marshal(feature));
+    JsonUtility.marshal(feature);
+    System.out.println("  Ye JSON marshalled OK");
+
+    JaxbUtility.marshal(feature);
+    System.out.println("  Ye XML  marshalled ok");
+
+    System.out.println("Marshal to JSON and XML OK");
 
   }
 

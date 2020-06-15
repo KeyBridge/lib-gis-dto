@@ -13,12 +13,11 @@
  */
 package ch.keybridge.gis.dto;
 
-import ch.keybridge.gis.dto.Position;
 import ch.keybridge.xml.JaxbUtility;
-import org.locationtech.jts.geom.Coordinate;
 import javax.xml.bind.JAXBException;
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.locationtech.jts.geom.Coordinate;
 
 /**
  *

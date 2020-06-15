@@ -99,6 +99,13 @@
     <!--for mediatype readers and writers-->
     <!--for mediatype readers and writers-->
     <dependency>
+      <groupId>keybridge.lib</groupId>
+      <artifactId>json-adapter</artifactId>
+      <version>3.0.0</version>
+      <scope>test</scope>
+      <type>jar</type>
+    </dependency>
+    <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
       <version>7.0</version>
